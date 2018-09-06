@@ -9,9 +9,25 @@ public class Team {
 	
 	public Team(TeamDAO dao, int playerID, String teamName){
 		this.dao = dao;
-		this.playerID = playerID;
-		this.teamName = teamName;
+		this.setPlayerID(playerID);
+		this.setTeamName(teamName);
 		
+	}
+
+	public int getPlayerID() {
+		return playerID;
+	}
+
+	public void setPlayerID(int playerID) {
+		this.playerID = playerID;
+	}
+
+	public String getTeamName() {
+		return teamName;
+	}
+
+	public void setTeamName(String teamName) {
+		this.teamName = teamName;
 	}
 	
 }

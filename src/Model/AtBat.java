@@ -14,10 +14,46 @@ public class AtBat {
 	
 	public AtBat(AtBatDAO dao, int abID, int playerID, int pitcherID, int gameID, String result){
 		this.dao = dao;
-		this.abID = abID;
+		this.setAbID(abID);
 		this.playerID = playerID;
+		this.setPitcherID(pitcherID);
+		this.setGameID(gameID);
+		this.setResult(result);
+	}
+	
+	public int getPlayerID(){
+		return playerID;
+	}
+
+	public int getAbID() {
+		return abID;
+	}
+
+	public void setAbID(int abID) {
+		this.abID = abID;
+	}
+
+	public int getPitcherID() {
+		return pitcherID;
+	}
+
+	public void setPitcherID(int pitcherID) {
 		this.pitcherID = pitcherID;
-		this.gameID = gameID;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
 		this.result = result;
+	}
+
+	public int getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
 	}
 }

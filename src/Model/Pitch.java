@@ -13,11 +13,51 @@ public class Pitch {
 	
 	public Pitch(PitchDAO dao, int pitchID, int reportID, String count, String type, String ballOrStrike){
 		this.dao = dao;
-		this.pitchID = pitchID;
-		this.reportID = reportID;
-		this.count = count;
-		this.type = type;
-		this.ballOrStrike = ballOrStrike;
+		this.setPitchID(pitchID);
+		this.setReportID(reportID);
+		this.setCount(count);
+		this.setType(type);
+		this.setBallOrStrike(ballOrStrike);
 		
+	}
+
+	public int getPitchID() {
+		return pitchID;
+	}
+
+	public void setPitchID(int pitchID) {
+		this.pitchID = pitchID;
+	}
+
+	public int getReportID() {
+		return reportID;
+	}
+
+	public void setReportID(int reportID) {
+		this.reportID = reportID;
+	}
+
+	public String getCount() {
+		return count;
+	}
+
+	public void setCount(String count) {
+		this.count = count;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getBallOrStrike() {
+		return ballOrStrike;
+	}
+
+	public void setBallOrStrike(String ballOrStrike) {
+		this.ballOrStrike = ballOrStrike;
 	}
 }

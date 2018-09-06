@@ -11,8 +11,38 @@ public class Game {
 	
 	public Game(GameDAO dao, int gameID, int teamID, int opponentID){
 		this.dao = dao;
+		this.setGameID(gameID);
+		this.setTeamID(teamID);
+		this.setOpponentID(opponentID);
+	}
+
+
+	public int getGameID() {
+		return gameID;
+	}
+
+
+	public void setGameID(int gameID) {
 		this.gameID = gameID;
+	}
+
+
+	public int getTeamID() {
+		return teamID;
+	}
+
+
+	public void setTeamID(int teamID) {
 		this.teamID = teamID;
+	}
+
+
+	public int getOpponentID() {
+		return opponentID;
+	}
+
+
+	public void setOpponentID(int opponentID) {
 		this.opponentID = opponentID;
 	}
 }
