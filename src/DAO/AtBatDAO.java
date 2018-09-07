@@ -11,6 +11,7 @@ import java.util.Collection;
 
 import DAO.DatabaseManager;
 import Model.AtBat;
+import Model.Team;
 
 
 public class AtBatDAO {
@@ -59,7 +60,32 @@ public class AtBatDAO {
 		}
 		catch( SQLException e) {
 			dbm.cleanup();
-			throw new RuntimeException("Error finding teamStats", e);
+			throw new RuntimeException("Error finding AtBat", e);
+		}
+	}
+	
+	public AtBat insert(int abID, int playerID, int pitcherID, int gameID, String result){
+		try{
+			if(find(abID) != null)
+				return null;
+			
+			String cmd = "insert into ATBAT(abID, playerID, pitcherID, gameID, result)" + "values(?,?,?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, abID);
+			pstmt.setInt(2, playerID);
+			pstmt.setInt(3, pitcherID);
+			pstmt.setInt(4,  gameID);
+			pstmt.setString(5,result);
+			
+			pstmt.execute();
+			
+			AtBat team = new AtBat(this, abID, playerID, pitcherID, gameID, result);
+			
+			return team;
+		}
+			catch (SQLException e) {
+				dbm.cleanup();
+				throw new RuntimeException("error inserting new AtBat", e);
 		}
 	}
 }
