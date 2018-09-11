@@ -10,6 +10,8 @@ import java.util.Collection;
 
 import DAO.DatabaseManager;
 
+import Model.Game;
+
 
 public class GameDAO {
 	
@@ -29,6 +31,33 @@ public class GameDAO {
 	+ "OpponentID integer not null"
 	+ "primary key (GameID))";
 	stmt.executeUpdate(s);
+}
+	
+	public Game find(int id){
+		try{ 
+		String qry = "select t.* from GAME t where gameID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(qry);
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(!rs.next())
+			return null;
+		
+		int gameID = rs.getInt("gameID");
+		int teamID = rs.getInt("teamID");
+		int opponentID = rs.getInt("opponentID");
+	
+
+		rs.close();
+		
+		Game stats = new Game(this, gameID, teamID, opponentID);
+		
+		return stats;
+		}
+	catch( SQLException e) {
+		dbm.cleanup();
+		throw new RuntimeException("Error finding Game", e);
+	}
 }
 
 }
