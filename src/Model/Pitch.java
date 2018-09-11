@@ -7,11 +7,11 @@ public class Pitch {
 	private PitchDAO dao;
 	private int pitchID;
 	private int reportID;
-	private String count;
+	private int count;
 	private String type;
 	private String ballOrStrike;
 	
-	public Pitch(PitchDAO dao, int pitchID, int reportID, String count, String type, String ballOrStrike){
+	public Pitch(PitchDAO dao, int pitchID, int reportID, int count, String type, String ballOrStrike){
 		this.dao = dao;
 		this.setPitchID(pitchID);
 		this.setReportID(reportID);
@@ -37,11 +37,11 @@ public class Pitch {
 		this.reportID = reportID;
 	}
 
-	public String getCount() {
+	public int getCount() {
 		return count;
 	}
 
-	public void setCount(String count) {
+	public void setCount(int count) {
 		this.count = count;
 	}
 

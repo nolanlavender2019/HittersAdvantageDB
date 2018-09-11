@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import DAO.DatabaseManager;
+import Model.Pitchers;
+import Model.Players;
 
 public class PlayersDAO {
 	private Connection conn;
@@ -33,5 +35,35 @@ public class PlayersDAO {
 	+ "primary key (PlayerID))";
 	stmt.executeUpdate(s);
 }
+	public Players find(int id){
+		try{ 
+		String qry = "select t.* from PLAYERS t where playerID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(qry);
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(!rs.next())
+			return null;
+		
+		int playerID = rs.getInt("playerID");
+		String playerName = rs.getString("playerName");
+		int number = rs.getInt("number");
+		String position = rs.getString("position");
+		String hit = rs.getString("hit");
+		float pitch2 = rs.getFloat("battingAverage");
+		float pitch3 = rs.getFloat("sluggingPercentage");
+		float pitch4 = rs.getFloat("onBasePercentage");
+		
 
+		rs.close();
+		
+		Players stats = new Players(this, playerID, playerName, number, position, hit, pitch2, pitch3, pitch4);
+		
+		return stats;
+		}
+	catch( SQLException e) {
+		dbm.cleanup();
+		throw new RuntimeException("Error finding Players", e);
+	}
+}
 }

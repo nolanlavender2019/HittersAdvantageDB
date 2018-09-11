@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import DAO.DatabaseManager;
+import Model.AtBat;
+import Model.Opponents;
+import Model.Pitchers;
 
 public class PitchersDAO {
 	private Connection conn;
@@ -24,7 +27,7 @@ public class PitchersDAO {
 	+ "PitcherID integer not null,"
 	+ "PitcherName varchar(100) not null"
 	+ "TeamID integer not null"
-	+ "Throw varchar(100) not null"
+	+ "Throw1 varchar(100) not null"
 	+ "Pitch1 varchar(100) not null"
 	+ "Pitch2 varchar(100) not null"
 	+ "Pitch3 varchar(100) not null"
@@ -32,4 +35,63 @@ public class PitchersDAO {
 	+ "primary key (PitcherID))";
 	stmt.executeUpdate(s);
 }
+	public Pitchers find(int id){
+		try{ 
+		String qry = "select t.* from PITCHERS t where pitcherID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(qry);
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(!rs.next())
+			return null;
+		
+		int gameID = rs.getInt("pitchID");
+		String teamID = rs.getString("pitcherName");
+		int teamID1 = rs.getInt("teamID");
+		String throw1 = rs.getString("throw1");
+		String pitch1 = rs.getString("pitch1");
+		String pitch2 = rs.getString("pitch2");
+		String pitch3 = rs.getString("pitch3");
+		String pitch4 = rs.getString("pitch4");
+		
+
+		rs.close();
+		
+		Pitchers stats = new Pitchers(this, gameID, teamID, teamID1, throw1, pitch1, pitch2, pitch3, pitch4);
+		
+		return stats;
+		}
+	catch( SQLException e) {
+		dbm.cleanup();
+		throw new RuntimeException("Error finding Pitchers", e);
+	}
+}
+	public Pitchers insert(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4, int reportID){
+		try{
+			if(find(pitcherID) != null)
+				return null;
+			
+			String cmd = "insert into Pitchers(pitcherID, pitcherName, teamID, throw1, pitch1, pitch2, pitch3, pitch4)" + "values(?,?,?,?,?,?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, pitcherID);
+			pstmt.setString(2, pitcherName);
+			pstmt.setInt(3, teamID);
+			pstmt.setString(4,  throw1);
+			pstmt.setString(5, pitch1);
+			pstmt.setString(6, pitch2);
+			pstmt.setString(7, pitch3);
+			pstmt.setString(8, pitch4);
+			
+			pstmt.execute();
+			
+			Pitchers team = new Pitchers(this, pitcherID, pitcherName, teamID, throw1, pitch1, pitch2, pitch3, pitch4);
+			
+			return team;
+		}
+			catch (SQLException e) {
+				dbm.cleanup();
+				throw new RuntimeException("error inserting new Pitcher", e);
+		}
+	}
+
 }
