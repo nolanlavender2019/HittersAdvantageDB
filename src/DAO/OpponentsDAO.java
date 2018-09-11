@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import DAO.DatabaseManager;
+import Model.Game;
+import Model.Opponents;
 
 public class OpponentsDAO {
 	private Connection conn;
@@ -25,5 +27,32 @@ public class OpponentsDAO {
 	+"TeamName varchar(100) not null"
 	+ "primary key (OpponentsID))";
 	stmt.executeUpdate(s);
+	}
+	
+	public Opponents find(int id){
+		try{ 
+		String qry = "select t.* from OPPONENTS t where opponentID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(qry);
+		pstmt.setInt(1, id);
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(!rs.next())
+			return null;
+		
+		int gameID = rs.getInt("opponentID");
+		String teamID = rs.getString("teamName");
+		
+	
+
+		rs.close();
+		
+		Opponents stats = new Opponents(this, gameID, teamID);
+		
+		return stats;
+		}
+	catch( SQLException e) {
+		dbm.cleanup();
+		throw new RuntimeException("Error finding Game", e);
+	}
 }
 }
