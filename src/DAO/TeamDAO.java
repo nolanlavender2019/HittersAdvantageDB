@@ -55,6 +55,7 @@ public class TeamDAO {
 		throw new RuntimeException("Error finding Game", e);
 	}
 }
+
 	
 	public Team insert(int teamID, String teamName){
 		try{
@@ -79,4 +80,4 @@ public class TeamDAO {
 		}
 	}
 }
-}
+
