@@ -55,4 +55,28 @@ public class TeamDAO {
 		throw new RuntimeException("Error finding Game", e);
 	}
 }
+	
+	public Team insert(int teamID, String teamName){
+		try{
+			if(find(teamID) != null)
+				return null;
+			
+			String cmd = "insert into TEAM(teamID, teamName)" + "values(?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, teamID);
+			pstmt.setString(2, teamName);
+			
+			
+			pstmt.execute();
+			
+			Team team = new Team(this, teamID, teamName);
+			
+			return team;
+		}
+			catch (SQLException e) {
+				dbm.cleanup();
+				throw new RuntimeException("error inserting new Team", e);
+		}
+	}
+}
 }

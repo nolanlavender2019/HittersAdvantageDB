@@ -12,12 +12,12 @@ public class Report {
 	private int pitcherID;
 	private int pitchID;
 	
-	public Report(ReportDAO dao, int reportID, int gameID, int pitcherID, int pitchID){
+	public Report(ReportDAO dao, int reportID, int gameID, int pitcherID){
 		this.dao = dao;
 		this.reportID = reportID;
 		this.setGameID(gameID);
 		this.setPitcherID(pitcherID);
-		this.setPitchID(pitchID);
+		//this.setPitchID(pitchID);
 	}
 
 	public int getGameID() {

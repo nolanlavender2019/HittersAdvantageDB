@@ -90,7 +90,7 @@ public class PlayersDAO {
 		}
 			catch (SQLException e) {
 				dbm.cleanup();
-				throw new RuntimeException("error inserting new Pitcher", e);
+				throw new RuntimeException("error inserting new Player", e);
 		}
 	}
 }

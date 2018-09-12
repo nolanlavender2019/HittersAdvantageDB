@@ -30,6 +30,7 @@ public class ReportDAO {
 	+ "primary key (ReportID))";
 	stmt.executeUpdate(s);
 }
+
 	
 	public Report find(int id) {
 		try{ 
@@ -44,12 +45,12 @@ public class ReportDAO {
 			int atBatID = rs.getInt("reportID");
 			int player1 = rs.getInt("gameID");
 			int pitcher = rs.getInt("pitcherID");
-			int pitch = rs.getInt("pitchID");
+			//int pitch = rs.getInt("pitchID");
 			
 
 			rs.close();
 			
-			Report stats = new Report(this, atBatID, player1, pitcher, pitch);
+			Report stats = new Report(this, atBatID, player1, pitcher);
 			
 			return stats;
 		}
@@ -58,4 +59,30 @@ public class ReportDAO {
 			throw new RuntimeException("Error finding Report", e);
 		}
 	}
+
+	public Report insert(int reportID,int gameID, int pitcherID){
+		try{
+			if(find(reportID) != null)
+				return null;
+			
+			String cmd = "insert into Report(reportID, gameID, pitcherID)" + "values(?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, reportID);
+			pstmt.setInt(2, gameID);
+			pstmt.setInt(3,pitcherID);
+			
+			
+			
+			pstmt.execute();
+			
+			Report team = new Report(this, reportID, gameID, pitcherID);
+			
+			return team;
+		}
+			catch (SQLException e) {
+				dbm.cleanup();
+				throw new RuntimeException("error inserting new AtBat", e);
+		}
+	}
 }
+

@@ -84,7 +84,7 @@ public class PitchDAO {
 		}
 			catch (SQLException e) {
 				dbm.cleanup();
-				throw new RuntimeException("error inserting new AtBat", e);
+				throw new RuntimeException("error inserting new Pitch", e);
 		}
 	}
 }
