@@ -66,4 +66,31 @@ public class PlayersDAO {
 		throw new RuntimeException("Error finding Players", e);
 	}
 }
+	public Players insert(int playerID, String playerName, int number, String position, String hit, float battingAverage, float onBasePercentage, float sluggingPercentage){
+		try{
+			if(find(playerID) != null)
+				return null;
+			
+			String cmd = "insert into PLAYERS(playerID, playerName, number, position, hit, battingAverage, onBasePercentage, sluggingPercentage)" + "values(?,?,?,?,?,?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, playerID);
+			pstmt.setString(2, playerName);
+			pstmt.setInt(3, number);
+			pstmt.setString(4,  position);
+			pstmt.setString(5, hit);
+			pstmt.setFloat(6, battingAverage);
+			pstmt.setFloat(7, onBasePercentage);
+			pstmt.setFloat(8, sluggingPercentage);
+			
+			pstmt.execute();
+			
+			Players team = new Players(this, playerID, playerName, number, position, hit, battingAverage, onBasePercentage, sluggingPercentage);
+			
+			return team;
+		}
+			catch (SQLException e) {
+				dbm.cleanup();
+				throw new RuntimeException("error inserting new Pitcher", e);
+		}
+	}
 }

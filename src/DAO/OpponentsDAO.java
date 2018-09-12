@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import DAO.DatabaseManager;
+import Model.AtBat;
 import Model.Game;
 import Model.Opponents;
 
@@ -55,4 +56,27 @@ public class OpponentsDAO {
 		throw new RuntimeException("Error finding Game", e);
 	}
 }
+	public Opponents insert(int teamID, String teamName){
+		try{
+			if(find(teamID) != null)
+				return null;
+			
+			String cmd = "insert into Opponents(teamID, teamName)" + "values(?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, teamID);
+			pstmt.setString(2, teamName);
+			
+			
+			pstmt.execute();
+			
+			Opponents team = new Opponents(this, teamID, teamName);
+			
+			return team;
+		}
+			catch (SQLException e) {
+				dbm.cleanup();
+				throw new RuntimeException("error inserting new AtBat", e);
+		}
+	}
 }
+

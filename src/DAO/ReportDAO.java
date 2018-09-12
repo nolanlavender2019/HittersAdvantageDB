@@ -27,7 +27,6 @@ public class ReportDAO {
 	+ "GameID integer not null,"
 	+ "PitcherID integer not null"
 	+ "PitchID integer not null"
-	+ "NumberOfPitches integer not null"
 	+ "primary key (ReportID))";
 	stmt.executeUpdate(s);
 }

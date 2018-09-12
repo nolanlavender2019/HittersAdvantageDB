@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import DAO.DatabaseManager;
+import Model.AtBat;
 import Model.Opponents;
 import Model.Pitch;
 
@@ -61,4 +62,29 @@ public class PitchDAO {
 		throw new RuntimeException("Error finding Game", e);
 	}
 }
+	
+	public Pitch insert(int pitchID, int reportID, int count, String type, String ballOrstrike){
+		try{
+			if(find(pitchID) != null)
+				return null;
+			
+			String cmd = "insert into PITCH(pitchID, reportID, count, type, ballOrstrike)" + "values(?,?,?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, pitchID);
+			pstmt.setInt(2, reportID);
+			pstmt.setInt(3, count);
+			pstmt.setString(4,  type);
+			pstmt.setString(5,ballOrstrike);
+			
+			pstmt.execute();
+			
+			Pitch team = new Pitch(this, pitchID, reportID, count, type, ballOrstrike);
+			
+			return team;
+		}
+			catch (SQLException e) {
+				dbm.cleanup();
+				throw new RuntimeException("error inserting new AtBat", e);
+		}
+	}
 }

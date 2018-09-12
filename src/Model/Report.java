@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Collection;
+
 import DAO.ReportDAO;
 
 public class Report {
