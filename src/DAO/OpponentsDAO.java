@@ -78,6 +78,11 @@ public class OpponentsDAO {
 				throw new RuntimeException("error inserting new Opponents", e);
 		}
 	}
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from OPPONENTS";
+		stmt.executeUpdate(s);
+		}
 }
 
 

@@ -66,7 +66,7 @@ public class PitchersDAO {
 		throw new RuntimeException("Error finding Pitchers", e);
 	}
 }
-	public Pitchers insert(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4, int reportID){
+	public Pitchers insert(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4){
 		try{
 			if(find(pitcherID) != null)
 				return null;
@@ -93,5 +93,9 @@ public class PitchersDAO {
 				throw new RuntimeException("error inserting new Pitcher", e);
 		}
 	}
-
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from PITCHERS";
+		stmt.executeUpdate(s);
+		}
 }

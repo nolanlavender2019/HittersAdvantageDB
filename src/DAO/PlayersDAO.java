@@ -93,4 +93,9 @@ public class PlayersDAO {
 				throw new RuntimeException("error inserting new Player", e);
 		}
 	}
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from PLAYERS";
+		stmt.executeUpdate(s);
+		}
 }

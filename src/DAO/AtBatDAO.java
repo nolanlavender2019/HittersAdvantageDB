@@ -88,4 +88,9 @@ public class AtBatDAO {
 				throw new RuntimeException("error inserting new Game", e);
 		}
 	}
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from ATBAT";
+		stmt.executeUpdate(s);
+		}
 }

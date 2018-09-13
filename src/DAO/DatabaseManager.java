@@ -108,18 +108,33 @@ public class DatabaseManager {
 	public Players findPlayer(int playerID){
 		return playerDAO.find(playerID);
 	}
+	public AtBat insertAtBat(int abID, int playerID, int pitcherID, int gameID, String result){
+		return atBatDAO.insert(abID,playerID,pitcherID,gameID,result);
+	}
 	
-	/*
-	public Team insertTeam(int id, String name, String leg, String div){
-		return teamDAO.insert(id, name, leg, div);
+	public Game insertGame(int gameID, int teamID, int opponentID){
+		return gameDAO.insert(gameID,teamID,opponentID);
 	}
-	public TeamStats insertStats(int id, int season, int win, int loss, int place){
-		return statsDAO.insert(id, season,win,loss,place);
+	
+	public Opponents insertOpponent(int teamID, String teamName){
+		return opponentDAO.insert(teamID,teamName);
 	}
- 
-	public Season insertSeason(int season){
-		return seasonDAO.insert(season);
+	public Pitch insertPitch(int pitchID, int reportID, int count, String type, String ballOrstrike){
+		return pitchDAO.insert(pitchID,reportID,count,type,ballOrstrike);
 	}
+	public Pitchers insertPitchers(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4, int reportID){
+		return pitcherDAO.insert(pitcherID,pitcherName,teamID,throw1,pitch1,pitch2,pitch3,pitch4);
+	}
+	public Players insertPlayers(int playerID, String playerName, int number, String position, String hit, float battingAverage, float onBasePercentage, float sluggingPercentage){	
+		return playerDAO.insert(playerID,playerName,number,position, hit, battingAverage, onBasePercentage, sluggingPercentage);
+	}
+	public Report insertReport(int reportID,int gameID, int pitcherID){
+		return reportDAO.insert(reportID,gameID,pitcherID);
+	}
+	public Team insertTeam(int teamID, String teamName){
+		return teamDAO.insert(teamID,teamName);
+	}
+
 	//--------------------------------------------------
 	// Utility Functions
 	

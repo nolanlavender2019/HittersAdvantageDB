@@ -79,5 +79,10 @@ public class TeamDAO {
 				throw new RuntimeException("error inserting new Team", e);
 		}
 	}
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from TEAM";
+		stmt.executeUpdate(s);
+		}
 }
 

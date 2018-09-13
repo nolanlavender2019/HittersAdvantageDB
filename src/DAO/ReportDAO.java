@@ -84,5 +84,11 @@ public class ReportDAO {
 				throw new RuntimeException("error inserting new AtBat", e);
 		}
 	}
+	
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from REPORT";
+		stmt.executeUpdate(s);
+		}
 }
 

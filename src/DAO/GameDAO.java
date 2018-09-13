@@ -82,4 +82,9 @@ public class GameDAO {
 				throw new RuntimeException("error inserting new Game", e);
 		}
 	}
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from GAME";
+		stmt.executeUpdate(s);
+		}
 }

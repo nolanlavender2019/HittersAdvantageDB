@@ -87,4 +87,9 @@ public class PitchDAO {
 				throw new RuntimeException("error inserting new Pitch", e);
 		}
 	}
+	void clear() throws SQLException{
+		Statement stmt = conn.createStatement();
+		String s = "delete from PITCH";
+		stmt.executeUpdate(s);
+		}
 }
