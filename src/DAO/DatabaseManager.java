@@ -176,11 +176,16 @@ public class DatabaseManager {
 	public void clearTables() {
 		try {
 			teamDAO.clear();
-			statsDAO.clear();
-			seasonDAO.clear();
+			atBatDAO.clear();
+			gameDAO.clear();
+			opponentDAO.clear();
+			pitchDAO.clear();
+			pitcherDAO.clear();
+			playerDAO.clear();
+			reportDAO.clear();
 		} catch (SQLException e) {
 			throw new RuntimeException("cannot clear tables", e);
 		}
 	}
 }
-*/
+
