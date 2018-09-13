@@ -11,6 +11,7 @@ import Model.Report;
 public class Test1 {
 	
 	public static void main(String[] args){
+		
 		DatabaseManager dbm = new DatabaseManager();
 		
 		dbm.clearTables();
@@ -24,7 +25,12 @@ public class Test1 {
 		Game interLeague = dbm.insertGame(003, 1,3);
 		Report rp1 = dbm.insertReport(001, 003,4);
 		
+		dbm.commit();
 		
+		System.out.print(dbm.findTeam(1));
+		
+		System.out.print("done");
+		dbm.close();
 	}
 
 }
