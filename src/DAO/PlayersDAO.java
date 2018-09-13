@@ -27,6 +27,7 @@ public class PlayersDAO {
 	+ "PlayerID integer not null,"
 	+ "PlayerName varchar(100)"
 	+ "Number integer"
+	+ "TeamID integer"
 	+ "Position varchar(100)"
 	+ "Hit varchar(100) "
 	+ "BattingAverage integer"
@@ -47,6 +48,7 @@ public class PlayersDAO {
 		
 		int playerID = rs.getInt("playerID");
 		String playerName = rs.getString("playerName");
+		int teamID = rs.getInt("teamID");
 		int number = rs.getInt("number");
 		String position = rs.getString("position");
 		String hit = rs.getString("hit");
@@ -57,7 +59,7 @@ public class PlayersDAO {
 
 		rs.close();
 		
-		Players stats = new Players(this, playerID, playerName, number, position, hit, pitch2, pitch3, pitch4);
+		Players stats = new Players(this, playerID, playerName, teamID, number, position, hit, pitch2, pitch3, pitch4);
 		
 		return stats;
 		}
@@ -66,21 +68,22 @@ public class PlayersDAO {
 		throw new RuntimeException("Error finding Players", e);
 	}
 }
-	public Players insert(int playerID, String playerName, int number, String position, String hit, float battingAverage, float onBasePercentage, float sluggingPercentage){
+	public Players insert(int playerID, String playerName, int teamID, int number, String position, String hit, float battingAverage, float onBasePercentage, float sluggingPercentage){
 		try{
 			if(find(playerID) != null)
 				return null;
 			
-			String cmd = "insert into PLAYERS(playerID, playerName, number, position, hit, battingAverage, onBasePercentage, sluggingPercentage)" + "values(?,?,?,?,?,?,?,?)";
+			String cmd = "insert into PLAYERS(playerID, playerName,teamID, number, position, hit, battingAverage, onBasePercentage, sluggingPercentage)" + "values(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(cmd);
 			pstmt.setInt(1, playerID);
 			pstmt.setString(2, playerName);
-			pstmt.setInt(3, number);
-			pstmt.setString(4,  position);
-			pstmt.setString(5, hit);
-			pstmt.setFloat(6, battingAverage);
-			pstmt.setFloat(7, onBasePercentage);
-			pstmt.setFloat(8, sluggingPercentage);
+			pstmt.setInt(3,teamID);
+			pstmt.setInt(4, number);
+			pstmt.setString(5,  position);
+			pstmt.setString(6, hit);
+			pstmt.setFloat(7, battingAverage);
+			pstmt.setFloat(8, onBasePercentage);
+			pstmt.setFloat(9, sluggingPercentage);
 			
 			pstmt.execute();
 			

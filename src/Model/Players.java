@@ -8,6 +8,7 @@ public class Players {
 	private PlayersDAO dao;
 	private int playerID;
 	private String playerName;
+	private int teamID;
 	private int number;
 	private String position;
 	private String hit;
@@ -15,10 +16,11 @@ public class Players {
 	private float oBP;
 	private float slugging;
 
-	public Players(PlayersDAO dao, int playerID, String playerName,int number, String position, String hit, float battingAverage, float oBP, float slugging){
+	public Players(PlayersDAO dao, int playerID, int teamID, String playerName,int number, String position, String hit, float battingAverage, float oBP, float slugging){
 		this.dao = dao;
 		this.setPlayerID(playerID);
 		this.setPlayerName(playerName);
+		this.setTeamID(teamID);
 		this.setNumber(number);
 		this.setPosition(position);
 		this.setHit(hit);
@@ -89,5 +91,13 @@ public class Players {
 
 	public void setSlugging(float slugging) {
 		this.slugging = slugging;
+	}
+
+	public int getTeamID() {
+		return teamID;
+	}
+
+	public void setTeamID(int teamID) {
+		this.teamID = teamID;
 	}
 }
