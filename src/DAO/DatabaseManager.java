@@ -58,28 +58,58 @@ public class DatabaseManager {
 			}
 		}
 		teamDAO = new TeamDAO(conn, this);
-		statsDAO = new TeamStatsDAO(conn, this);
-		seasonDAO = new SeasonDAO(conn, this);
+		gameDAO = new GameDAO(conn, this);
+		opponentDAO = new OpponentsDAO(conn, this);
+		pitcherDAO = new PitchersDAO(conn, this);
+		reportDAO = new ReportDAO(conn, this);
+		pitchDAO = new PitchDAO(conn, this);
+		atBatDAO = new AtBatDAO(conn,this);
+		playerDAO = new PlayersDAO(conn,this);
+		
 	}
 	
 	private void create(Connection conn) throws SQLException { 
 		TeamDAO.create(conn);
-		TeamStatsDAO.create(conn);
-		SeasonDAO.create(conn);
-		TeamStatsDAO.addConstraints(conn);
+		PlayersDAO.create(conn);
+		AtBatDAO.create(conn);
+		OpponentsDAO.create(conn);
+		PitchersDAO.create(conn);
+		GameDAO.create(conn);
+		ReportDAO.create(conn);
+		PitchDAO.create(conn);
 		conn.commit();
 	}
-/*	
+
+
 	public Team findTeam(int id){
 		return teamDAO.find(id);
 	}
+
+	public Game findGame(int gameID){
+		return gameDAO.find(gameID);
+	}
 	
-	public TeamStats findTeamStats(int teamID, int seasonID){
-		return statsDAO.find(teamID, seasonID);
+	public Opponents findOpponents(int seas){
+		return opponentDAO.find(seas);
 	}
-	public Season findSeason(int seas){
-		return seasonDAO.find(seas);
+	
+	public AtBat findATBat(int abID){
+		return atBatDAO.find(abID);
 	}
+	public Pitchers findPitcher(int pitcherID){
+		return pitcherDAO.find(pitcherID);
+	}
+	public Pitch findPitch(int pitchID){
+		return pitchDAO.find(pitchID);
+	}
+	public Report findReport(int reportID){
+		return reportDAO.find(reportID);
+	}
+	public Players findPlayer(int playerID){
+		return playerDAO.find(playerID);
+	}
+	
+	/*
 	public Team insertTeam(int id, String name, String leg, String div){
 		return teamDAO.insert(id, name, leg, div);
 	}
@@ -98,7 +128,7 @@ public class DatabaseManager {
 			conn.commit();
 		}
 		catch (SQLException e){
-			throw new RuntimeException("Cannot commit databse", e);
+			throw new RuntimeException("Cannot commit database", e);
 		}
 	}
 	
