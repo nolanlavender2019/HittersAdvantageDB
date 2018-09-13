@@ -122,11 +122,11 @@ public class DatabaseManager {
 	public Pitch insertPitch(int pitchID, int reportID, int count, String type, String ballOrstrike){
 		return pitchDAO.insert(pitchID,reportID,count,type,ballOrstrike);
 	}
-	public Pitchers insertPitchers(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4, int reportID){
+	public Pitchers insertPitchers(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4){
 		return pitcherDAO.insert(pitcherID,pitcherName,teamID,throw1,pitch1,pitch2,pitch3,pitch4);
 	}
-	public Players insertPlayers(int playerID, String playerName, int number, String position, String hit, float battingAverage, float onBasePercentage, float sluggingPercentage){	
-		return playerDAO.insert(playerID,playerName,number,position, hit, battingAverage, onBasePercentage, sluggingPercentage);
+	public Players insertPlayers(int playerID, String playerName, int teamID, int number, String position, String hit, float battingAverage, float onBasePercentage, float sluggingPercentage){	
+		return playerDAO.insert(playerID,playerName,teamID, number,position, hit, battingAverage, onBasePercentage, sluggingPercentage);
 	}
 	public Report insertReport(int reportID,int gameID, int pitcherID){
 		return reportDAO.insert(reportID,gameID,pitcherID);

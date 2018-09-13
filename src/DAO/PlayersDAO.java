@@ -87,7 +87,7 @@ public class PlayersDAO {
 			
 			pstmt.execute();
 			
-			Players team = new Players(this, playerID, playerName, number, position, hit, battingAverage, onBasePercentage, sluggingPercentage);
+			Players team = new Players(this, playerID, playerName, teamID, number, position, hit, battingAverage, onBasePercentage, sluggingPercentage);
 			
 			return team;
 		}

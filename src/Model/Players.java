@@ -16,7 +16,7 @@ public class Players {
 	private float oBP;
 	private float slugging;
 
-	public Players(PlayersDAO dao, int playerID, int teamID, String playerName,int number, String position, String hit, float battingAverage, float oBP, float slugging){
+	public Players(PlayersDAO dao, int playerID,  String playerName, int teamID, int number, String position, String hit, float battingAverage, float oBP, float slugging){
 		this.dao = dao;
 		this.setPlayerID(playerID);
 		this.setPlayerName(playerName);
