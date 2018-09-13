@@ -23,6 +23,8 @@ public class Test1 {
 		AtBat ab = dbm.insertAtBat(002, 1,4,003, "Homerun");
 		Game interLeague = dbm.insertGame(003, 1,3);
 		Report rp1 = dbm.insertReport(001, 003,4);
+		
+		
 	}
 
 }
