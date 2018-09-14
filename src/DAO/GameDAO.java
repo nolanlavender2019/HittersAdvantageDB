@@ -27,8 +27,8 @@ public class GameDAO {
 		Statement stmt = conn.createStatement();
 		String s = "create table GAME(" 
 	+ "GameID integer not null,"
-	+ "TeamID integer not null"
-	+ "OpponentID integer not null"
+	+ "TeamID integer not null,"
+	+ "OpponentID integer not null,"
 	+ "primary key (GameID))";
 	stmt.executeUpdate(s);
 }

@@ -25,7 +25,7 @@ public class OpponentsDAO {
 		Statement stmt = conn.createStatement();
 		String s = "create table OPPONENTS(" 
 	+ "OpponentsID integer not null,"
-	+"TeamName varchar(100) not null"
+	+"TeamName varchar(100) not null,"
 	+ "primary key (OpponentsID))";
 	stmt.executeUpdate(s);
 	}

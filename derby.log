@@ -1,47 +1,6 @@
-Fri Sep 14 14:48:13 EDT 2018 Thread[main,5,main] Cleanup action starting
-java.sql.SQLException: Database 'HittersAdvantage' not found.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(SQLExceptionFactory40.java:101)
-	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Util.java:148)
-	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Util.java:154)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Util.java:298)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(EmbedConnection.java:3200)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(EmbedConnection.java:757)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(EmbedConnection.java:427)
-	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(EmbedConnection40.java:53)
-	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Driver40.java:65)
-	at org.apache.derby.jdbc.InternalDriver.connect(InternalDriver.java:264)
-	at org.apache.derby.jdbc.Driver20.connect(Driver20.java:250)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(EmbeddedDriver.java:122)
-	at DAO.DatabaseManager.<init>(DatabaseManager.java:45)
-	at Tests.Test1.main(Test1.java:15)
-Caused by: java.sql.SQLException: Database 'HittersAdvantage' not found.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:42)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(SQLExceptionFactory40.java:126)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(SQLExceptionFactory40.java:71)
-	... 13 more
-============= begin nested exception, level (1) ===========
-java.sql.SQLException: Database 'HittersAdvantage' not found.
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(SQLExceptionFactory.java:42)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.wrapArgsForTransportAcrossDRDA(SQLExceptionFactory40.java:126)
-	at org.apache.derby.impl.jdbc.SQLExceptionFactory40.getSQLException(SQLExceptionFactory40.java:71)
-	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Util.java:148)
-	at org.apache.derby.impl.jdbc.Util.newEmbedSQLException(Util.java:154)
-	at org.apache.derby.impl.jdbc.Util.generateCsSQLException(Util.java:298)
-	at org.apache.derby.impl.jdbc.EmbedConnection.newSQLException(EmbedConnection.java:3200)
-	at org.apache.derby.impl.jdbc.EmbedConnection.handleDBNotFound(EmbedConnection.java:757)
-	at org.apache.derby.impl.jdbc.EmbedConnection.<init>(EmbedConnection.java:427)
-	at org.apache.derby.impl.jdbc.EmbedConnection40.<init>(EmbedConnection40.java:53)
-	at org.apache.derby.jdbc.Driver40.getNewEmbedConnection(Driver40.java:65)
-	at org.apache.derby.jdbc.InternalDriver.connect(InternalDriver.java:264)
-	at org.apache.derby.jdbc.Driver20.connect(Driver20.java:250)
-	at org.apache.derby.jdbc.EmbeddedDriver.connect(EmbeddedDriver.java:122)
-	at DAO.DatabaseManager.<init>(DatabaseManager.java:45)
-	at Tests.Test1.main(Test1.java:15)
-============= end nested exception, level (1) ===========
-Cleanup action completed
 ----------------------------------------------------------------
-Fri Sep 14 14:48:13 EDT 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0165-d969-79e6-000006e29748 
+Fri Sep 14 15:31:01 EDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0165-d990-ac24-000006e2e000 
 on database directory /Users/Nolan/Desktop/Senior Project/HitterAdvantageDB/HittersAdvantage with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 Loaded from file:/Applications/Eclipse.app/Contents/Eclipse/plugins/derby.jar
 java.vendor=Oracle Corporation
@@ -52,19 +11,23 @@ os.arch=x86_64
 os.version=10.13.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Fri Sep 14 14:48:14 EDT 2018 Thread[main,5,main] (XID = 166), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Cleanup action starting
-Fri Sep 14 14:48:14 EDT 2018 Thread[main,5,main] (XID = 166), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Failed Statement is: create table TEAM(PlayerID integer not null,TeamName varchar(100)primary key (PlayerID))
-ERROR 42X01: Syntax error: Encountered "(" at line 1, column 78.
+Fri Sep 14 15:31:02 EDT 2018 Thread[main,5,main] (XID = 26), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Cleanup action starting
+Fri Sep 14 15:31:02 EDT 2018 Thread[main,5,main] (XID = 26), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Failed Statement is: delete from TEAM
+ERROR 42X05: Table/View 'TEAM' does not exist.
 	at org.apache.derby.iapi.error.StandardException.newException(StandardException.java:278)
-	at org.apache.derby.impl.sql.compile.ParserImpl.parseStatement(ParserImpl.java:153)
-	at org.apache.derby.impl.sql.GenericStatement.prepMinion(GenericStatement.java:358)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindTableDescriptor(FromBaseTable.java:2652)
+	at org.apache.derby.impl.sql.compile.FromBaseTable.bindNonVTITables(FromBaseTable.java:2264)
+	at org.apache.derby.impl.sql.compile.FromList.bindTables(FromList.java:328)
+	at org.apache.derby.impl.sql.compile.SelectNode.bindNonVTITables(SelectNode.java:511)
+	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindTables(DMLStatementNode.java:197)
+	at org.apache.derby.impl.sql.compile.DeleteNode.bindStatement(DeleteNode.java:148)
+	at org.apache.derby.impl.sql.GenericStatement.prepMinion(GenericStatement.java:400)
 	at org.apache.derby.impl.sql.GenericStatement.prepare(GenericStatement.java:99)
 	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(GenericLanguageConnectionContext.java:1111)
 	at org.apache.derby.impl.jdbc.EmbedStatement.execute(EmbedStatement.java:692)
 	at org.apache.derby.impl.jdbc.EmbedStatement.executeLargeUpdate(EmbedStatement.java:190)
 	at org.apache.derby.impl.jdbc.EmbedStatement.executeUpdate(EmbedStatement.java:179)
-	at DAO.TeamDAO.create(TeamDAO.java:29)
-	at DAO.DatabaseManager.create(DatabaseManager.java:72)
-	at DAO.DatabaseManager.<init>(DatabaseManager.java:54)
-	at Tests.Test1.main(Test1.java:15)
+	at DAO.TeamDAO.clear(TeamDAO.java:84)
+	at DAO.DatabaseManager.clearTables(DatabaseManager.java:178)
+	at Tests.Test1.main(Test1.java:17)
 Cleanup action completed

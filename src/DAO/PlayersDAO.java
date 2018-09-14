@@ -25,14 +25,14 @@ public class PlayersDAO {
 		Statement stmt = conn.createStatement();
 		String s = "create table PLAYERS(" 
 	+ "PlayerID integer not null,"
-	+ "PlayerName varchar(100)"
-	+ "Number integer"
-	+ "TeamID integer"
+	+ "PlayerName varchar(100),"
+	+ "Number integer,"
+	+ "TeamID integer,"
 	+ "Position varchar(100)"
 	+ "Hit varchar(100) "
-	+ "BattingAverage integer"
-	+ "OnBasePercentage integer"
-	+ "SluggingPercentage integer"
+	+ "BattingAverage integer,"
+	+ "OnBasePercentage integer,"
+	+ "SluggingPercentage integer,"
 	+ "primary key (PlayerID))";
 	stmt.executeUpdate(s);
 }

@@ -26,10 +26,10 @@ public class PitchDAO {
 		Statement stmt = conn.createStatement();
 		String s = "create table PITCH(" 
 	+ "PitchID integer not null,"
-	+ "ReportID integer not null"
-	+ "Count integer not null"
-	+"Type varchar(100) not null"
-	+"BallStrike varchar(100) not null"
+	+ "ReportID integer not null,"
+	+ "Count integer not null,"
+	+"Type varchar(100) not null,"
+	+"BallStrike varchar(100) not null,"
 	+ "primary key (PitchID))";
 	stmt.executeUpdate(s);
 }

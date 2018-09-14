@@ -25,13 +25,13 @@ public class PitchersDAO {
 		Statement stmt = conn.createStatement();
 		String s = "create table PITCHERS(" 
 	+ "PitcherID integer not null,"
-	+ "PitcherName varchar(100) not null"
-	+ "TeamID integer not null"
-	+ "Throw1 varchar(100) not null"
-	+ "Pitch1 varchar(100) not null"
-	+ "Pitch2 varchar(100) not null"
-	+ "Pitch3 varchar(100) not null"
-	+ "Pitch4 varchar(100) not null"
+	+ "PitcherName varchar(100) not null,"
+	+ "TeamID integer not null,"
+	+ "Throw1 varchar(100) not null,"
+	+ "Pitch1 varchar(100) not null,"
+	+ "Pitch2 varchar(100) not null,"
+	+ "Pitch3 varchar(100) not null,"
+	+ "Pitch4 varchar(100) not null,"
 	+ "primary key (PitcherID))";
 	stmt.executeUpdate(s);
 }

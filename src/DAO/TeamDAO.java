@@ -5,8 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
+
 
 import DAO.DatabaseManager;
 import Model.Opponents;
@@ -23,8 +22,8 @@ public class TeamDAO {
 	static void create(Connection conn) throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "create table TEAM(" 
-	+ "PlayerID integer not null,"
-	+"TeamName varchar(100)"
+	+ "playerID integer not null,"
+	+ "teamName varchar(100),"
 	+ "primary key (PlayerID))";
 	stmt.executeUpdate(s);
 }
@@ -39,8 +38,8 @@ public class TeamDAO {
 		if(!rs.next())
 			return null;
 		
-		int gameID = rs.getInt("playerID");
-		String teamID = rs.getString("teamName");
+		int gameID = rs.getInt("PlayerID");
+		String teamID = rs.getString("TeamName");
 		
 	
 
@@ -52,7 +51,7 @@ public class TeamDAO {
 		}
 	catch( SQLException e) {
 		dbm.cleanup();
-		throw new RuntimeException("Error finding Game", e);
+		throw new RuntimeException("Error finding Team", e);
 	}
 }
 

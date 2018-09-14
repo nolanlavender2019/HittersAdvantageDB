@@ -28,10 +28,10 @@ public class AtBatDAO {
 		Statement stmt = conn.createStatement();
 		String s = "create table ATBAT(" 
 	+ "ABID integer not null,"
-	+ "PlayerID integer not null"
-	+ "PitcherID integer not null"
-	+"GameID integer not null"
-	+"Result varchar(100) not null"
+	+ "PlayerID integer not null,"
+	+ "PitcherID integer not null,"
+	+"GameID integer not null,"
+	+"Result varchar(100) not null,"
 	+ "primary key (ABID))";
 	stmt.executeUpdate(s);
 }

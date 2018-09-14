@@ -25,8 +25,8 @@ public class ReportDAO {
 		String s = "create table REPORT(" 
 	+ "ReportID integer not null"
 	+ "GameID integer not null,"
-	+ "PitcherID integer not null"
-	+ "PitchID integer not null"
+	+ "PitcherID integer not null,"
+	+ "PitchID integer not null,"
 	+ "primary key (ReportID))";
 	stmt.executeUpdate(s);
 }
