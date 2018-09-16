@@ -44,6 +44,7 @@ public class DatabaseManager {
 		try{
 			conn = driver.connect(url, prop);
 			conn.setAutoCommit(false);
+			System.out.print("here!!!!");
 		}
 		catch(SQLException e){
 			//database doesn't exist, so try creating it
@@ -52,11 +53,13 @@ public class DatabaseManager {
 				conn = driver.connect(url, prop);
 				conn.setAutoCommit(false);
 				create(conn);
+				System.out.print("Database created");
 			}
-			catch (SQLException e2) {
+			catch (SQLException e2){
 				throw new RuntimeException("cannot connect to database", e2);
 			}
 		}
+		System.out.print("getting here");
 		teamDAO = new TeamDAO(conn, this);
 		gameDAO = new GameDAO(conn, this);
 		opponentDAO = new OpponentsDAO(conn, this);
@@ -69,15 +72,16 @@ public class DatabaseManager {
 	}
 	
 	private void create(Connection conn) throws SQLException { 
-		TeamDAO.create(conn);
-		PlayersDAO.create(conn);
-		AtBatDAO.create(conn);
-		OpponentsDAO.create(conn);
-		PitchersDAO.create(conn);
-		GameDAO.create(conn);
-		ReportDAO.create(conn);
-		PitchDAO.create(conn);
-		conn.commit();
+			System.out.print("this is running");
+			TeamDAO.create(conn);
+			PlayersDAO.create(conn);
+			AtBatDAO.create(conn);
+			OpponentsDAO.create(conn);
+			PitchersDAO.create(conn);
+			GameDAO.create(conn);
+			ReportDAO.create(conn);
+			PitchDAO.create(conn);
+			conn.commit();
 	}
 
 
@@ -93,7 +97,7 @@ public class DatabaseManager {
 		return opponentDAO.find(seas);
 	}
 	
-	public AtBat findATBat(int abID){
+	public AtBat findAtBat(int abID){
 		return atBatDAO.find(abID);
 	}
 	public Pitchers findPitcher(int pitcherID){

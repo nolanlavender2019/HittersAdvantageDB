@@ -10,7 +10,7 @@ public class Report {
 	int reportID;
 	private int gameID;
 	private int pitcherID;
-	private int pitchID;
+	private Collection<Pitch> pitch;
 	
 	public Report(ReportDAO dao, int reportID, int gameID, int pitcherID){
 		this.dao = dao;
@@ -36,11 +36,9 @@ public class Report {
 		this.pitcherID = pitcherID;
 	}
 
-	public int getPitchID() {
-		return pitchID;
-	}
-
-	public void setPitchID(int pitchID) {
-		this.pitchID = pitchID;
+	
+	public Collection <Pitch> getPitch(){
+		if(pitch == null) pitch = dao.getPitch(reportID);
+		return pitch;
 	}
 }

@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Collection;
+
 import DAO.PitchersDAO;
 
 public class Pitchers {
@@ -13,6 +15,9 @@ public class Pitchers {
 	private String pitch2;
 	private String pitch3;
 	private String pitch4;
+	
+	private Collection<AtBat> ab;
+	private Collection<Report> report;
 
 	public Pitchers(PitchersDAO dao, int pID, String name, int teamID, String handness, String pitch1, String pitch2, String pitch3, String pitch4){
 		this.dao = dao;
@@ -89,6 +94,12 @@ public class Pitchers {
 	public void setPitch4(String pitch4) {
 		this.pitch4 = pitch4;
 	}
-	
-	
+	public Collection <AtBat> getAB(){
+		if(ab == null) ab = dao.getAB(pitcherID);
+		return ab;
+	}
+	public Collection <Report> getReport(){
+		if(report == null) report = dao.getReport(pitcherID);
+		return report;
+	}
 }

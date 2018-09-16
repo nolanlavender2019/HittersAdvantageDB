@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri Sep 14 15:31:01 EDT 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0165-d990-ac24-000006e2e000 
+Sun Sep 16 11:58:18 EDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0165-e31a-a38d-000006e27888 
 on database directory /Users/Nolan/Desktop/Senior Project/HitterAdvantageDB/HittersAdvantage with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 Loaded from file:/Applications/Eclipse.app/Contents/Eclipse/plugins/derby.jar
 java.vendor=Oracle Corporation
@@ -11,8 +11,8 @@ os.arch=x86_64
 os.version=10.13.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Fri Sep 14 15:31:02 EDT 2018 Thread[main,5,main] (XID = 26), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Cleanup action starting
-Fri Sep 14 15:31:02 EDT 2018 Thread[main,5,main] (XID = 26), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Failed Statement is: delete from TEAM
+Sun Sep 16 11:58:18 EDT 2018 Thread[main,5,main] (XID = 37), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Cleanup action starting
+Sun Sep 16 11:58:18 EDT 2018 Thread[main,5,main] (XID = 37), (SESSIONID = 1), (DATABASE = HittersAdvantage), (DRDAID = null), Failed Statement is: delete from TEAM
 ERROR 42X05: Table/View 'TEAM' does not exist.
 	at org.apache.derby.iapi.error.StandardException.newException(StandardException.java:278)
 	at org.apache.derby.impl.sql.compile.FromBaseTable.bindTableDescriptor(FromBaseTable.java:2652)
@@ -27,7 +27,7 @@ ERROR 42X05: Table/View 'TEAM' does not exist.
 	at org.apache.derby.impl.jdbc.EmbedStatement.execute(EmbedStatement.java:692)
 	at org.apache.derby.impl.jdbc.EmbedStatement.executeLargeUpdate(EmbedStatement.java:190)
 	at org.apache.derby.impl.jdbc.EmbedStatement.executeUpdate(EmbedStatement.java:179)
-	at DAO.TeamDAO.clear(TeamDAO.java:84)
-	at DAO.DatabaseManager.clearTables(DatabaseManager.java:178)
+	at DAO.TeamDAO.clear(TeamDAO.java:105)
+	at DAO.DatabaseManager.clearTables(DatabaseManager.java:182)
 	at Tests.Test1.main(Test1.java:17)
 Cleanup action completed

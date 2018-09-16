@@ -12,10 +12,13 @@ import DAO.DatabaseManager;
 import Model.AtBat;
 import Model.Game;
 import Model.Opponents;
+import Model.Pitchers;
 
 public class OpponentsDAO {
 	private Connection conn;
 	private DatabaseManager dbm;
+	
+	
 	
 	public OpponentsDAO(Connection conn, DatabaseManager dbm){
 		this.conn= conn;
@@ -78,11 +81,50 @@ public class OpponentsDAO {
 				throw new RuntimeException("error inserting new Opponents", e);
 		}
 	}
+	public Collection<Game> getGame(int teamID){
+		try{
+				Collection<Game> stats = new ArrayList<Game>();
+				String qry = "select s.* from Game s where TeamID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(qry);
+				pstmt.setInt(1, teamID);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()){
+					int teamID1 = rs.getInt("gameID");
+					stats.add(dbm.findGame(teamID1));
+		
+				}
+				rs.close();
+				return stats;
+		} catch(SQLException e){
+			dbm.cleanup();
+			throw new RuntimeException("error getting Game", e);
+		}
+	}
+	public Collection<Pitchers> getPitcher(int teamID){
+		try{
+				Collection<Pitchers> stats = new ArrayList<Pitchers>();
+				String qry = "select s.* from Pitcher s where TeamID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(qry);
+				pstmt.setInt(1, teamID);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()){
+					int teamID1 = rs.getInt("pitcherID");
+					stats.add(dbm.findPitcher(teamID1));
+		
+				}
+				rs.close();
+				return stats;
+		} catch(SQLException e){
+			dbm.cleanup();
+			throw new RuntimeException("error getting Opponents Pitchers", e);
+		}
+	}
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from OPPONENTS";
 		stmt.executeUpdate(s);
 		}
+
 }
 
 

@@ -1,6 +1,8 @@
 package Model;
 
 
+import java.util.Collection;
+
 import DAO.PlayersDAO;
 
 public class Players {
@@ -15,6 +17,8 @@ public class Players {
 	private float battingAverage;
 	private float oBP;
 	private float slugging;
+	
+	private Collection<AtBat> ab;
 
 	public Players(PlayersDAO dao, int playerID,  String playerName, int teamID, int number, String position, String hit, float battingAverage, float oBP, float slugging){
 		this.dao = dao;
@@ -99,5 +103,9 @@ public class Players {
 
 	public void setTeamID(int teamID) {
 		this.teamID = teamID;
+	}
+	public Collection <AtBat> getAB(){
+		if(ab == null) ab = dao.getAB(playerID);
+		return ab;
 	}
 }

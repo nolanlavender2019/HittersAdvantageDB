@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import DAO.DatabaseManager;
+import Model.AtBat;
+import Model.Game;
 import Model.Pitchers;
 import Model.Players;
 
@@ -30,9 +32,9 @@ public class PlayersDAO {
 	+ "TeamID integer,"
 	+ "Position varchar(100)"
 	+ "Hit varchar(100) "
-	+ "BattingAverage integer,"
-	+ "OnBasePercentage integer,"
-	+ "SluggingPercentage integer,"
+	+ "BattingAverage float,"
+	+ "OnBasePercentage float,"
+	+ "SluggingPercentage float,"
 	+ "primary key (PlayerID))";
 	stmt.executeUpdate(s);
 }
@@ -94,6 +96,25 @@ public class PlayersDAO {
 			catch (SQLException e) {
 				dbm.cleanup();
 				throw new RuntimeException("error inserting new Player", e);
+		}
+	}
+	public Collection<AtBat> getAB(int playerID){
+		try{
+				Collection<AtBat> stats = new ArrayList<AtBat>();
+				String qry = "select s.* from AtBat s where PlayerID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(qry);
+				pstmt.setInt(1, playerID);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()){
+					int teamID1 = rs.getInt("playerID");
+					stats.add(dbm.findAtBat(teamID1));
+		
+				}
+				rs.close();
+				return stats;
+		} catch(SQLException e){
+			dbm.cleanup();
+			throw new RuntimeException("error getting AB", e);
 		}
 	}
 	void clear() throws SQLException{

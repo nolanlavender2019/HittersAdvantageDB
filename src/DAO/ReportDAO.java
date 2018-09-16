@@ -10,6 +10,8 @@ import java.util.Collection;
 
 import DAO.DatabaseManager;
 import Model.AtBat;
+import Model.Pitch;
+import Model.Players;
 import Model.Report;
 
 public class ReportDAO {
@@ -26,7 +28,7 @@ public class ReportDAO {
 	+ "ReportID integer not null"
 	+ "GameID integer not null,"
 	+ "PitcherID integer not null,"
-	+ "PitchID integer not null,"
+	
 	+ "primary key (ReportID))";
 	stmt.executeUpdate(s);
 }
@@ -45,7 +47,7 @@ public class ReportDAO {
 			int atBatID = rs.getInt("reportID");
 			int player1 = rs.getInt("gameID");
 			int pitcher = rs.getInt("pitcherID");
-			//int pitch = rs.getInt("pitchID");
+		
 			
 
 			rs.close();
@@ -82,6 +84,25 @@ public class ReportDAO {
 			catch (SQLException e) {
 				dbm.cleanup();
 				throw new RuntimeException("error inserting new AtBat", e);
+		}
+	}
+	public Collection<Pitch> getPitch(int reportID){
+		try{
+				Collection<Pitch> stats = new ArrayList<Pitch>();
+				String qry = "select s.* from Pitch s where reportID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(qry);
+				pstmt.setInt(1, reportID);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()){
+					int teamID1 = rs.getInt("pitchID");
+					stats.add(dbm.findPitch(teamID1));
+		
+				}
+				rs.close();
+				return stats;
+		} catch(SQLException e){
+			dbm.cleanup();
+			throw new RuntimeException("error getting Pitch", e);
 		}
 	}
 	

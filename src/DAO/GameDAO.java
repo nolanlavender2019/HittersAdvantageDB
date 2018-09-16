@@ -11,6 +11,7 @@ import java.util.Collection;
 import DAO.DatabaseManager;
 import Model.AtBat;
 import Model.Game;
+import Model.Report;
 
 
 public class GameDAO {
@@ -80,6 +81,44 @@ public class GameDAO {
 			catch (SQLException e) {
 				dbm.cleanup();
 				throw new RuntimeException("error inserting new Game", e);
+		}
+	}
+	public Collection<AtBat> getAB(int gameID){
+		try{
+				Collection<AtBat> stats = new ArrayList<AtBat>();
+				String qry = "select s.* from AtBat s where gameID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(qry);
+				pstmt.setInt(1, gameID);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()){
+					int teamID1 = rs.getInt("abID");
+					stats.add(dbm.findAtBat(teamID1));
+		
+				}
+				rs.close();
+				return stats;
+		} catch(SQLException e){
+			dbm.cleanup();
+			throw new RuntimeException("error getting AB", e);
+		}
+	}
+	public Collection<Report> getReport(int gameID){
+		try{
+				Collection<Report> stats = new ArrayList<Report>();
+				String qry = "select s.* from Report s where reportID = ?";
+				PreparedStatement pstmt = conn.prepareStatement(qry);
+				pstmt.setInt(1, gameID);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()){
+					int teamID1 = rs.getInt("ReportID");
+					stats.add(dbm.findReport(teamID1));
+		
+				}
+				rs.close();
+				return stats;
+		} catch(SQLException e){
+			dbm.cleanup();
+			throw new RuntimeException("error getting Report", e);
 		}
 	}
 	void clear() throws SQLException{

@@ -16,7 +16,9 @@ public class Test1 {
 		
 		dbm.clearTables();
 		
+		
 		Team reds = dbm.insertTeam(1, "Reds");
+		dbm.commit();
 		Players votto = dbm.insertPlayers(1,"Joey Votto",1, 19, "1st Base", "Left", .300f, .450f,.451f);
 		Opponents tigers = dbm.insertOpponent(3,"Tigers");
 		Pitchers degrom = dbm.insertPitchers(4,"Jacob DeGrom", 3, "Right", "Fastball","Curveball", "Changeup", "Slider");
