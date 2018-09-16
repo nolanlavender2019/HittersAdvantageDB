@@ -46,7 +46,7 @@ public class PitchersDAO {
 		if(!rs.next())
 			return null;
 		
-		int gameID = rs.getInt("pitchID");
+		int gameID = rs.getInt("pitcherID");
 		String teamID = rs.getString("pitcherName");
 		int teamID1 = rs.getInt("teamID");
 		String throw1 = rs.getString("throw1");

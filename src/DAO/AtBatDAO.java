@@ -48,7 +48,7 @@ public class AtBatDAO {
 			
 			int atBatID = rs.getInt("abID");
 			int player1 = rs.getInt("playerID");
-			int pitcher = rs.getInt("pitchersID");
+			int pitcher = rs.getInt("pitcherID");
 			int game = rs.getInt("gameID");
 			String place = rs.getString("result");
 

@@ -33,7 +33,7 @@ public class Players {
 		this.setSlugging(slugging);
 	}
 	public String toString() {
-		return playerName + " " + position + " " + number + "hit = " + hit;
+		return playerName + " " + position + " " + number + " hit = " + hit;
 	}
 	public int getPlayerID() {
 		return playerID;

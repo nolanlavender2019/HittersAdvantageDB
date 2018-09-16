@@ -103,7 +103,7 @@ public class OpponentsDAO {
 	public Collection<Pitchers> getPitcher(int teamID){
 		try{
 				Collection<Pitchers> stats = new ArrayList<Pitchers>();
-				String qry = "select s.* from Pitcher s where TeamID = ?";
+				String qry = "select s.* from Pitchers s where TeamID = ?";
 				PreparedStatement pstmt = conn.prepareStatement(qry);
 				pstmt.setInt(1, teamID);
 				ResultSet rs = pstmt.executeQuery();

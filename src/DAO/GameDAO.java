@@ -105,7 +105,7 @@ public class GameDAO {
 	public Collection<Report> getReport(int gameID){
 		try{
 				Collection<Report> stats = new ArrayList<Report>();
-				String qry = "select s.* from Report s where reportID = ?";
+				String qry = "select s.* from Report s where gameID = ?";
 				PreparedStatement pstmt = conn.prepareStatement(qry);
 				pstmt.setInt(1, gameID);
 				ResultSet rs = pstmt.executeQuery();
