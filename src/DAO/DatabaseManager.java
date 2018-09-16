@@ -31,7 +31,7 @@ public class DatabaseManager {
 	private PitchDAO pitchDAO;
 	
 	
-	private final String url = "jdbc:derby:HittersAdvantage";
+	private final String url = "jdbc:derby:HittersAdvantageDB";
 	
 	
 	public DatabaseManager(){
@@ -44,7 +44,6 @@ public class DatabaseManager {
 		try{
 			conn = driver.connect(url, prop);
 			conn.setAutoCommit(false);
-			System.out.print("here!!!!");
 		}
 		catch(SQLException e){
 			//database doesn't exist, so try creating it
@@ -53,13 +52,12 @@ public class DatabaseManager {
 				conn = driver.connect(url, prop);
 				conn.setAutoCommit(false);
 				create(conn);
-				System.out.print("Database created");
+				System.out.print("Database created /n");
 			}
 			catch (SQLException e2){
 				throw new RuntimeException("cannot connect to database", e2);
 			}
 		}
-		System.out.print("getting here");
 		teamDAO = new TeamDAO(conn, this);
 		gameDAO = new GameDAO(conn, this);
 		opponentDAO = new OpponentsDAO(conn, this);
@@ -72,7 +70,6 @@ public class DatabaseManager {
 	}
 	
 	private void create(Connection conn) throws SQLException { 
-			System.out.print("this is running");
 			TeamDAO.create(conn);
 			PlayersDAO.create(conn);
 			AtBatDAO.create(conn);

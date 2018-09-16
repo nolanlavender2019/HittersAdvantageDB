@@ -10,7 +10,6 @@ import java.util.Collection;
 
 import DAO.DatabaseManager;
 import Model.Game;
-import Model.Opponents;
 import Model.Team;
 import Model.Players;
 
@@ -25,7 +24,7 @@ public class TeamDAO {
 	static void create(Connection conn) throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "create table TEAM(" 
-				+"teamID integer notNull"
+				+"teamID integer not Null,"
 				+ "teamName varchar(100),"
 				+ "primary key (teamID))";
 	stmt.executeUpdate(s);
@@ -123,6 +122,7 @@ public class TeamDAO {
 		Statement stmt = conn.createStatement();
 		String s = "delete from TEAM";
 		stmt.executeUpdate(s);
+		
 		}
 	
 }

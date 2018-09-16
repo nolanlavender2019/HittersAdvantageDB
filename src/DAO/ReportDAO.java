@@ -25,7 +25,7 @@ public class ReportDAO {
 	static void create(Connection conn) throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "create table REPORT(" 
-	+ "ReportID integer not null"
+	+ "ReportID integer not null,"
 	+ "GameID integer not null,"
 	+ "PitcherID integer not null,"
 	

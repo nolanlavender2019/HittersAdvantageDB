@@ -35,7 +35,7 @@ public class OpponentsDAO {
 	
 	public Opponents find(int id){
 		try{ 
-		String qry = "select t.* from OPPONENTS t where opponentID = ?";
+		String qry = "select t.* from OPPONENTS t where opponentsID = ?";
 		PreparedStatement pstmt = conn.prepareStatement(qry);
 		pstmt.setInt(1, id);
 		ResultSet rs = pstmt.executeQuery();
@@ -43,7 +43,7 @@ public class OpponentsDAO {
 		if(!rs.next())
 			return null;
 		
-		int gameID = rs.getInt("opponentID");
+		int gameID = rs.getInt("opponentsID");
 		String teamID = rs.getString("teamName");
 		
 	
@@ -64,7 +64,7 @@ public class OpponentsDAO {
 			if(find(teamID) != null)
 				return null;
 			
-			String cmd = "insert into Opponents(teamID, teamName)" + "values(?,?)";
+			String cmd = "insert into Opponents(opponentsID, teamName)" + "values(?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(cmd);
 			pstmt.setInt(1, teamID);
 			pstmt.setString(2, teamName);

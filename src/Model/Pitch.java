@@ -21,6 +21,9 @@ public class Pitch {
 		
 	}
 
+	public String toString() {
+		return type + " count = " + count + " " + ballOrStrike + " PitchID = " + pitchID + " ReportID = "+ reportID;
+	}
 	public int getPitchID() {
 		return pitchID;
 	}

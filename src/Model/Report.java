@@ -20,6 +20,10 @@ public class Report {
 		//this.setPitchID(pitchID);
 	}
 
+	public String toString() {
+		return reportID + " " + gameID + " " + pitcherID;
+	}
+	
 	public int getGameID() {
 		return gameID;
 	}

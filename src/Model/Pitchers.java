@@ -30,6 +30,10 @@ public class Pitchers {
 		this.setPitch3(pitch3);
 		this.setPitch4(pitch4);
 	}
+	
+	public String toString() {
+		return pitcherName + " " + handness + " Pitch 1 = " + pitch1 + " Pitch 2=" + pitch2 + " Pitch3= " + pitch3 + " Pitch4 = " + pitch4;
+	}
 
 	public int getPitcherID() {
 		return pitcherID;

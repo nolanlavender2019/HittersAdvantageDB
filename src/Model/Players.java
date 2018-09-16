@@ -32,7 +32,9 @@ public class Players {
 		this.setoBP(oBP);
 		this.setSlugging(slugging);
 	}
-
+	public String toString() {
+		return playerName + " " + position + " " + number + "hit = " + hit;
+	}
 	public int getPlayerID() {
 		return playerID;
 	}

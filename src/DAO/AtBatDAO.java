@@ -38,7 +38,7 @@ public class AtBatDAO {
 	
 	public AtBat find(int id) {
 		try{ 
-			String qry = "select t.* from AtBat t where atBatID = ?";
+			String qry = "select t.* from AtBat t where abID = ?";
 			PreparedStatement pstmt = conn.prepareStatement(qry);
 			pstmt.setInt(1, id);
 			ResultSet rs = pstmt.executeQuery();
@@ -46,7 +46,7 @@ public class AtBatDAO {
 			if(!rs.next())
 				return null;
 			
-			int atBatID = rs.getInt("atBatID");
+			int atBatID = rs.getInt("abID");
 			int player1 = rs.getInt("playerID");
 			int pitcher = rs.getInt("pitchersID");
 			int game = rs.getInt("gameID");

@@ -20,7 +20,9 @@ public class AtBat {
 		this.setGameID(gameID);
 		this.setResult(result);
 	}
-	
+	public String toString() {
+		return abID + " " + playerID + " " + pitcherID + " " + result + " " + gameID;
+	}
 	public int getPlayerID(){
 		return playerID;
 	}

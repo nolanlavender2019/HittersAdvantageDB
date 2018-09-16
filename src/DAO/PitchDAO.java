@@ -46,7 +46,7 @@ public class PitchDAO {
 		
 		int pitchID = rs.getInt("pitchID");
 		int reportID = rs.getInt("reportID");
-		int countID = rs.getInt("countID");
+		int countID = rs.getInt("count");
 		String type = rs.getString("type");
 		String ballStrike = rs.getString("ballStrike");
 		
@@ -59,7 +59,7 @@ public class PitchDAO {
 		}
 	catch( SQLException e) {
 		dbm.cleanup();
-		throw new RuntimeException("Error finding Game", e);
+		throw new RuntimeException("Error finding Pitch", e);
 	}
 }
 	
@@ -68,7 +68,7 @@ public class PitchDAO {
 			if(find(pitchID) != null)
 				return null;
 			
-			String cmd = "insert into PITCH(pitchID, reportID, count, type, ballOrstrike)" + "values(?,?,?,?,?)";
+			String cmd = "insert into PITCH(pitchID, reportID, count, type, ballstrike)" + "values(?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(cmd);
 			pstmt.setInt(1, pitchID);
 			pstmt.setInt(2, reportID);

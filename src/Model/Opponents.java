@@ -19,7 +19,9 @@ public class Opponents {
 		this.setTeamName(teamName);
 		
 	}
-
+	public String toString() {
+		return teamName + " " + opponentID;
+	}
 	public int getOpponentID() {
 		return opponentID;
 	}

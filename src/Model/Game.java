@@ -20,7 +20,9 @@ public class Game {
 		this.setTeamID(teamID);
 		this.setOpponentID(opponentID);
 	}
-
+	public String toString() {
+		return gameID + " " + teamID + " " +opponentID;
+	}
 
 	public int getGameID() {
 		return gameID;
