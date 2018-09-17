@@ -17,7 +17,7 @@ public class Report {
 		this.reportID = reportID;
 		this.setGameID(gameID);
 		this.setPitcherID(pitcherID);
-		//this.setPitchID(pitchID);
+		
 	}
 
 	public String toString() {
