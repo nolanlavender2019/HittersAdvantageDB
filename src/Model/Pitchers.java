@@ -32,7 +32,7 @@ public class Pitchers {
 	}
 	
 	public String toString() {
-		return pitcherName + " " + handness + " Pitch 1 = " + pitch1 + " Pitch 2=" + pitch2 + " Pitch3= " + pitch3 + " Pitch4 = " + pitch4;
+		return pitcherName + " Handness = " + handness + " Pitch1 = " + pitch1 + " Pitch2 =" + pitch2 + " Pitch3 = " + pitch3 + " Pitch4 =" + pitch4;
 	}
 
 	public int getPitcherID() {

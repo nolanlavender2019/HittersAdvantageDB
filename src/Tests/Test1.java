@@ -40,15 +40,39 @@ public class Test1 {
 		
 		dbm.commit();
 		
-		System.out.println("Getting ABs from games");
+		System.out.println("\nGetting ABs from games");
 		Collection<AtBat> team = interLeague.getAB();
 		for(AtBat stat: team){
 			System.out.println(stat);
 		}
 		
-		System.out.println("Geting games from Team");
+		System.out.println("\nGeting games from Team");
 		Collection<Game> team1 = reds.getGame();
 		for(Game stat: team1){
+			System.out.println(stat);
+		}
+		
+		System.out.println("\nGeting Players from Team");
+		Collection<Players> team11 = reds.getPlayers();
+		for(Players stat: team11){
+			System.out.println(stat);
+		}
+		
+		System.out.println("\nGeting Report from Game");
+		Collection<Report> team12 = interLeague.getReport();
+		for(Report stat: team12){
+			System.out.println(stat);
+		}
+		
+		System.out.println("\nGeting Pitch from Report");
+		Collection<Pitch> team13 = rp1.getPitch();
+		for(Pitch stat: team13){
+			System.out.println(stat);
+		}
+		
+		System.out.println("\nGeting Pitcher from Opponents");
+		Collection<Pitchers> team14 = tigers.getPitcher();
+		for(Pitchers stat: team14){
 			System.out.println(stat);
 		}
 		System.out.print("done");

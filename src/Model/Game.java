@@ -21,7 +21,7 @@ public class Game {
 		this.setOpponentID(opponentID);
 	}
 	public String toString() {
-		return gameID + " " + teamID + " " +opponentID;
+		return "gameID = " + gameID + " teamID = " + teamID + " opponentsID= " +opponentID;
 	}
 
 	public int getGameID() {

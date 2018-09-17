@@ -21,7 +21,7 @@ public class Report {
 	}
 
 	public String toString() {
-		return reportID + " " + gameID + " " + pitcherID;
+		return "ReportID = " + reportID + " gameID = " + gameID + " pitcherID = " + pitcherID;
 	}
 	
 	public int getGameID() {
