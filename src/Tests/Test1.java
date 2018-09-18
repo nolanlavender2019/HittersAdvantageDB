@@ -31,7 +31,8 @@ public class Test1 {
 		Pitch firstP2 = dbm.insertPitch(3,001, 11, "Slider","ball");
 		Pitch firstP3 = dbm.insertPitch(4,001, 21,"Fastball","Strike");
 		Pitch firstP4 = dbm.insertPitch(1,001, 22,"ChangeUP","Strike");
-		AtBat ab = dbm.insertAtBat(002, 1,4,003, "Homerun");
+		AtBat ab = dbm.insertAtBat(2, 1,4,003, "Homerun");
+		AtBat ab1 = dbm.insertAtBat(1, 1,4,003, "FlyOut");
 		AtBat ab2 = dbm.insertAtBat(003, 2,5,003, "StrikeOut");
 		Game interLeague = dbm.insertGame(003, 1,3);
 		Game interLeague1 = dbm.insertGame(004, 1,4);
@@ -73,6 +74,12 @@ public class Test1 {
 		System.out.println("\nGeting Pitcher from Opponents");
 		Collection<Pitchers> team14 = tigers.getPitcher();
 		for(Pitchers stat: team14){
+			System.out.println(stat);
+		}
+		
+		System.out.println("\nGeting AtBat from Player");
+		Collection<AtBat> team15 = votto.getAB();
+		for(AtBat stat: team15){
 			System.out.println(stat);
 		}
 		System.out.print("done");

@@ -106,7 +106,7 @@ public class PlayersDAO {
 				pstmt.setInt(1, playerID);
 				ResultSet rs = pstmt.executeQuery();
 				while (rs.next()){
-					int teamID1 = rs.getInt("playerID");
+					int teamID1 = rs.getInt("ABID");
 					stats.add(dbm.findAtBat(teamID1));
 		
 				}
