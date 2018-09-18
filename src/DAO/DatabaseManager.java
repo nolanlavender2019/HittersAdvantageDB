@@ -120,8 +120,8 @@ public class DatabaseManager {
 	public Opponents insertOpponent(int teamID, String teamName){
 		return opponentDAO.insert(teamID,teamName);
 	}
-	public Pitch insertPitch(int pitchID, int reportID, int count, String type, String ballOrstrike){
-		return pitchDAO.insert(pitchID,reportID,count,type,ballOrstrike);
+	public Pitch insertPitch(int pitchID, int reportID, double d, String type, String ballOrstrike){
+		return pitchDAO.insert(pitchID,reportID,d,type,ballOrstrike);
 	}
 	public Pitchers insertPitchers(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4){
 		return pitcherDAO.insert(pitcherID,pitcherName,teamID,throw1,pitch1,pitch2,pitch3,pitch4);

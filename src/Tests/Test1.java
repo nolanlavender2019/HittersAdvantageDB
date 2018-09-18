@@ -26,11 +26,11 @@ public class Test1 {
 		Opponents cubs = dbm.insertOpponent(4, "Cubs");
 		Pitchers degrom = dbm.insertPitchers(4,"Jacob DeGrom", 3, "Right", "Fastball","Curveball", "Changeup", "Slider");
 		Pitchers degrom1 = dbm.insertPitchers(5,"Jake Arrieta", 3, "Right", "Fastball","Curveball", "Changeup", "Slider");
-		Pitch firstP = dbm.insertPitch(1,001, 00,"Fastball","Strike");
-		Pitch firstP1 = dbm.insertPitch(2,001, 01,"Curveball","ball");
-		Pitch firstP2 = dbm.insertPitch(3,001, 11, "Slider","ball");
-		Pitch firstP3 = dbm.insertPitch(4,001, 21,"Fastball","Strike");
-		Pitch firstP4 = dbm.insertPitch(1,001, 22,"ChangeUP","Strike");
+		Pitch firstP = dbm.insertPitch(1,001, 0.0,"Fastball","Strike");
+		Pitch firstP1 = dbm.insertPitch(2,001, 0.1,"Curveball","ball");
+		Pitch firstP2 = dbm.insertPitch(3,001, 1.1, "Slider","ball");
+		Pitch firstP3 = dbm.insertPitch(4,001, 2.1,"Fastball","Strike");
+		Pitch firstP4 = dbm.insertPitch(1,001, 2.2,"ChangeUP","Strike");
 		AtBat ab = dbm.insertAtBat(2, 1,4,003, "Homerun");
 		AtBat ab1 = dbm.insertAtBat(1, 1,4,003, "FlyOut");
 		AtBat ab2 = dbm.insertAtBat(003, 2,5,003, "StrikeOut");
@@ -82,7 +82,9 @@ public class Test1 {
 		for(AtBat stat: team15){
 			System.out.println(stat);
 		}
-		System.out.print("done");
+		
+		System.out.print("Count from firstP1 " + firstP1.getCount());
+		System.out.print("\ndone");
 		//dbm.close();
 	}
 	

@@ -27,7 +27,7 @@ public class PitchDAO {
 		String s = "create table PITCH(" 
 	+ "PitchID integer not null,"
 	+ "ReportID integer not null,"
-	+ "Count integer not null,"
+	+ "Count Double not null,"
 	+"Type varchar(100) not null,"
 	+"BallStrike varchar(100) not null,"
 	+ "primary key (PitchID))";
@@ -46,7 +46,7 @@ public class PitchDAO {
 		
 		int pitchID = rs.getInt("pitchID");
 		int reportID = rs.getInt("reportID");
-		int countID = rs.getInt("count");
+		Double countID = rs.getDouble("count");
 		String type = rs.getString("type");
 		String ballStrike = rs.getString("ballStrike");
 		
@@ -63,7 +63,7 @@ public class PitchDAO {
 	}
 }
 	
-	public Pitch insert(int pitchID, int reportID, int count, String type, String ballOrstrike){
+	public Pitch insert(int pitchID, int reportID, double d, String type, String ballOrstrike){
 		try{
 			if(find(pitchID) != null)
 				return null;
@@ -72,13 +72,13 @@ public class PitchDAO {
 			PreparedStatement pstmt = conn.prepareStatement(cmd);
 			pstmt.setInt(1, pitchID);
 			pstmt.setInt(2, reportID);
-			pstmt.setInt(3, count);
+			pstmt.setDouble(3, d);
 			pstmt.setString(4,  type);
 			pstmt.setString(5,ballOrstrike);
 			
 			pstmt.execute();
 			
-			Pitch team = new Pitch(this, pitchID, reportID, count, type, ballOrstrike);
+			Pitch team = new Pitch(this, pitchID, reportID, d, type, ballOrstrike);
 			
 			return team;
 		}
