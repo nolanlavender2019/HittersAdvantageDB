@@ -85,7 +85,8 @@ public class Test1 {
 		
 		System.out.print("Count from firstP1 " + firstP1.getCount());
 		System.out.print("\ndone");
-		//dbm.close();
+		dbm.commit();
+		dbm.close();
 	}
 	
 }
