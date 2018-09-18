@@ -10,7 +10,6 @@ import java.util.Collection;
 
 import DAO.DatabaseManager;
 import Model.AtBat;
-import Model.Opponents;
 import Model.Pitchers;
 import Model.Report;
 

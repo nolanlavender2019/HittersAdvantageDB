@@ -10,8 +10,6 @@ import java.util.Collection;
 
 import DAO.DatabaseManager;
 import Model.AtBat;
-import Model.Game;
-import Model.Pitchers;
 import Model.Players;
 
 public class PlayersDAO {

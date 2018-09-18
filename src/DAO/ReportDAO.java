@@ -9,9 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import DAO.DatabaseManager;
-import Model.AtBat;
 import Model.Pitch;
-import Model.Players;
 import Model.Report;
 
 public class ReportDAO {
