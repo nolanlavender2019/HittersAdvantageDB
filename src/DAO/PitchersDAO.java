@@ -96,7 +96,7 @@ public class PitchersDAO {
 	public Collection<AtBat> getAB(int gameID){
 		try{
 				Collection<AtBat> stats = new ArrayList<AtBat>();
-				String qry = "select s.* from AtBat s where gameID = ?";
+				String qry = "select s.* from AtBat s where pitcherID = ?";
 				PreparedStatement pstmt = conn.prepareStatement(qry);
 				pstmt.setInt(1, gameID);
 				ResultSet rs = pstmt.executeQuery();
@@ -115,12 +115,12 @@ public class PitchersDAO {
 	public Collection<Report> getReport(int gameID){
 		try{
 				Collection<Report> stats = new ArrayList<Report>();
-				String qry = "select s.* from Report s where reportID = ?";
+				String qry = "select s.* from Report s where pitcherID = ?";
 				PreparedStatement pstmt = conn.prepareStatement(qry);
 				pstmt.setInt(1, gameID);
 				ResultSet rs = pstmt.executeQuery();
 				while (rs.next()){
-					int teamID1 = rs.getInt("ReportID");
+					int teamID1 = rs.getInt("reportID");
 					stats.add(dbm.findReport(teamID1));
 		
 				}

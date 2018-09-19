@@ -83,7 +83,7 @@ public class OpponentsDAO {
 	public Collection<Game> getGame(int teamID){
 		try{
 				Collection<Game> stats = new ArrayList<Game>();
-				String qry = "select s.* from Game s where TeamID = ?";
+				String qry = "select s.* from Game s where opponentID = ?";
 				PreparedStatement pstmt = conn.prepareStatement(qry);
 				pstmt.setInt(1, teamID);
 				ResultSet rs = pstmt.executeQuery();

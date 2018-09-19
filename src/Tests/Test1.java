@@ -1,5 +1,7 @@
 package Tests;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Properties;
 
 import DAO.DatabaseManager;
 import Model.Team;
@@ -37,7 +39,7 @@ public class Test1 {
 		Game interLeague = dbm.insertGame(003, 1,3);
 		Game interLeague1 = dbm.insertGame(004, 1,4);
 		Report rp1 = dbm.insertReport(001, 003,4);
-		Report rp2 = dbm.insertReport(002, 003, 5);
+		Report rp2 = dbm.insertReport(002, 003, 4);
 		
 		dbm.commit();
 		
@@ -83,8 +85,29 @@ public class Test1 {
 			System.out.println(stat);
 		}
 		
-		System.out.print("Count from firstP1 " + firstP1.getCount());
-		System.out.print("\ndone");
+		System.out.println("\nGeting Report from Pitcher");
+		Collection<Report> team16 = degrom.getReport();
+		for(Report stat: team16){
+			System.out.println(stat);
+		}
+		
+		System.out.println("\nGeting AtBat from Pitcher");
+		Collection<AtBat> team17 = degrom.getAB();
+		for(AtBat stat: team17){
+			System.out.println(stat);
+		}
+		
+		System.out.println("\nGeting Games from Opponents");
+		Collection<Game> team18 = cubs.getGame();
+		for(Game stat: team18){
+			System.out.println(stat);
+		}
+	
+		
+		
+		
+		System.out.print("\nCount from firstP1 " + firstP1.getCount());
+		System.out.print("\ndone\n");
 		dbm.commit();
 		dbm.close();
 	}
