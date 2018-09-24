@@ -2,8 +2,10 @@ package Tests;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import javax.swing.*;
@@ -14,6 +16,8 @@ public class Gui extends JFrame{
 	JButton button1;
 	JButton button2;
 	JButton button3;
+	JButton backButton;
+	JFrame mainMenu;
 	
 	public static void main(String[]args){
 		
@@ -37,7 +41,7 @@ public class Gui extends JFrame{
 		
 		JPanel thePanel = new JPanel();
 		
-		thePanel.setSize(this.getWidth(),this.getHeight());
+		//thePanel.setSize(this.getWidth(),this.getHeight());
 		thePanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridwidth = GridBagConstraints.REMAINDER;
@@ -51,6 +55,7 @@ public class Gui extends JFrame{
 		button1 = new JButton("New Game");
 		button2 = new JButton("Team");
 		button3 = new JButton("Reports");
+		backButton = new JButton("Back");
 		
 
 		
@@ -58,15 +63,14 @@ public class Gui extends JFrame{
 		button1.addActionListener(lForButton);
 		button2.addActionListener(lForButton);
 		button3.addActionListener(lForButton);
-		
-		
+		backButton.addActionListener(lForButton);
 		
 		
 		thePanel.add(button1, gbc);
 		thePanel.add(button2,gbc);
 		thePanel.add(button3, gbc);
 		this.add(thePanel);
-		
+		mainMenu = this;
 		
 		
 		
@@ -82,6 +86,8 @@ public class Gui extends JFrame{
 		public void actionPerformed(ActionEvent e){
 		if (e.getSource() == button1){
 			JFrame newGame = new JFrame();
+			JPanel newGame1 = new JPanel();
+			newGame.setLayout(new GridBagLayout());
 			newGame.setSize(400,400);
 			Toolkit tk = Toolkit.getDefaultToolkit();
 			
@@ -90,9 +96,15 @@ public class Gui extends JFrame{
 			int yPos = (dim.height/2 ) - (newGame.getHeight()/2);
 			newGame.setLocation(xPos,yPos);
 			newGame.setResizable(false);
-			
+			newGame1.setLayout(new GridBagLayout());
+			GridBagConstraints gbc1 = new GridBagConstraints();
+			gbc1.anchor = GridBagConstraints.NORTHWEST;
 			newGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			newGame.setTitle("Game");
+			newGame.add(backButton,gbc1);
+		
+			//newGame.add(newGame1,gbc1);
+			
 			
 			newGame.setVisible(true);
 			
@@ -110,7 +122,7 @@ public class Gui extends JFrame{
 			
 			team.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			team.setTitle("Team");
-		
+			team.add(backButton);
 			team.setVisible(true);
 			
 		}
@@ -127,10 +139,16 @@ public class Gui extends JFrame{
 			
 			report.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			report.setTitle("Report");
-			
+			report.add(backButton);
 			report.setVisible(true);
 			
 		}
+		if(e.getSource() == backButton){
+			mainMenu.setVisible(true);
+		}
+		
+		}
+	
 	}
 	}
-}
+
