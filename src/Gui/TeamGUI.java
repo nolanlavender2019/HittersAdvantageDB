@@ -3,6 +3,7 @@ package Gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import net.proteanit.sql.DbUtils;
@@ -64,9 +65,12 @@ public class TeamGUI {
 		btnBack.setBounds(6, 6, 75, 29);
 		frame.getContentPane().add(btnBack);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(58, 78, 357, 159);
+		frame.getContentPane().add(scrollPane);
+		
 		table = new JTable();
-		table.setBounds(41, 47, 378, 204);
-		frame.getContentPane().add(table);
+		scrollPane.setViewportView(table);
 		
 		JButton btnLoadData = new JButton("Load Data");
 		btnLoadData.addActionListener(new ActionListener() {
