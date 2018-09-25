@@ -22,8 +22,8 @@ public class Test1 {
 		
 		
 		Team reds = dbm.insertTeam(1, "Reds");
-		Players votto2 = dbm.insertPlayers(2,"Billy Hamilton",1, 19, "CF", "Switch", .300f, .450f,.451f);
-		Players votto = dbm.insertPlayers(1,"Joey Votto",1, 19, "1st Base", "Left", .300f, .450f,.451f);
+		Players votto2 = dbm.insertPlayers(1,"Billy Hamilton",1, 19, "CF", "Switch", .300f, .450f,.451f);
+		Players votto = dbm.insertPlayers(0,"Joey Votto",1, 19, "1st Base", "Left", .300f, .450f,.451f);
 		Opponents tigers = dbm.insertOpponent(3,"Tigers");
 		Opponents cubs = dbm.insertOpponent(4, "Cubs");
 		Pitchers degrom = dbm.insertPitchers(4,"Jacob DeGrom", 3, "Right", "Fastball","Curveball", "Changeup", "Slider");
@@ -42,7 +42,10 @@ public class Test1 {
 		Report rp2 = dbm.insertReport(002, 003, 4);
 		
 		dbm.commit();
-		
+		Collection<Players> tea = dbm.gettingPlayers(1);
+		for(Players te: tea){
+			System.out.println(te);
+		}
 		System.out.println("\nGetting ABs from games");
 		Collection<AtBat> team = interLeague.getAB();
 		for(AtBat stat: team){

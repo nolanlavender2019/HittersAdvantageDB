@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.Properties;
 
 import org.apache.derby.jdbc.EmbeddedDriver;
@@ -134,6 +135,10 @@ public class DatabaseManager {
 	}
 	public Team insertTeam(int teamID, String teamName){
 		return teamDAO.insert(teamID,teamName);
+	}
+	
+	public Collection<Players> gettingPlayers(int teamID){
+		return teamDAO.getPlayers(teamID);
 	}
 
 	//--------------------------------------------------

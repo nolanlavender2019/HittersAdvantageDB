@@ -9,7 +9,22 @@ import java.awt.GridLayout;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import org.apache.derby.iapi.sql.PreparedStatement;
+import org.apache.derby.jdbc.EmbeddedDriver;
+
+import DAO.DatabaseManager;
+import DAO.TeamDAO;
+import Model.Players;
+import Model.Team;
+
 import java.awt.event.*;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Properties;
 
 
 public class Gui extends JFrame{
@@ -18,6 +33,13 @@ public class Gui extends JFrame{
 	JButton button3;
 	JButton backButton;
 	JFrame mainMenu;
+	DatabaseManager dbm;
+	Driver driver = new EmbeddedDriver();
+	DefaultTableModel model = new DefaultTableModel();
+	JTable jtbl = new JTable(model);
+	JScrollPane pg = new JScrollPane(jtbl);
+	
+	private final String url = "jdbc:derby:HittersAdvantageDB";
 	
 	public static void main(String[]args){
 		
@@ -74,7 +96,30 @@ public class Gui extends JFrame{
 		
 		
 		
+		//java table
+		model.addColumn("PlayerName");
+		model.addColumn("Number");
+		model.addColumn("Position");
+		model.addColumn("BatingAverage");
+		model.addColumn("OnBasePercentage");
+		model.addColumn("SluggingPercentage");
 		
+		
+		dbm.gettingPlayers(1);
+		//int numPlayer = team1.size();
+		for(int i = 0; i<0;i++){
+			Players hello = dbm.findPlayer(i);
+			String name = hello.getPlayerName();
+			int num = hello.getNumber();
+			String pos = hello.getPosition();
+			Float ba = hello.getBattingAverage();
+			Float obp = hello.getoBP();
+			Float sp = hello.getSlugging();
+			
+			Object[] player = {name, num,pos,ba,obp,sp};
+			
+			model.addRow(player);
+		}
 		
 		
 		
@@ -86,8 +131,8 @@ public class Gui extends JFrame{
 		public void actionPerformed(ActionEvent e){
 		if (e.getSource() == button1){
 			JFrame newGame = new JFrame();
-			JPanel newGame1 = new JPanel();
-			newGame.setLayout(new GridBagLayout());
+			JPanel newGame1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			//newGame.setLayout();
 			newGame.setSize(400,400);
 			Toolkit tk = Toolkit.getDefaultToolkit();
 			
@@ -96,14 +141,12 @@ public class Gui extends JFrame{
 			int yPos = (dim.height/2 ) - (newGame.getHeight()/2);
 			newGame.setLocation(xPos,yPos);
 			newGame.setResizable(false);
-			newGame1.setLayout(new GridBagLayout());
-			GridBagConstraints gbc1 = new GridBagConstraints();
-			gbc1.anchor = GridBagConstraints.NORTHWEST;
+			
 			newGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			newGame.setTitle("Game");
-			newGame.add(backButton,gbc1);
-		
-			//newGame.add(newGame1,gbc1);
+			
+			newGame1.add(backButton);
+			newGame.add(newGame1);
 			
 			
 			newGame.setVisible(true);
@@ -111,6 +154,7 @@ public class Gui extends JFrame{
 		}
 		if (e.getSource() == button2){
 			JFrame team = new JFrame();
+			JPanel team1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			team.setSize(400,400);
 			Toolkit tk = Toolkit.getDefaultToolkit();
 			
@@ -122,12 +166,43 @@ public class Gui extends JFrame{
 			
 			team.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			team.setTitle("Team");
-			team.add(backButton);
+			team1.add(backButton);
+			team.add(team1);
+			
+			
+			//java table
+			/*DefaultTableModel model = new DefaultTableModel();
+			JTable jtbl = new JTable(model);
+			model.addColumn("PlayerName");
+			model.addColumn("Number");
+			model.addColumn("Position");
+			model.addColumn("BatingAverage");
+			model.addColumn("OnBasePercentage");
+			model.addColumn("SluggingPercentage");
+			
+			for(int i = 0; i<100;i++){
+				Players hello = dbm.findPlayer(i);
+				String name = hello.getPlayerName();
+				int num = hello.getNumber();
+				String pos = hello.getPosition();
+				Float ba = hello.getBattingAverage();
+				Float obp = hello.getoBP();
+				Float sp = hello.getSlugging();
+				
+				Object[] player = {name, num,pos,ba,obp,sp};
+				
+				model.addRow(player);
+			}
+			JScrollPane pg = new JScrollPane(jtbl);*/
+			
+			team1.add(pg);
+			
 			team.setVisible(true);
 			
 		}
 		if (e.getSource() == button3){
 			JFrame report = new JFrame();
+			JPanel report1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			report.setSize(400,400);
 			Toolkit tk = Toolkit.getDefaultToolkit();
 			
@@ -139,7 +214,8 @@ public class Gui extends JFrame{
 			
 			report.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			report.setTitle("Report");
-			report.add(backButton);
+			report1.add(backButton);
+			report.add(report1);
 			report.setVisible(true);
 			
 		}
@@ -150,5 +226,9 @@ public class Gui extends JFrame{
 		}
 	
 	}
+	
+	
+	
+	
 	}
 
