@@ -45,7 +45,6 @@ public class DatabaseManager {
 		try{
 			conn = driver.connect(url, prop);
 			conn.setAutoCommit(false);
-			System.out.println("Connected");
 		}
 		catch(SQLException e){
 			//database doesn't exist, so try creating it

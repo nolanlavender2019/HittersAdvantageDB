@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+
+import DAO.DatabaseManager;
+
 import javax.swing.JLabel;
+import java.sql.*;
 
 public class NewGame {
 
@@ -15,6 +19,10 @@ public class NewGame {
 	public JTextField textField;
 	public JTextField textField_1;
 	MainMenu mainMenu;
+	static Connection conn = null;
+	static DbConnection connDB;
+	public DatabaseManager dbm = new DatabaseManager();
+	
 
 	/**
 	 * Launch the application.
@@ -25,6 +33,8 @@ public class NewGame {
 				try {
 					NewGame window = new NewGame();
 					window.frame.setVisible(true);
+					connDB = new DbConnection();
+					conn = connDB.dbConnector();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -79,6 +89,50 @@ public class NewGame {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(327, 243, 117, 29);
 		frame.getContentPane().add(btnSubmit);
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String opponent = textField.getText();
+				String pitcher = textField_1.getText();
+				int teamID1 = -1;
+				try{
+				String query = "Select t.* from Opponents t where TeamName = ?";
+				PreparedStatement pst = conn.prepareStatement(query);
+				pst.setString(1, opponent);
+				ResultSet rs = pst.executeQuery();
+				while(rs.next()){
+					teamID1 = rs.getInt("opponentsID");
+				}
+				if(rs != null){
+					try{
+						System.out.println("hereaa");
+						String query1 = "Select t.* from Pitchers t where PitcherName = ? and teamID = ?";
+						PreparedStatement pst1 = conn.prepareStatement(query1);
+						pst1.setString(1, pitcher);
+						pst1.setInt(2, teamID1);
+						ResultSet rs1 = pst.executeQuery();
+				if(rs1 == null){
+					//code here for new window
+					
+				}
+				else{
+					// code here for new window
+					textField.setVisible(false);
+					textField_1.setVisible(false);
+					
+				}
+					}
+					catch (Exception e2){
+						e2.printStackTrace();
+					
+					}
+					}
+				}
+				catch (Exception e1){
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 	}
 
 }
