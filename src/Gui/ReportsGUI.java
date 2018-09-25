@@ -33,7 +33,6 @@ public class ReportsGUI {
 					window.frame.setVisible(true);
 					connDB = new DbConnection();
 					conn = DbConnection.dbConnector();
-					System.out.println(conn);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
