@@ -3,14 +3,23 @@ package Gui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JTable;
+
+import net.proteanit.sql.DbUtils;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.*;
 import java.awt.event.ActionEvent;
 
 public class TeamGUI {
 
 	private JFrame frame;
 	MainMenu mainMenu;
+	static Connection conn = null;
+	static DbConnection connDB;
+	private JTable table;
+	
 
 	/**
 	 * Launch the application.
@@ -21,6 +30,9 @@ public class TeamGUI {
 				try {
 					TeamGUI window = new TeamGUI();
 					window.frame.setVisible(true);
+					connDB = new DbConnection();
+					conn = connDB.dbConnector();
+					System.out.println(conn);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,6 +64,29 @@ public class TeamGUI {
 		});
 		btnBack.setBounds(6, 6, 75, 29);
 		frame.getContentPane().add(btnBack);
+		
+		table = new JTable();
+		table.setBounds(41, 47, 378, 204);
+		frame.getContentPane().add(table);
+		
+		JButton btnLoadData = new JButton("Load Data");
+		btnLoadData.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String query = "Select * from Players";
+					PreparedStatement pst = conn.prepareStatement(query);
+					ResultSet rs = pst.executeQuery();
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+				}
+				catch (Exception e1){
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnLoadData.setBounds(289, 6, 117, 29);
+		frame.getContentPane().add(btnLoadData);
 	}
 
-}
+	}
+
+

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Sep 24 20:43:20 EDT 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0166-0e2e-3074-000006ded6b0 
+Mon Sep 24 22:59:19 EDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0166-0eaa-b1e5-000006844590 
 on database directory /Users/Nolan/Desktop/Senior Project/HitterAdvantageDB/HittersAdvantageDB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 Loaded from file:/Applications/Eclipse.app/Contents/Eclipse/plugins/derby.jar
 java.vendor=Oracle Corporation
@@ -11,6 +11,3 @@ os.arch=x86_64
 os.version=10.13.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Mon Sep 24 20:43:21 EDT 2018:
-Shutting down instance a816c00e-0166-0e2e-3074-000006ded6b0 on database directory /Users/Nolan/Desktop/Senior Project/HitterAdvantageDB/HittersAdvantageDB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
