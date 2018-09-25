@@ -32,7 +32,6 @@ public class TeamGUI {
 					window.frame.setVisible(true);
 					connDB = new DbConnection();
 					conn = connDB.dbConnector();
-					System.out.println(conn);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
