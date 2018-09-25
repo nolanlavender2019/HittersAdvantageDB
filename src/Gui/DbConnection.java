@@ -24,7 +24,6 @@ public class DbConnection {
 		try{
 			conn = driver.connect(url, prop);
 			conn.setAutoCommit(false);
-			System.out.println("Connected");
 		}
 		catch(SQLException e){
 			System.out.println(e);

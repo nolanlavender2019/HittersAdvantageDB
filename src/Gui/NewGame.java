@@ -54,6 +54,7 @@ public class NewGame {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainMenu.newScreen1();
+				frame.setVisible(false);
 			}
 		});
 		

@@ -52,7 +52,7 @@ public class TeamGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 527, 360);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -60,13 +60,14 @@ public class TeamGUI {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainMenu.newScreen1();
+				frame.setVisible(false);
 			}
 		});
 		btnBack.setBounds(6, 6, 75, 29);
 		frame.getContentPane().add(btnBack);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(58, 78, 357, 159);
+		scrollPane.setBounds(26, 74, 475, 204);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -88,6 +89,7 @@ public class TeamGUI {
 		});
 		btnLoadData.setBounds(289, 6, 117, 29);
 		frame.getContentPane().add(btnLoadData);
+		
 	}
 
 	}

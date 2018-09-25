@@ -60,6 +60,7 @@ public class ReportsGUI {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainMenu.newScreen1();
+				frame.setVisible(false);
 			}
 		});
 		btnBack.setBounds(6, 6, 75, 29);
@@ -88,5 +89,6 @@ public class ReportsGUI {
 		});
 		btnLoadData.setBounds(289, 6, 117, 29);
 		frame.getContentPane().add(btnLoadData);
+		
 	}
 }
