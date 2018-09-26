@@ -82,11 +82,13 @@ public class PitchersDAO {
 			pstmt.setString(7, pitch3);
 			pstmt.setString(8, pitch4);
 			
-			pstmt.execute();
+			
 			
 			Pitchers team = new Pitchers(this, pitcherID, pitcherName, teamID, throw1, pitch1, pitch2, pitch3, pitch4);
 			
 			return team;
+		
+		
 		}
 			catch (SQLException e) {
 				dbm.cleanup();
@@ -131,6 +133,27 @@ public class PitchersDAO {
 			throw new RuntimeException("error getting Report from Pitchers", e);
 		}
 	}
+	public void addPitcher(Pitchers thePitcher) throws Exception{
+		PreparedStatement myStmt = null;
+		try{
+			String cmd = "insert into Pitchers(pitcherID, pitcherName, teamID, throw1, pitch1, pitch2, pitch3, pitch4)" + "values(?,?,?,?,?,?,?,?)";
+			PreparedStatement pstmt = conn.prepareStatement(cmd);
+			pstmt.setInt(1, thePitcher.getPitcherID());
+			pstmt.setString(2, thePitcher.getPitcherName());
+			pstmt.setInt(3, thePitcher.getTeamID());
+			pstmt.setString(4,  thePitcher.getHandness());
+			pstmt.setString(5, thePitcher.getPitch1());
+			pstmt.setString(6, thePitcher.getPitch2());
+			pstmt.setString(7, thePitcher.getPitch3());
+			pstmt.setString(8, thePitcher.getPitch4());
+			
+			pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			dbm.cleanup();
+			throw new RuntimeException("error inserting new Pitcher", e);
+	}
+}
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from PITCHERS";

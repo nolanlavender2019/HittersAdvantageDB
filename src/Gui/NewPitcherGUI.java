@@ -9,6 +9,7 @@ import DAO.DatabaseManager;
 import DAO.OpponentsDAO;
 import DAO.PitchDAO;
 import DAO.PitchersDAO;
+import Model.Pitchers;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -30,7 +31,7 @@ public class NewPitcherGUI {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	NewGame newGame;
-	public DatabaseManager dbm;
+	public static DatabaseManager dbm;
 	static Connection conn = null;
 	static DbConnection connDB;
 
@@ -43,6 +44,7 @@ public class NewPitcherGUI {
 				try {
 					NewPitcherGUI window = new NewPitcherGUI();
 					window.frame.setVisible(true);
+					dbm = new DatabaseManager();
 					connDB = new DbConnection();
 					conn = connDB.dbConnector();
 				} catch (Exception e) {
@@ -133,39 +135,37 @@ public class NewPitcherGUI {
 				int teamID1 =-1;
 				PitchersDAO pitch = new PitchersDAO(conn, dbm);
 				for(int i = 0; i<1000; i++){
+					System.out.println(pitch.find(i));
 					if(pitch.find(i) == null){
-						 pitchID = i;
-						 System.out.println(pitchID);
+						
+						pitchID = i;
+						 System.out.println("this is pitchID" + pitchID);
 						break;
 					}
 				}
 				
 				
 				try{
+					System.out.println("get here");
 					String query1 = "Select t.* from Opponents t where TeamName = ?";
 					PreparedStatement pst = conn.prepareStatement(query1);
 					pst.setString(1, opponent);
 					ResultSet rs = pst.executeQuery();
 					while(rs.next()){
-						teamID1 = rs.getInt("opponentsID");
+						int teamID = rs.getInt("opponentsID");
+						teamID1 = teamID;
 						System.out.println(teamID1);
 					}
 				}catch(Exception e1){
 						e1.printStackTrace();
-					}
-				pitch.insert(pitchID, name, teamID1, hand, pitch1,pitch2,pitch3,pitch4);
-				
-				/*
+				}
+				/*try{
+					pitch.addPitcher(me);
+				}catch(Exception e3){
+					e3.printStackTrace();
+				}*/
 				try{
-					PitchDAO pitch = new PitchDAO(conn, dbm);
-					for(int i = 0; i<1000; i++){
-						if(pitch.find(i) == null){
-							 pitchID = i;
-							 System.out.println(pitchID);
-							break;
-						}
-					}
-					
+					/*System.out.println("need it");
 				String cmd = "insert into Pitchers(pitcherID, pitcherName, teamID, throw1, pitch1, pitch2, pitch3, pitch4)" + "values(?,?,?,?,?,?,?,?)";
 				PreparedStatement pstmt = conn.prepareStatement(cmd);
 				pstmt.setInt(1, pitchID);
@@ -178,11 +178,18 @@ public class NewPitcherGUI {
 				pstmt.setString(8, pitch4);
 				
 				pstmt.execute();
+				conn.commit();
+				conn.close();*/
+				
+				dbm.insertPitchers(pitchID,name,teamID1,hand,pitch1,pitch2,pitch3,pitch4);
+				dbm.commit();
 				}catch(Exception e2){
 					e2.printStackTrace();
-				}*/
+				}
 				//game Window
+			
 			}
+	
 		});
 		frame.getContentPane().add(btnSubmit);
 		JButton btnBack = new JButton("Back");
@@ -206,5 +213,7 @@ public class NewPitcherGUI {
 		JLabel lblOpponentTeamName = new JLabel("Opponent Team Name");
 		lblOpponentTeamName.setBounds(33, 100, 141, 16);
 		frame.getContentPane().add(lblOpponentTeamName);
-	}
+	
 }
+}
+
