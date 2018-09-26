@@ -22,6 +22,8 @@ public class NewGame {
 	static Connection conn = null;
 	static DbConnection connDB;
 	public DatabaseManager dbm = new DatabaseManager();
+	NewPitcherGUI newPitcher;
+	public int teamID1 = -1;
 	
 
 	/**
@@ -93,7 +95,6 @@ public class NewGame {
 			public void actionPerformed(ActionEvent e) {
 				String opponent = textField.getText();
 				String pitcher = textField_1.getText();
-				int teamID1 = -1;
 				try{
 				String query = "Select t.* from Opponents t where TeamName = ?";
 				PreparedStatement pst = conn.prepareStatement(query);
@@ -102,17 +103,18 @@ public class NewGame {
 				while(rs.next()){
 					teamID1 = rs.getInt("opponentsID");
 				}
-				if(rs != null){
+				if(!rs.next()){
 					try{
-						System.out.println("hereaa");
+						
 						String query1 = "Select t.* from Pitchers t where PitcherName = ? and teamID = ?";
 						PreparedStatement pst1 = conn.prepareStatement(query1);
 						pst1.setString(1, pitcher);
 						pst1.setInt(2, teamID1);
 						ResultSet rs1 = pst.executeQuery();
-				if(rs1 == null){
+						System.out.println(rs1);
+				if(!rs1.next()){
 					//code here for new window
-					
+					newPitcher.newScreen();
 				}
 				else{
 					// code here for new window
@@ -134,5 +136,7 @@ public class NewGame {
 			}
 		});
 	}
-
+public int getTeamID(){
+	return teamID1;
+}
 }

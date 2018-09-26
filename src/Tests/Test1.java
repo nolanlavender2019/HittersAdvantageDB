@@ -77,7 +77,7 @@ public class Test1 {
 		}
 		
 		System.out.println("\nGeting Pitcher from Opponents");
-		Collection<Pitchers> team14 = tigers.getPitcher();
+		Collection<Pitchers> team14 = cubs.getPitcher();
 		for(Pitchers stat: team14){
 			System.out.println(stat);
 		}
@@ -111,6 +111,9 @@ public class Test1 {
 		
 		System.out.print("\nCount from firstP1 " + firstP1.getCount());
 		System.out.print("\ndone\n");
+		
+		System.out.print(dbm.findPitcher(0));
+		
 		dbm.commit();
 		dbm.close();
 	}
