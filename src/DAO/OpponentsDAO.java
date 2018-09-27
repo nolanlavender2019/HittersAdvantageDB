@@ -118,6 +118,25 @@ public class OpponentsDAO {
 			throw new RuntimeException("error getting Opponents Pitchers", e);
 		}
 	}
+	public int getOpponentName(String teamName){
+		try{
+				//Collection<Game> stats = new ArrayList<Game>();
+				int teamID = -1;
+				String qry = "select s.* from Opponents s where TeamName = ?";
+				PreparedStatement pstmt = conn.prepareStatement(qry);
+				pstmt.setString(1, teamName);
+				ResultSet rs = pstmt.executeQuery();
+				while (rs.next()){
+					 teamID = rs.getInt("TeamID");
+		
+				}
+				rs.close();
+				return teamID;
+		} catch(SQLException e){
+			dbm.cleanup();
+			throw new RuntimeException("error getting Games", e);
+		}
+	}
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from OPPONENTS";

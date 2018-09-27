@@ -141,6 +141,9 @@ public class DatabaseManager {
 	public Collection<Players> gettingPlayers(int teamID){
 		return teamDAO.getPlayers(teamID);
 	}
+	public int getOpponentName(String teamName){
+		return opponentDAO.getOpponentName(teamName);
+	}
 
 	//--------------------------------------------------
 	// Utility Functions

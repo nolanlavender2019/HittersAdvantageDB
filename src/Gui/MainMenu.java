@@ -73,6 +73,7 @@ public class MainMenu {
 		btnReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				reports.newScreen();
+				frame.setVisible(false);
 			}
 		});
 		
@@ -80,6 +81,7 @@ public class MainMenu {
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.newScreen();
+				frame.setVisible(false);
 			}
 		});
 		btnNewGame.setBounds(171, 95, 117, 29);
@@ -91,6 +93,7 @@ public class MainMenu {
 		btnTeam.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				team.newScreen();
+				frame.setVisible(false);
 			}
 		});
 		
