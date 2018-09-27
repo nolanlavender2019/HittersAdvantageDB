@@ -66,6 +66,7 @@ public class PlayersDAO {
 	catch( SQLException e) {
 		dbm.cleanup();
 		throw new RuntimeException("Error finding Players", e);
+		
 	}
 }
 	public Players insert(int playerID, String playerName, int teamID, int number, String position, String hit, float battingAverage, float onBasePercentage, float sluggingPercentage){

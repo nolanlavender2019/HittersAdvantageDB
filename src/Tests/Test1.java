@@ -114,6 +114,10 @@ public class Test1 {
 		
 		System.out.print(dbm.findPitcher(0));
 		
+		Pitchers t = dbm.findPitcher(4);
+		
+		System.out.println(t);
+		
 		dbm.commit();
 		dbm.close();
 	}

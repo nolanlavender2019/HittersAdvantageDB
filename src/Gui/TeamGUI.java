@@ -20,7 +20,7 @@ public class TeamGUI {
 	static Connection conn = null;
 	static DbConnection connDB;
 	private JTable table;
-	
+	AddPlayerGUI addPlayer;
 
 	/**
 	 * Launch the application.
@@ -88,6 +88,14 @@ public class TeamGUI {
 			}
 		});
 		btnLoadData.setBounds(289, 6, 117, 29);
+		JButton btnAddPlayer = new JButton("Add Player");
+		btnAddPlayer.setBounds(25, 300, 450, 29);
+		btnAddPlayer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addPlayer.newScreen();
+			}
+		});
+		frame.getContentPane().add(btnAddPlayer);
 		frame.getContentPane().add(btnLoadData);
 		
 	}
