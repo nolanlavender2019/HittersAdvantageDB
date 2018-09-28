@@ -133,8 +133,9 @@ public class OpponentsDAO {
 				rs.close();
 				return teamID;
 		} catch(SQLException e){
+			
 			dbm.cleanup();
-			throw new RuntimeException("error getting Games", e);
+			throw new RuntimeException("error getting Opponent", e);
 		}
 	}
 	void clear() throws SQLException{
