@@ -226,8 +226,10 @@ public class NewGame {
 				String opponent = textField.getText();
 				String pitcherName = textField_2.getText();
 				int id = -2;
+				int pitcherID = -3;
 				//see if opponent is in DB
 				int teamID = dbm.getOpponentName(opponent);
+				//if team is not recognized
 				if(teamID == -1){
 					for(int i =0; i<100;i++){
 					if(dbm.findOpponents(i) == null)
@@ -252,6 +254,28 @@ public class NewGame {
 					frmNewGame.getContentPane().add(lblPitch_2, gbc_lblPitch_2);
 					frmNewGame.getContentPane().add(lblPitch_3, gbc_lblPitch_3);
 					frmNewGame.pack();
+					
+					String hand1 = hand.getText();
+					String pitch_1 = pitch1.getText();
+					String pitch_2 = pitch2.getText();
+					String pitch_3 = pitch3.getText();
+					String pitch_4 = pitch4.getText();
+					
+					//Write code to find pitcher with name
+					pitcherID = dbm.getPitcherID(pitcherName, id);
+					if(pitcherID == -1){
+						for(int i =0; i<100;i++){
+						if(dbm.findPitcher(i) == null)
+							{
+								pitcherID = i;
+								break;
+							}
+						}
+					dbm.insertPitchers(pitcherID, pitcherName,id,hand1,pitch_1,pitch_2,pitch_3,pitch_4 );
+					}
+				}
+				else{
+					//teamID found
 				}
 			}
 		});

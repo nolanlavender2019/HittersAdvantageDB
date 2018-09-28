@@ -144,7 +144,10 @@ public class DatabaseManager {
 	public int getOpponentName(String teamName){
 		return opponentDAO.getOpponentName(teamName);
 	}
-
+	
+	public int getPitcherID(String name, int teamName){
+		return pitcherDAO.getPitcherID(name,teamName);
+	}
 	//--------------------------------------------------
 	// Utility Functions
 	
