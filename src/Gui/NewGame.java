@@ -231,16 +231,20 @@ public class NewGame {
 				//see if opponent is in DB
 				int gameID = -4;
 				int teamID = dbm.getOpponentName(opponent);
+				System.out.println("btn submit" + teamID);
 				//if team is not recognized
 				if(teamID == -1){
 					for(int i =0; i<100;i++){
 					if(dbm.findOpponents(i) == null)
 					{
+						System.out.println("btn submit2" + teamID);
 						teamID = i;
+						System.out.println("btn submit3" + teamID);
 						break;
 					}
 				}
 					dbm.insertOpponent(teamID, opponent);
+					dbm.commit();
 					frmNewGame.getContentPane().add(textField_2, gbc_textField);
 					frmNewGame.getContentPane().add(lblPitcherName, gbc_lblOpponent);
 					lblOpponent.setVisible(false);
@@ -272,12 +276,14 @@ public class NewGame {
 							}
 						}
 						dbm.insertPitchers(pitcherID, pitcherName,teamID,hand1,pitch_1,pitch_2,pitch_3,pitch_4 );
+						dbm.commit();
 					}
 			
 				
 				else{
 					//teamID found
 					pitcherID = dbm.getPitcherID(pitcherName, teamID);
+					System.out.println(pitcherID);
 					if(pitcherID == -1){
 						frmNewGame.getContentPane().add(textField_2, gbc_textField);
 						frmNewGame.getContentPane().add(lblPitcherName, gbc_lblOpponent);
@@ -308,25 +314,7 @@ public class NewGame {
 							}
 						}
 						dbm.insertPitchers(pitcherID, pitcherName,teamID,hand1,pitch_1,pitch_2,pitch_3,pitch_4 );
-						for(int i =0; i<100;i++){
-							if(dbm.findGame(i) == null)
-								{
-									gameID = i;
-									break;
-								}
-							}
-						dbm.insertGame(gameID,1,teamID);
-						for(int i =0; i<100;i++){
-							if(dbm.findReport(i) == null)
-								{
-									reportID = i;
-									break;
-								}
-							}
-						dbm.insertReport(reportID, gameID,pitcherID);
-						frmNewGame.setVisible(false);
-						game.newScreen();
-					
+						dbm.commit();
 					}
 					else{
 						for(int i =0; i<100;i++){
@@ -349,7 +337,6 @@ public class NewGame {
 						game.newScreen();
 					}
 				}
-				
 			}
 		});
 		GridBagConstraints gbc_btnSubmit = new GridBagConstraints();

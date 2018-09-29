@@ -127,14 +127,15 @@ public class OpponentsDAO {
 				pstmt.setString(1, teamName);
 				ResultSet rs = pstmt.executeQuery();
 				while (rs.next()){
-					 teamID = rs.getInt("TeamID");
+					 teamID = rs.getInt("opponentsID");
+					 System.out.println(teamID);
 		
 				}
+				
 				rs.close();
 				return teamID;
 		} catch(SQLException e){
-			
-			dbm.cleanup();
+			System.out.println(e);
 			throw new RuntimeException("error getting Opponent", e);
 		}
 	}

@@ -18,7 +18,7 @@ public class Test1 {
 		
 		DatabaseManager dbm = new DatabaseManager();
 		
-		dbm.clearTables();
+		//dbm.clearTables();
 		
 		
 		Team reds = dbm.insertTeam(1, "Reds");
