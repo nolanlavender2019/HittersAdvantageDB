@@ -10,18 +10,18 @@ import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.awt.event.ActionEvent;
 
-public class ReportsGUI {
+public class StatsGUI {
 
 	private JFrame frame;
 	MainMenu mainMenu;
-	private JTable table;
 	static Connection conn = null;
 	static DbConnection connDB;
+	private JTable table;
+	AddPlayerGUI addPlayer;
+
 	/**
 	 * Launch the application.
 	 */
@@ -29,10 +29,10 @@ public class ReportsGUI {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ReportsGUI window = new ReportsGUI();
+					StatsGUI window = new StatsGUI();
 					window.frame.setVisible(true);
 					connDB = new DbConnection();
-					conn = DbConnection.dbConnector();
+					conn = connDB.dbConnector();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,7 +43,7 @@ public class ReportsGUI {
 	/**
 	 * Create the application.
 	 */
-	public ReportsGUI() {
+	public StatsGUI() {
 		initialize();
 	}
 
@@ -52,8 +52,8 @@ public class ReportsGUI {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("Reports");
-		frame.setBounds(100, 100, 450, 300);
+		frame.setTitle("Stats");
+		frame.setBounds(100, 100, 527, 360);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -68,17 +68,18 @@ public class ReportsGUI {
 		frame.getContentPane().add(btnBack);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(58, 78, 357, 159);
+		scrollPane.setBounds(26, 74, 475, 204);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		JButton btnLoadData = new JButton("Load Data");
+		btnLoadData.setBounds(289, 6, 117, 29);
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					String query = "Select * from Report";
+					String query = "Select playerName, BattingAverage, OnBasePercentage, SluggingPercentage from Players";
 					PreparedStatement pst = conn.prepareStatement(query);
 					ResultSet rs = pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -88,8 +89,10 @@ public class ReportsGUI {
 				}
 			}
 		});
-		btnLoadData.setBounds(289, 6, 117, 29);
 		frame.getContentPane().add(btnLoadData);
 		
 	}
-}
+
+	}
+
+

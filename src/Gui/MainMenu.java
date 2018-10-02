@@ -21,7 +21,7 @@ public class MainMenu {
 	NewGame game;
 	ReportsGUI reports;
 	TeamGUI team;
-
+	StatsGUI stats;
 	/**
 	 * Launch the application.
 	 */
@@ -96,6 +96,14 @@ public class MainMenu {
 				frame.setVisible(false);
 			}
 		});
+		JButton btnStats = new JButton("Stats");
+		btnStats.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				stats.newScreen();
+			}
+		});
+		btnStats.setBounds(171, 213, 117, 29);
+		frame.getContentPane().add(btnStats);
 		
 		JLabel lblHittersadvantage = new JLabel("HittersAdvantage");
 		lblHittersadvantage.setBounds(171, 20, 117, 16);
