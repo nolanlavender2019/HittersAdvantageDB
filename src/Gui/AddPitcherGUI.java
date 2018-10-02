@@ -29,6 +29,7 @@ public class AddPitcherGUI {
 	static int opponentID = -5;
 	GameGUI game;
 	static int gameID = -6;
+	int playerID = -6;
 	/**
 	 * Launch the application.
 	 */
@@ -191,9 +192,11 @@ public class AddPitcherGUI {
 				String battingAverage = textField_4.getText();
 				String slugging = textField_5.getText();
 				
-				int playerID = -1;
-				int gameID = 0;
+				//int playerID = -1;
+				//int gameID = 0;
 				int reportID = 0;
+				playerID = dbm.getPitcherID(name,opponentID);
+				if(playerID == -1){
 				for(int i = 0; i<1000;i++){
 					if(dbm.findPitcher(i) == null)
 					{
@@ -201,6 +204,7 @@ public class AddPitcherGUI {
 						System.out.println(playerID);
 						break;
 					}
+				}
 				}
 				
 				dbm.insertPitchers(playerID, name, opponentID, number,position, hit, battingAverage,slugging);
@@ -228,7 +232,7 @@ public class AddPitcherGUI {
 				frame.setVisible(false);
 				dbm.commit();
 				
-				game.newScreen(gameID, opponentID);
+				game.newScreen(gameID, opponentID, playerID);
 				
 			}
 		});

@@ -19,6 +19,10 @@ public class Opponents {
 		this.setTeamName(teamName);
 		
 	}
+	public Opponents(){
+		opponentID = -1;
+		teamName = null;
+	}
 	public String toString() {
 		return teamName + " " + opponentID;
 	}

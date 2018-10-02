@@ -29,7 +29,7 @@ public class NewGame {
 	private JTextField textField_6;
 	private JTextField pitch4;
 	private JTextField hand;
-	GameGUI game;
+	static GameGUI game;
 	boolean buttonClick = false;
 	int buttonClicked = 0;
 	int teamID = -1;
@@ -265,7 +265,7 @@ public class NewGame {
 						frmNewGame.setVisible(false);
 					}
 					else{
-					for(int i =0; i<100;i++){
+					for(int i =0; i<10000;i++){
 						if(dbm.findGame(i) == null)
 							{
 								gameID = i;
@@ -273,7 +273,7 @@ public class NewGame {
 							}
 						}
 					dbm.insertGame(gameID,1,teamID);
-					for(int i =0; i<100;i++){
+					for(int i =0; i<10000;i++){
 						if(dbm.findReport(i) == null)
 							{
 								reportID = i;
@@ -284,7 +284,8 @@ public class NewGame {
 					System.out.println("This is the pitcherID " + pitcherID);
 					frmNewGame.setVisible(false);
 					dbm.commit();
-					game.newScreen(gameID, teamID);
+					System.out.println("This is the gameID " + gameID);
+					game.newScreen(gameID, teamID,pitcherID);
 					}
 				}
 				}
