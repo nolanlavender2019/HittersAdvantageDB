@@ -21,7 +21,7 @@ public class Test1 {
 		//dbm.clearTables();
 		
 		
-		Team reds = dbm.insertTeam(1, "Reds");
+	/*	Team reds = dbm.insertTeam(1, "Reds");
 		Players votto2 = dbm.insertPlayers(1,"Billy Hamilton",1, 19, "CF", "Switch", .300f, .450f,.451f);
 		Players votto = dbm.insertPlayers(0,"Joey Votto",1, 19, "1st Base", "Left", .300f, .450f,.451f);
 		Opponents tigers = dbm.insertOpponent(3,"Tigers");
@@ -39,10 +39,19 @@ public class Test1 {
 		Game interLeague = dbm.insertGame(003, 1,3);
 		Game interLeague1 = dbm.insertGame(004, 1,4);
 		Report rp1 = dbm.insertReport(001, 003,4);
-		Report rp2 = dbm.insertReport(002, 003, 4);
-		
+		Report rp2 = dbm.insertReport(002, 003, 4);*/
+		Opponents cubs = dbm.findOpponents(4);
+		Pitchers degrom = dbm.insertPitchers(4,"Jacob DeGrom", 4, "Right", "Fastball","Curveball", "Changeup", "Slider");
 		dbm.commit();
-		Collection<Players> tea = dbm.gettingPlayers(1);
+		System.out.println("\nGeting Pitcher from Opponents");
+		Collection<Pitchers> team14 = cubs.getPitcher();
+		for(Pitchers stat: team14){
+			System.out.println(stat);
+		}
+		dbm.commit();
+		
+
+		/*Collection<Players> tea = dbm.gettingPlayers(1);
 		for(Players te: tea){
 			System.out.println(te);
 		}
@@ -119,7 +128,7 @@ public class Test1 {
 		System.out.println(t);
 		
 		dbm.commit();
-		dbm.close();
+		dbm.close();*/
 	}
 	
 }

@@ -81,7 +81,7 @@ public class PitchersDAO {
 			pstmt.setString(6, pitch2);
 			pstmt.setString(7, pitch3);
 			pstmt.setString(8, pitch4);
-			
+			pstmt.execute();
 			
 			
 			Pitchers team = new Pitchers(this, pitcherID, pitcherName, teamID, throw1, pitch1, pitch2, pitch3, pitch4);
@@ -92,6 +92,7 @@ public class PitchersDAO {
 		}
 			catch (SQLException e) {
 				dbm.cleanup();
+				System.out.println(e);
 				throw new RuntimeException("error inserting new Pitcher", e);
 		}
 	}

@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddPlayerGUI {
+public class AddPitcherGUI {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -26,18 +26,19 @@ public class AddPlayerGUI {
 	private JTextField textField_5;
 	private JTextField textField_6;
 	public static DatabaseManager dbm;
-	public GameGUI game;
-
+	static int opponentID = -5;
+	GameGUI game;
 	/**
 	 * Launch the application.
 	 */
-	public static void newScreen() {
+	public static void newScreen(int id) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddPlayerGUI window = new AddPlayerGUI();
+					AddPitcherGUI window = new AddPitcherGUI();
 					window.frame.setVisible(true);
 					dbm = new DatabaseManager();
+					opponentID = id;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,7 +49,7 @@ public class AddPlayerGUI {
 	/**
 	 * Create the application.
 	 */
-	public AddPlayerGUI() {
+	public AddPitcherGUI() {
 		initialize();
 	}
 
@@ -66,7 +67,7 @@ public class AddPlayerGUI {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
-		JLabel lblPlayerName = new JLabel("Player Name");
+		JLabel lblPlayerName = new JLabel("Pitcher Name");
 		GridBagConstraints gbc_lblPlayerName = new GridBagConstraints();
 		gbc_lblPlayerName.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPlayerName.gridx = 1;
@@ -82,7 +83,7 @@ public class AddPlayerGUI {
 		frame.getContentPane().add(textField, gbc_textField);
 		textField.setColumns(10);
 		
-		JLabel lblNumber = new JLabel("Number");
+		JLabel lblNumber = new JLabel("Hand");
 		GridBagConstraints gbc_lblNumber = new GridBagConstraints();
 		gbc_lblNumber.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNumber.gridx = 1;
@@ -98,7 +99,7 @@ public class AddPlayerGUI {
 		frame.getContentPane().add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblPosition = new JLabel("Position");
+		JLabel lblPosition = new JLabel("Pitch 1");
 		GridBagConstraints gbc_lblPosition = new GridBagConstraints();
 		gbc_lblPosition.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPosition.gridx = 1;
@@ -114,7 +115,7 @@ public class AddPlayerGUI {
 		frame.getContentPane().add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
 		
-		JLabel lblHit = new JLabel("Hit");
+		JLabel lblHit = new JLabel("Pitch 2");
 		GridBagConstraints gbc_lblHit = new GridBagConstraints();
 		gbc_lblHit.insets = new Insets(0, 0, 5, 5);
 		gbc_lblHit.gridx = 1;
@@ -130,7 +131,7 @@ public class AddPlayerGUI {
 		frame.getContentPane().add(textField_3, gbc_textField_3);
 		textField_3.setColumns(10);
 		
-		JLabel lblBattingAverage = new JLabel("Batting Average");
+		JLabel lblBattingAverage = new JLabel("Pitch 3");
 		GridBagConstraints gbc_lblBattingAverage = new GridBagConstraints();
 		gbc_lblBattingAverage.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBattingAverage.gridx = 1;
@@ -146,7 +147,7 @@ public class AddPlayerGUI {
 		frame.getContentPane().add(textField_4, gbc_textField_4);
 		textField_4.setColumns(10);
 		
-		JLabel lblSlugging = new JLabel("Slugging %");
+		JLabel lblSlugging = new JLabel("Pitch 4");
 		GridBagConstraints gbc_lblSlugging = new GridBagConstraints();
 		gbc_lblSlugging.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSlugging.gridx = 1;
@@ -161,47 +162,53 @@ public class AddPlayerGUI {
 		gbc_textField_5.gridy = 6;
 		frame.getContentPane().add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
-		
-		JLabel lblObp = new JLabel("OBP");
-		GridBagConstraints gbc_lblObp = new GridBagConstraints();
-		gbc_lblObp.insets = new Insets(0, 0, 5, 5);
-		gbc_lblObp.gridx = 1;
-		gbc_lblObp.gridy = 7;
-		frame.getContentPane().add(lblObp, gbc_lblObp);
-		
-		textField_6 = new JTextField();
-		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.insets = new Insets(0, 0, 5, 0);
-		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_6.gridx = 6;
-		gbc_textField_6.gridy = 7;
-		frame.getContentPane().add(textField_6, gbc_textField_6);
-		textField_6.setColumns(10);
+
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
-				int number = Integer.parseInt(textField_1.getText());
+				String number =textField_1.getText();
 				String position = textField_2.getText();
 				String hit = textField_3.getText();
-				Float battingAverage = Float.parseFloat(textField_4.getText());
-				Float slugging = Float.parseFloat(textField_5.getText());
-				Float obp = Float.parseFloat(textField_6.getText());
+				String battingAverage = textField_4.getText();
+				String slugging = textField_5.getText();
+				
 				int playerID = -1;
+				int gameID = 0;
+				int reportID = 0;
 				for(int i = 0; i<1000;i++){
-					if(dbm.findPlayer(i) == null)
+					if(dbm.findPitcher(i) == null)
 					{
 						playerID = i;
 						System.out.println(playerID);
 						break;
 					}
 				}
-				dbm.insertPlayers(playerID, name, 1, number,position, hit, battingAverage,slugging,obp);
-	
+				
+				dbm.insertPitchers(playerID, name, opponentID, number,position, hit, battingAverage,slugging);
+				dbm.commit();
+				frame.setVisible(false);
+				for(int i =0; i<100;i++){
+					if(dbm.findGame(i) == null)
+						{
+							 gameID = i;
+							break;
+						}
+					}
+				dbm.insertGame(gameID,1,opponentID);
+				for(int i =0; i<100;i++){
+					if(dbm.findReport(i) == null)
+						{
+							 reportID = i;
+							break;
+						}
+					}
+				dbm.insertReport(reportID, gameID,playerID);
 				frame.setVisible(false);
 				dbm.commit();
 				
+				game.newScreen();
 				
 			}
 		});

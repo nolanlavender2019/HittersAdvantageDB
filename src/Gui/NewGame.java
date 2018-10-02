@@ -30,6 +30,10 @@ public class NewGame {
 	private JTextField pitch4;
 	private JTextField hand;
 	GameGUI game;
+	boolean buttonClick = false;
+	int buttonClicked = 0;
+	int teamID = -1;
+	AddPitcherGUI pitcher;
 
 	/**
 	 * Launch the application.
@@ -230,9 +234,11 @@ public class NewGame {
 				int pitcherID = -3;
 				//see if opponent is in DB
 				int gameID = -4;
-				int teamID = dbm.getOpponentName(opponent);
+				teamID = dbm.getOpponentName(opponent);
 				System.out.println("btn submit" + teamID);
 				//if team is not recognized
+			//if(buttonClicked == 0){
+					//buttonClicked++;
 				if(teamID == -1){
 					for(int i =0; i<100;i++){
 					if(dbm.findOpponents(i) == null)
@@ -245,99 +251,45 @@ public class NewGame {
 				}
 					dbm.insertOpponent(teamID, opponent);
 					dbm.commit();
-					frmNewGame.getContentPane().add(textField_2, gbc_textField);
-					frmNewGame.getContentPane().add(lblPitcherName, gbc_lblOpponent);
-					lblOpponent.setVisible(false);
-					textField.setVisible(false);
-					frmNewGame.getContentPane().add(lblHand, gbc_lblHand);
-					frmNewGame.getContentPane().add(hand, gbc_hand);
-					frmNewGame.getContentPane().add(lblPitch, gbc_lblPitch);
-					frmNewGame.getContentPane().add(pitch1, gbc_pitch1);
-					frmNewGame.getContentPane().add(pitch2, gbc_pitch2);
-					frmNewGame.getContentPane().add(pitch3, gbc_pitch3);
-					frmNewGame.getContentPane().add(pitch4, gbc_pitch4);
-					frmNewGame.getContentPane().add(lblPitch_1, gbc_lblPitch_1);
-					frmNewGame.getContentPane().add(lblPitch_2, gbc_lblPitch_2);
-					frmNewGame.getContentPane().add(lblPitch_3, gbc_lblPitch_3);
-					frmNewGame.pack();
+					pitcher.newScreen(teamID);
+					frmNewGame.setVisible(false);
 					
-					String hand1 = hand.getText();
-					String pitch_1 = pitch1.getText();
-					String pitch_2 = pitch2.getText();
-					String pitch_3 = pitch3.getText();
-					String pitch_4 = pitch4.getText();
-					
-					//Write code to find pitcher with name
-						for(int i =0; i<100;i++){
-						if(dbm.findPitcher(i) == null)
-							{
-								pitcherID = i;
-								break;
-							}
-						}
-						dbm.insertPitchers(pitcherID, pitcherName,teamID,hand1,pitch_1,pitch_2,pitch_3,pitch_4 );
-						dbm.commit();
-					}
-			
-				
+				}
 				else{
 					//teamID found
+					System.out.println("pitcher name " + pitcherName + "teamID = " + teamID);
 					pitcherID = dbm.getPitcherID(pitcherName, teamID);
 					System.out.println(pitcherID);
 					if(pitcherID == -1){
-						frmNewGame.getContentPane().add(textField_2, gbc_textField);
-						frmNewGame.getContentPane().add(lblPitcherName, gbc_lblOpponent);
-						lblOpponent.setVisible(false);
-						textField.setVisible(false);
-						frmNewGame.getContentPane().add(lblHand, gbc_lblHand);
-						frmNewGame.getContentPane().add(hand, gbc_hand);
-						frmNewGame.getContentPane().add(lblPitch, gbc_lblPitch);
-						frmNewGame.getContentPane().add(pitch1, gbc_pitch1);
-						frmNewGame.getContentPane().add(pitch2, gbc_pitch2);
-						frmNewGame.getContentPane().add(pitch3, gbc_pitch3);
-						frmNewGame.getContentPane().add(pitch4, gbc_pitch4);
-						frmNewGame.getContentPane().add(lblPitch_1, gbc_lblPitch_1);
-						frmNewGame.getContentPane().add(lblPitch_2, gbc_lblPitch_2);
-						frmNewGame.getContentPane().add(lblPitch_3, gbc_lblPitch_3);
-						frmNewGame.pack();
-						
-						String hand1 = hand.getText();
-						String pitch_1 = pitch1.getText();
-						String pitch_2 = pitch2.getText();
-						String pitch_3 = pitch3.getText();
-						String pitch_4 = pitch4.getText();
-						for(int i =0; i<100;i++){
-						if(dbm.findPitcher(i) == null)
+						pitcher.newScreen(teamID);
+						frmNewGame.setVisible(false);
+					}
+					else{
+					for(int i =0; i<100;i++){
+						if(dbm.findGame(i) == null)
 							{
-								pitcherID = i;
+								gameID = i;
 								break;
 							}
 						}
-						dbm.insertPitchers(pitcherID, pitcherName,teamID,hand1,pitch_1,pitch_2,pitch_3,pitch_4 );
-						dbm.commit();
-					}
-					else{
-						for(int i =0; i<100;i++){
-							if(dbm.findGame(i) == null)
-								{
-									gameID = i;
-									break;
-								}
+					dbm.insertGame(gameID,1,teamID);
+					for(int i =0; i<100;i++){
+						if(dbm.findReport(i) == null)
+							{
+								reportID = i;
+								break;
 							}
-						dbm.insertGame(gameID,1,teamID);
-						for(int i =0; i<100;i++){
-							if(dbm.findReport(i) == null)
-								{
-									reportID = i;
-									break;
-								}
-							}
-						dbm.insertReport(reportID, gameID,pitcherID);
-						frmNewGame.setVisible(false);
-						game.newScreen();
+						}
+					dbm.insertReport(reportID, gameID,pitcherID);
+					System.out.println("This is the pitcherID " + pitcherID);
+					frmNewGame.setVisible(false);
+					dbm.commit();
+					game.newScreen();
 					}
 				}
-			}
+				}
+
+			
 		});
 		GridBagConstraints gbc_btnSubmit = new GridBagConstraints();
 		gbc_btnSubmit.insets = new Insets(0, 0, 0, 5);
