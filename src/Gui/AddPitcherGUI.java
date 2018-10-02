@@ -28,6 +28,7 @@ public class AddPitcherGUI {
 	public static DatabaseManager dbm;
 	static int opponentID = -5;
 	GameGUI game;
+	static int gameID = -6;
 	/**
 	 * Launch the application.
 	 */
@@ -39,6 +40,21 @@ public class AddPitcherGUI {
 					window.frame.setVisible(true);
 					dbm = new DatabaseManager();
 					opponentID = id;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	public static void newScreen2(int id, int gID ) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AddPitcherGUI window = new AddPitcherGUI();
+					window.frame.setVisible(true);
+					dbm = new DatabaseManager();
+					opponentID = id;
+					gameID = gID;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -189,6 +205,7 @@ public class AddPitcherGUI {
 				dbm.insertPitchers(playerID, name, opponentID, number,position, hit, battingAverage,slugging);
 				dbm.commit();
 				frame.setVisible(false);
+				if(gameID == -6){
 				for(int i =0; i<100;i++){
 					if(dbm.findGame(i) == null)
 						{
@@ -196,7 +213,9 @@ public class AddPitcherGUI {
 							break;
 						}
 					}
+				}
 				dbm.insertGame(gameID,1,opponentID);
+				
 				for(int i =0; i<100;i++){
 					if(dbm.findReport(i) == null)
 						{
@@ -208,7 +227,7 @@ public class AddPitcherGUI {
 				frame.setVisible(false);
 				dbm.commit();
 				
-				game.newScreen();
+				game.newScreen(gameID, opponentID);
 				
 			}
 		});

@@ -148,6 +148,9 @@ public class DatabaseManager {
 	public int getPitcherID(String name, int teamName){
 		return pitcherDAO.getPitcherID(name,teamName);
 	}
+	public Players getPlayerByName(String name){
+		return playerDAO.getPlayerByName(name);
+	}
 	//--------------------------------------------------
 	// Utility Functions
 	

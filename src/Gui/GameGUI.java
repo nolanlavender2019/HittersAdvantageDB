@@ -1,13 +1,21 @@
 package Gui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import DAO.DatabaseManager;
+import Model.Players;
+
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import java.util.Collection;
+import java.util.ArrayList;
 
 public class GameGUI {
 
@@ -33,16 +41,27 @@ public class GameGUI {
 	private JTable table_9;
 	private JTable table_10;
 	private JTable table_11;
-
+	MainMenu mainMenu;
+	static int gameID;
+	static int opponentID;
+	AddPitcherGUI pitcher;
+	static DatabaseManager dbm;
+	static Collection<Players> lineUP;
+	static int spotInTheLineUP;
 	/**
 	 * Launch the application.
 	 */
-	public static void newScreen() {
+	public static void newScreen(int game, int opponent) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					GameGUI window = new GameGUI();
 					window.frmGame.setVisible(true);
+					gameID = game;
+					opponentID = opponent;
+					dbm = new DatabaseManager();
+					lineUP = new ArrayList<Players>();
+					spotInTheLineUP = 0;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -68,6 +87,12 @@ public class GameGUI {
 		frmGame.getContentPane().setLayout(null);
 		
 		JButton btnGameOver = new JButton("Game Over");
+		btnGameOver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainMenu.newScreen1();
+				frmGame.setVisible(false);
+			}
+		});
 		btnGameOver.setBounds(6, 6, 117, 29);
 		frmGame.getContentPane().add(btnGameOver);
 		
@@ -123,6 +148,40 @@ public class GameGUI {
 		JButton btnSubmitLineup = new JButton("Submit Lineup");
 		btnSubmitLineup.setBounds(6, 434, 117, 29);
 		frmGame.getContentPane().add(btnSubmitLineup);
+		btnSubmitLineup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String firstHitter = spot1.getText();
+				String secondHitter = spot2.getText();
+				String thirdHitter = spot3.getText();
+				String fourthHitter = spot4.getText();
+				String fifthHitter = spot5.getText();
+				String sixthHitter = spot6.getText();
+				String seventhHitter = spot7.getText();
+				String eighthHitter = spot8.getText();
+				String ninthHitter = spot9.getText();
+				
+				//code to get player from playerName;
+				Players one = dbm.getPlayerByName(firstHitter);
+				Players two = dbm.getPlayerByName(secondHitter);
+				Players three = dbm.getPlayerByName(thirdHitter);
+				Players four = dbm.getPlayerByName(fourthHitter);
+				Players five = dbm.getPlayerByName(fifthHitter);
+				Players six = dbm.getPlayerByName(sixthHitter);
+				Players seven = dbm.getPlayerByName(seventhHitter);
+				Players eight = dbm.getPlayerByName(eighthHitter);
+				Players nine = dbm.getPlayerByName(ninthHitter);
+			
+				lineUP.add(one);
+				lineUP.add(two);
+				lineUP.add(three);
+				lineUP.add(four);
+				lineUP.add(five);
+				lineUP.add(six);
+				lineUP.add(seven);
+				lineUP.add(eight);
+				lineUP.add(nine);
+			}
+		});
 		
 		JLabel lblOpponent = new JLabel("Opponent");
 		lblOpponent.setBounds(223, 11, 70, 16);
@@ -375,5 +434,10 @@ public class GameGUI {
 		JButton btnNewPitcher = new JButton("New Pitcher");
 		btnNewPitcher.setBounds(6, 34, 117, 29);
 		frmGame.getContentPane().add(btnNewPitcher);
+		btnNewPitcher.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			pitcher.newScreen2(opponentID,gameID);
+		}
+	});
 	}
 }

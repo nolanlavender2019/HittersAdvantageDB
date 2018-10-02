@@ -116,6 +116,30 @@ public class PlayersDAO {
 			throw new RuntimeException("error getting AB", e);
 		}
 	}
+	public Players getPlayerByName(String name){
+		int pID = -2;
+		Players player = null;
+	try{	
+		String qry = "select s.* from PLAYERS s where playerName = ?";
+		PreparedStatement pstmt = conn.prepareStatement(qry);
+		pstmt.setString(1, name);
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next()){
+			pID = rs.getInt("PlayerID");
+			System.out.println(pID);
+		}
+
+		player = find(pID);
+		rs.close();
+		return player;	
+	}
+	catch(SQLException e){
+		System.out.println(e);
+	}
+		return player;
+		
+	}
+	
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from PLAYERS";
