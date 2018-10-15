@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
+import java.util.Collection;
 
 import DAO.DatabaseManager;
 import Model.Pitch;
@@ -84,6 +85,53 @@ public class PitchDAO {
 				throw new RuntimeException("error inserting new Pitch", e);
 		}
 	}
+	public Collection<Float> getPitchTendency(int reportID,int pitcherID, double countID){
+		Collection<Float> tendencies = new ArrayList<Float>();
+			try{
+					int fastballCount = 0;
+					int curveBallCount = 0;
+					int sliderCount = 0;
+					int changeUpCount = 0 ;
+					int length = 0;
+
+					//get specific pitch and count
+					String qry = "select s.* from Pitch s where reportID = ? and pitcherID = ? and count = ?" + "values(?,?,?)" ;
+					PreparedStatement pstmt = conn.prepareStatement(qry);
+					pstmt.setInt(1, reportID);
+					pstmt.setInt(2, pitcherID);
+					pstmt.setDouble(3,countID);
+					ResultSet rs = pstmt.executeQuery();
+					while (rs.next()){
+						length++;
+						String type = rs.getString("Type");
+						if(type == "Fastball"){
+							fastballCount++;
+						}
+						if(type == "Curveball"){
+							curveBallCount++;
+						}
+						if(type == "Slider"){
+							sliderCount++;
+						}
+						if(type == "ChangeUp"){
+							changeUpCount++;
+						}
+					}
+					float fTendency = fastballCount/length;
+					float cbTendency = curveBallCount/length;
+					float sliderTendency = sliderCount/length;
+					float changeUpTendency = changeUpCount/length;
+					tendencies.add(fTendency);
+					tendencies.add(cbTendency);
+					tendencies.add(sliderTendency);
+					tendencies.add(changeUpTendency);
+					rs.close();
+					return tendencies;
+			} catch(SQLException e){
+				dbm.cleanup();
+				throw new RuntimeException("error getting Pitches", e);
+			}
+		}
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from PITCH";

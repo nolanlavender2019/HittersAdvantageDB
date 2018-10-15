@@ -285,7 +285,7 @@ public class NewGame {
 					frmNewGame.setVisible(false);
 					dbm.commit();
 					System.out.println("This is the gameID " + gameID);
-					game.newScreen(gameID, teamID,pitcherID);
+					game.newScreen(gameID, teamID,pitcherID, reportID);
 					}
 				}
 				}

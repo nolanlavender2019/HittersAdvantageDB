@@ -50,15 +50,16 @@ public class AddPitcherGUI {
 	public static void newScreen2(int id, int gID ) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				opponentID = id;
+				gameID = gID;
 				try {
 					AddPitcherGUI window = new AddPitcherGUI();
 					window.frame.setVisible(true);
 					dbm = new DatabaseManager();
-					opponentID = id;
-					gameID = gID;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			
 			}
 		});
 	}
@@ -232,7 +233,7 @@ public class AddPitcherGUI {
 				frame.setVisible(false);
 				dbm.commit();
 				
-				game.newScreen(gameID, opponentID, playerID);
+				game.newScreen(gameID, opponentID, playerID, reportID);
 				
 			}
 		});

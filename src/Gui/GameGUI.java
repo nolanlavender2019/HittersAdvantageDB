@@ -45,7 +45,7 @@ public class GameGUI {
 	private JTable table_11;
 	MainMenu mainMenu;
 	private static int gameID = 0;
-	static int opponentID;
+	//static int opponentID;
 	AddPitcherGUI pitcher;
 	static DatabaseManager dbm;
 	static ArrayList<Players> lineUP;
@@ -53,18 +53,22 @@ public class GameGUI {
 	//static int pitcherID;
 	static Opponents opp;
 	static Pitchers pp;
+	static int opponentID;
+	static int pitcherID;
+	static int reportID;
 	/**
 	 * Launch the application.
 	 */
-	public static void newScreen(int game, int opponent,int pID) {
+	public static void newScreen(int game, int opponent,int pID,int rID) {
 		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+			public void run(){
+				 gameID = game;
+					opponentID = opponent;
+					pitcherID = pID;
+					reportID = rID;
+				try{
 					GameGUI window = new GameGUI();
 					window.frmGame.setVisible(true);
-					 gameID = game;
-					int opponentID = opponent;
-					int pitcherID = pID;
 					dbm = new DatabaseManager();
 					lineUP = new ArrayList<Players>();
 					spotInTheLineUP = 0;
@@ -87,6 +91,7 @@ public class GameGUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+
 	private void initialize() {
 		frmGame = new JFrame();
 		frmGame.setTitle("Game");
@@ -95,6 +100,9 @@ public class GameGUI {
 		frmGame.getContentPane().setLayout(null);
 	
 		System.out.println("This is the gameID + " + gameID);
+		System.out.println("This is the pitcherID + " + pitcherID);
+		System.out.println("This is the reportID + " + reportID);
+		System.out.println("This is the opponentID + " + opponentID);
 		
 		
 		
@@ -391,7 +399,7 @@ public class GameGUI {
 					}
 			
 					
-					//dbm.insertPitch(pitchesID, int reportID, count, pitch, ballStrike);
+					dbm.insertPitch(pitchesID, reportID, count, pitch, ballStrike);
 				}
 			}
 		});
@@ -494,7 +502,7 @@ public class GameGUI {
 					
 					
 					
-					//dbm.insertAtBat(ab, playerIdent, int pitcherID, int gameID, result2);
+					dbm.insertAtBat(ab, playerIdent, pitcherID, gameID, result2);
 				}
 			}
 		});
@@ -602,6 +610,11 @@ public class GameGUI {
 		JButton btnCalculateTendency = new JButton("Calculate Tendency");
 		btnCalculateTendency.setBounds(540, 597, 151, 29);
 		frmGame.getContentPane().add(btnCalculateTendency);
+		btnCalculateTendency.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		
 		JButton btnNewPitcher = new JButton("New Pitcher");
 		btnNewPitcher.setBounds(6, 34, 117, 29);
@@ -611,5 +624,5 @@ public class GameGUI {
 			pitcher.newScreen2(opponentID,gameID);
 		}
 	});
-	}
+}
 }
