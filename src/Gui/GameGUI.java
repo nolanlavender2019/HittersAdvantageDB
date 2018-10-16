@@ -56,6 +56,7 @@ public class GameGUI {
 	static int opponentID;
 	static int pitcherID;
 	static int reportID;
+	static Pitchers pitcher2;
 	/**
 	 * Launch the application.
 	 */
@@ -66,6 +67,7 @@ public class GameGUI {
 					opponentID = opponent;
 					pitcherID = pID;
 					reportID = rID;
+
 				try{
 					GameGUI window = new GameGUI();
 					window.frmGame.setVisible(true);
@@ -74,6 +76,7 @@ public class GameGUI {
 					spotInTheLineUP = 0;
 					pp= new Pitchers();
 					opp = new Opponents();
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -104,7 +107,12 @@ public class GameGUI {
 		System.out.println("This is the reportID + " + reportID);
 		System.out.println("This is the opponentID + " + opponentID);
 		
-		
+		JLabel lblPitcherName = new JLabel("PitcherName");
+		JLabel opponentName = new JLabel("OpponentName");
+		JRadioButton rdbtnPitch = new JRadioButton("Pitch 1");
+		JRadioButton rdbtnPitch_1 = new JRadioButton("Pitch 2");
+		JRadioButton rdbtnPitch_2 = new JRadioButton("Pitch 3 ");
+		JRadioButton rdbtnPitch_3 = new JRadioButton("Pitch 4 ");
 		
 		JButton btnGameOver = new JButton("Game Over");
 		btnGameOver.addActionListener(new ActionListener() {
@@ -200,6 +208,17 @@ public class GameGUI {
 				lineUP.add(seven);
 				lineUP.add(eight);
 				lineUP.add(nine);
+				
+				pitcher2 = dbm.findPitcher(pitcherID);
+				String name = pitcher2.getPitcherName();
+				lblPitcherName.setText(name);
+				String name2 = dbm.findOpponents(opponentID).getTeamName();
+				opponentName.setText(name2);
+				rdbtnPitch.setText(pitcher2.getPitch1());
+				rdbtnPitch_1.setText(pitcher2.getPitch2());
+				rdbtnPitch_2.setText(pitcher2.getPitch3());
+				rdbtnPitch_3.setText(pitcher2.getPitch4());
+				
 			}
 		});
 		
@@ -211,11 +230,11 @@ public class GameGUI {
 		lblPitcher.setBounds(223, 47, 61, 16);
 		frmGame.getContentPane().add(lblPitcher);
 		
-		JLabel opponentName = new JLabel("OpponentName");
+		//JLabel opponentName = new JLabel("OpponentName");
 		opponentName.setBounds(233, 29, 144, 16);
 		frmGame.getContentPane().add(opponentName);
 		
-		JLabel lblPitcherName = new JLabel("PitcherName");
+		//JLabel lblPitcherName = new JLabel("PitcherName");
 		lblPitcherName.setBounds(233, 68, 111, 16);
 		frmGame.getContentPane().add(lblPitcherName);
 		
@@ -275,19 +294,20 @@ public class GameGUI {
 		lblPitch.setBounds(178, 282, 61, 16);
 		frmGame.getContentPane().add(lblPitch);
 		
-		JRadioButton rdbtnPitch = new JRadioButton("Pitch 1");
+		//JRadioButton rdbtnPitch = new JRadioButton("Pitch 1");
+		
 		rdbtnPitch.setBounds(188, 303, 141, 23);
 		frmGame.getContentPane().add(rdbtnPitch);
 		
-		JRadioButton rdbtnPitch_1 = new JRadioButton("Pitch 2");
+		//JRadioButton rdbtnPitch_1 = new JRadioButton("Pitch 2");
 		rdbtnPitch_1.setBounds(188, 324, 141, 23);
 		frmGame.getContentPane().add(rdbtnPitch_1);
 		
-		JRadioButton rdbtnPitch_2 = new JRadioButton("Pitch 3 ");
+		//JRadioButton rdbtnPitch_2 = new JRadioButton("Pitch 3 ");
 		rdbtnPitch_2.setBounds(188, 348, 141, 23);
 		frmGame.getContentPane().add(rdbtnPitch_2);
 		
-		JRadioButton rdbtnPitch_3 = new JRadioButton("Pitch 4");
+		//JRadioButton rdbtnPitch_3 = new JRadioButton("Pitch 4");
 		rdbtnPitch_3.setBounds(188, 371, 141, 23);
 		frmGame.getContentPane().add(rdbtnPitch_3);
 		
@@ -376,19 +396,19 @@ public class GameGUI {
 					strikeBall++;
 				}
 				if(rdbtnPitch.isSelected()){
-					pitch = "Pitch1";
+					pitch = rdbtnPitch.getText();
 					pitchTypeCount++;
 				}
 				if(rdbtnPitch_1.isSelected()){
-					pitch = "Pitch2";
+					pitch = rdbtnPitch_1.getText();
 					pitchTypeCount++;
 				}
 				if(rdbtnPitch_2.isSelected()){
-					pitch = "Pitch3";
+					pitch = rdbtnPitch_2.getText();
 					pitchTypeCount++;
 				}
 				if(rdbtnPitch_3.isSelected()){
-					pitch = "Pitch4";
+					pitch = rdbtnPitch_3.getText();
 					pitchTypeCount++;
 				}
 				if(countsClicked == 1 && pitchTypeCount == 1 && strikeBall == 1){
@@ -612,7 +632,18 @@ public class GameGUI {
 		frmGame.getContentPane().add(btnCalculateTendency);
 		btnCalculateTendency.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				dbm.getPitchTendency(reportID,0.0);
+				dbm.getPitchTendency(reportID,0.1);
+				dbm.getPitchTendency(reportID, 0.2);
+				dbm.getPitchTendency(reportID,1.0);
+				dbm.getPitchTendency(reportID,1.1);
+				dbm.getPitchTendency(reportID,2.0);
+				dbm.getPitchTendency(reportID,3.0);
+				dbm.getPitchTendency(reportID,2.1);
+				dbm.getPitchTendency(reportID,2.2);
+				dbm.getPitchTendency(reportID,1.2);
+				dbm.getPitchTendency(reportID,3.2);
+				dbm.getPitchTendency(reportID,3.1);
 			}
 		});
 		

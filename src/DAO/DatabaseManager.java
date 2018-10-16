@@ -152,8 +152,8 @@ public class DatabaseManager {
 		return playerDAO.getPlayerByName(name);
 	}
 	
-	public Collection<Float> getPitchTendency(int reportID, int pitcherID, double countID){
-		return pitchDAO.getPitchTendency(reportID,pitcherID,countID);
+	public Collection<Float> getPitchTendency(int reportID, double countID){
+		return pitchDAO.getPitchTendency(reportID, countID);
 	}
 	//--------------------------------------------------
 	// Utility Functions

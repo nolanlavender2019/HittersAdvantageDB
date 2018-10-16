@@ -85,7 +85,8 @@ public class PitchDAO {
 				throw new RuntimeException("error inserting new Pitch", e);
 		}
 	}
-	public Collection<Float> getPitchTendency(int reportID,int pitcherID, double countID){
+	
+	public Collection<Float> getPitchTendency(int reportID,double countID){
 		Collection<Float> tendencies = new ArrayList<Float>();
 			try{
 					int fastballCount = 0;
@@ -95,10 +96,9 @@ public class PitchDAO {
 					int length = 0;
 
 					//get specific pitch and count
-					String qry = "select s.* from Pitch s where reportID = ? and pitcherID = ? and count = ?" + "values(?,?,?)" ;
+					String qry = "select s.* from Pitch s where reportID = ? and count = ?";
 					PreparedStatement pstmt = conn.prepareStatement(qry);
 					pstmt.setInt(1, reportID);
-					pstmt.setInt(2, pitcherID);
 					pstmt.setDouble(3,countID);
 					ResultSet rs = pstmt.executeQuery();
 					while (rs.next()){
@@ -127,8 +127,10 @@ public class PitchDAO {
 					tendencies.add(changeUpTendency);
 					rs.close();
 					return tendencies;
+					
 			} catch(SQLException e){
 				dbm.cleanup();
+				System.out.println(e);
 				throw new RuntimeException("error getting Pitches", e);
 			}
 		}
