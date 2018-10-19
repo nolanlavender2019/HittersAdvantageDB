@@ -86,41 +86,55 @@ public class PitchDAO {
 		}
 	}
 	
-	public Collection<Float> getPitchTendency(int reportID,double countID){
-		Collection<Float> tendencies = new ArrayList<Float>();
+	public ArrayList<Double> getPitchTendency(int reportID, double countID){
+		ArrayList<Double> tendencies = new ArrayList<Double>();
 			try{
 					int fastballCount = 0;
 					int curveBallCount = 0;
 					int sliderCount = 0;
 					int changeUpCount = 0 ;
 					int length = 0;
+					double fTendency = 0.0;
+					double cbTendency = 0.0;
+					double changeUpTendency = 0.0;
+					double sliderTendency = 0.0;
 
 					//get specific pitch and count
 					String qry = "select s.* from Pitch s where reportID = ? and count = ?";
 					PreparedStatement pstmt = conn.prepareStatement(qry);
 					pstmt.setInt(1, reportID);
-					pstmt.setDouble(3,countID);
+					pstmt.setDouble(2,countID);
+					System.out.println(countID);
 					ResultSet rs = pstmt.executeQuery();
 					while (rs.next()){
 						length++;
 						String type = rs.getString("Type");
-						if(type == "Fastball"){
+						System.out.println(type);
+						if(type.equals("Fastball")){
 							fastballCount++;
 						}
-						if(type == "Curveball"){
+						if(type.equals("Curveball")){
 							curveBallCount++;
 						}
-						if(type == "Slider"){
+						if(type.equals("Slider")){
 							sliderCount++;
 						}
-						if(type == "ChangeUp"){
+						if(type.equals("Changeup")){
 							changeUpCount++;
 						}
 					}
-					float fTendency = fastballCount/length;
-					float cbTendency = curveBallCount/length;
-					float sliderTendency = sliderCount/length;
-					float changeUpTendency = changeUpCount/length;
+					if( length != 0 ){
+					fTendency = (double)fastballCount/length;
+					cbTendency = (double)curveBallCount/length;
+					sliderTendency = (double)sliderCount/length;
+					changeUpTendency = (double)changeUpCount/length;
+					}
+					else{
+						fTendency = 0;
+						cbTendency = 0;
+						sliderTendency = 0;
+						changeUpTendency = 0;
+					}
 					tendencies.add(fTendency);
 					tendencies.add(cbTendency);
 					tendencies.add(sliderTendency);

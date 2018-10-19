@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Tue Oct 16 15:45:40 EDT 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0166-7e69-9218-000006821020 
+Fri Oct 19 15:19:44 EDT 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0166-8dc4-e8c7-000006807870 
 on database directory /Users/Nolan/Desktop/Senior Project/HitterAdvantageDB/HittersAdvantageDB with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
 Loaded from file:/Applications/Eclipse.app/Contents/Eclipse/plugins/derby.jar
 java.vendor=Oracle Corporation
@@ -11,71 +11,3 @@ os.arch=x86_64
 os.version=10.13.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-Tue Oct 16 15:46:49 EDT 2018 Thread[AWT-EventQueue-0,6,main] (XID = 4710), (SESSIONID = 3), (DATABASE = HittersAdvantageDB), (DRDAID = null), Cleanup action starting
-Tue Oct 16 15:46:49 EDT 2018 Thread[AWT-EventQueue-0,6,main] (XID = 4710), (SESSIONID = 3), (DATABASE = HittersAdvantageDB), (DRDAID = null), Failed Statement is: select s.* from Pitch s where reportID = ? and pitcherID = ? and count = ?
-ERROR 42X04: Column 'PITCHERID' is either not in any table in the FROM list or appears within a join specification and is outside the scope of the join specification or appears in a HAVING clause and is not in the GROUP BY list. If this is a CREATE or ALTER TABLE  statement then 'PITCHERID' is not a column in the target table.
-	at org.apache.derby.iapi.error.StandardException.newException(StandardException.java:278)
-	at org.apache.derby.impl.sql.compile.ColumnReference.bindExpression(ColumnReference.java:404)
-	at org.apache.derby.impl.sql.compile.BinaryOperatorNode.bindExpression(BinaryOperatorNode.java:287)
-	at org.apache.derby.impl.sql.compile.BinaryComparisonOperatorNode.bindExpression(BinaryComparisonOperatorNode.java:139)
-	at org.apache.derby.impl.sql.compile.BinaryOperatorNode.bindExpression(BinaryOperatorNode.java:289)
-	at org.apache.derby.impl.sql.compile.BinaryLogicalOperatorNode.bindExpression(BinaryLogicalOperatorNode.java:83)
-	at org.apache.derby.impl.sql.compile.AndNode.bindExpression(AndNode.java:65)
-	at org.apache.derby.impl.sql.compile.BinaryOperatorNode.bindExpression(BinaryOperatorNode.java:287)
-	at org.apache.derby.impl.sql.compile.BinaryLogicalOperatorNode.bindExpression(BinaryLogicalOperatorNode.java:83)
-	at org.apache.derby.impl.sql.compile.AndNode.bindExpression(AndNode.java:65)
-	at org.apache.derby.impl.sql.compile.SelectNode.bindExpressions(SelectNode.java:608)
-	at org.apache.derby.impl.sql.compile.DMLStatementNode.bindExpressions(DMLStatementNode.java:225)
-	at org.apache.derby.impl.sql.compile.DMLStatementNode.bind(DMLStatementNode.java:138)
-	at org.apache.derby.impl.sql.compile.CursorNode.bindStatement(CursorNode.java:268)
-	at org.apache.derby.impl.sql.GenericStatement.prepMinion(GenericStatement.java:400)
-	at org.apache.derby.impl.sql.GenericStatement.prepare(GenericStatement.java:99)
-	at org.apache.derby.impl.sql.conn.GenericLanguageConnectionContext.prepareInternalStatement(GenericLanguageConnectionContext.java:1111)
-	at org.apache.derby.impl.jdbc.EmbedPreparedStatement.<init>(EmbedPreparedStatement.java:134)
-	at org.apache.derby.impl.jdbc.EmbedPreparedStatement20.<init>(EmbedPreparedStatement20.java:83)
-	at org.apache.derby.impl.jdbc.EmbedPreparedStatement30.<init>(EmbedPreparedStatement30.java:63)
-	at org.apache.derby.impl.jdbc.EmbedPreparedStatement40.<init>(EmbedPreparedStatement40.java:40)
-	at org.apache.derby.impl.jdbc.EmbedPreparedStatement42.<init>(EmbedPreparedStatement42.java:45)
-	at org.apache.derby.jdbc.Driver42.newEmbedPreparedStatement(Driver42.java:61)
-	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(EmbedConnection.java:1725)
-	at org.apache.derby.impl.jdbc.EmbedConnection.prepareStatement(EmbedConnection.java:1553)
-	at DAO.PitchDAO.getPitchTendency(PitchDAO.java:100)
-	at DAO.DatabaseManager.getPitchTendency(DatabaseManager.java:156)
-	at Gui.GameGUI$6.actionPerformed(GameGUI.java:635)
-	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
-	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
-	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
-	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
-	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
-	at java.awt.Component.processMouseEvent(Component.java:6533)
-	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
-	at java.awt.Component.processEvent(Component.java:6298)
-	at java.awt.Container.processEvent(Container.java:2236)
-	at java.awt.Component.dispatchEventImpl(Component.java:4889)
-	at java.awt.Container.dispatchEventImpl(Container.java:2294)
-	at java.awt.Component.dispatchEvent(Component.java:4711)
-	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
-	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
-	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
-	at java.awt.Container.dispatchEventImpl(Container.java:2280)
-	at java.awt.Window.dispatchEventImpl(Window.java:2746)
-	at java.awt.Component.dispatchEvent(Component.java:4711)
-	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
-	at java.awt.EventQueue.access$500(EventQueue.java:97)
-	at java.awt.EventQueue$3.run(EventQueue.java:709)
-	at java.awt.EventQueue$3.run(EventQueue.java:703)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
-	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
-	at java.awt.EventQueue$4.run(EventQueue.java:731)
-	at java.awt.EventQueue$4.run(EventQueue.java:729)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
-	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
-	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
-	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
-	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
-	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
-Cleanup action completed

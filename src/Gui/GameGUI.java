@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import DAO.DatabaseManager;
 import Model.Opponents;
@@ -15,6 +16,8 @@ import Model.Pitchers;
 import Model.Players;
 
 import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.util.Collection;
 import java.util.ArrayList;
@@ -102,10 +105,7 @@ public class GameGUI {
 		frmGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGame.getContentPane().setLayout(null);
 	
-		System.out.println("This is the gameID + " + gameID);
-		System.out.println("This is the pitcherID + " + pitcherID);
-		System.out.println("This is the reportID + " + reportID);
-		System.out.println("This is the opponentID + " + opponentID);
+		String[] columnNames = {"Fastball, Curveball, Slider, Changeup"};
 		
 		JLabel lblPitcherName = new JLabel("PitcherName");
 		JLabel opponentName = new JLabel("OpponentName");
@@ -387,10 +387,6 @@ public class GameGUI {
 					ballStrike = "Ball";
 					strikeBall++;
 				}
-				if(rdbtnBall.isSelected()){
-					ballStrike = "Ball";
-					strikeBall++;
-				}
 				if(rdbtnStrike.isSelected()){
 					ballStrike = "Strike";
 					strikeBall++;
@@ -535,29 +531,57 @@ public class GameGUI {
 		label.setBounds(384, 120, 61, 16);
 		frmGame.getContentPane().add(label);
 		
-		table = new JTable();
+		DefaultTableModel modelOhOh = new DefaultTableModel();
+		table = new JTable(modelOhOh);
+		JScrollPane js = new JScrollPane(table);
 		table.setBounds(387, 136, 211, 52);
 		frmGame.getContentPane().add(table);
+		modelOhOh.addColumn("0-0");
+		modelOhOh.addColumn("Fastball");
+		modelOhOh.addColumn("Curveball");
+		modelOhOh.addColumn("Slider");
+		modelOhOh.addColumn("ChangeUp");
 		
 		JLabel label_1 = new JLabel("0-1");
 		label_1.setBounds(384, 197, 61, 16);
 		frmGame.getContentPane().add(label_1);
 		
-		table_1 = new JTable();
+		DefaultTableModel modelOhOne = new DefaultTableModel();
+		table_1 = new JTable(modelOhOne);
+		JScrollPane js1 = new JScrollPane(table_1);
 		table_1.setBounds(387, 212, 211, 52);
 		frmGame.getContentPane().add(table_1);
+		modelOhOne.addColumn("0-1");
+		modelOhOne.addColumn("Fastball");
+		modelOhOne.addColumn("Curveball");
+		modelOhOne.addColumn("Slider");
+		modelOhOne.addColumn("ChangeUp");
 		
 		JLabel label_2 = new JLabel("1-2");
 		label_2.setBounds(384, 266, 61, 16);
 		frmGame.getContentPane().add(label_2);
 		
-		table_2 = new JTable();
+		DefaultTableModel modelOneTwo = new DefaultTableModel();
+		table_2 = new JTable(modelOneTwo);
+		JScrollPane js2 = new JScrollPane(table_2);
 		table_2.setBounds(387, 283, 211, 52);
 		frmGame.getContentPane().add(table_2);
+		modelOneTwo.addColumn("1-2");
+		modelOneTwo.addColumn("Fastball");
+		modelOneTwo.addColumn("Curveball");
+		modelOneTwo.addColumn("Slider");
+		modelOneTwo.addColumn("ChangeUp");
 		
-		table_3 = new JTable();
+		DefaultTableModel modelTwoOne = new DefaultTableModel();
+		table_3 = new JTable(modelTwoOne);
+		JScrollPane js3 = new JScrollPane(table_3);
 		table_3.setBounds(387, 364, 211, 52);
 		frmGame.getContentPane().add(table_3);
+		modelTwoOne.addColumn("2-1");
+		modelTwoOne.addColumn("Fastball");
+		modelTwoOne.addColumn("Curveball");
+		modelTwoOne.addColumn("Slider");
+		modelTwoOne.addColumn("ChangeUp");
 		
 		JLabel label_3 = new JLabel("2-1");
 		label_3.setBounds(384, 341, 61, 16);
@@ -567,41 +591,96 @@ public class GameGUI {
 		label_4.setBounds(384, 422, 61, 16);
 		frmGame.getContentPane().add(label_4);
 		
-		table_4 = new JTable();
+		DefaultTableModel modelThreeOh = new DefaultTableModel();
+		table_4 = new JTable(modelThreeOh);
+		JScrollPane js4 = new JScrollPane(table_4);
 		table_4.setBounds(387, 440, 211, 52);
 		frmGame.getContentPane().add(table_4);
+		modelThreeOh.addColumn("3-0");
+		modelThreeOh.addColumn("Fastball");
+		modelThreeOh.addColumn("Curveball");
+		modelThreeOh.addColumn("Slider");
+		modelThreeOh.addColumn("ChangeUp");
 		
 		JLabel label_5 = new JLabel("0-2");
 		label_5.setBounds(384, 501, 61, 16);
 		frmGame.getContentPane().add(label_5);
 		
-		table_5 = new JTable();
+		DefaultTableModel modelOhTwo = new DefaultTableModel();
+		table_5 = new JTable(modelOhTwo);
+		JScrollPane js5 = new JScrollPane(table_5);
 		table_5.setBounds(387, 521, 211, 52);
 		frmGame.getContentPane().add(table_5);
+		modelOhTwo.addColumn("0-2");
+		modelOhTwo.addColumn("Fastball");
+		modelOhTwo.addColumn("Curveball");
+		modelOhTwo.addColumn("Slider");
+		modelOhTwo.addColumn("ChangeUp");
 		
-		table_6 = new JTable();
+		DefaultTableModel modelOneOh = new DefaultTableModel();
+		table_6 = new JTable(modelOneOh);
+		JScrollPane js6 = new JScrollPane(table_6);
 		table_6.setBounds(620, 136, 211, 52);
 		frmGame.getContentPane().add(table_6);
+		modelOneOh.addColumn("1-0");
+		modelOneOh.addColumn("Fastball");
+		modelOneOh.addColumn("Curveball");
+		modelOneOh.addColumn("Slider");
+		modelOneOh.addColumn("ChangeUp");
 		
-		table_7 = new JTable();
+		DefaultTableModel modelOneOne = new DefaultTableModel();
+		table_7 = new JTable(modelOneOne);
+		JScrollPane js7 = new JScrollPane(table_7);
 		table_7.setBounds(620, 212, 211, 52);
 		frmGame.getContentPane().add(table_7);
+		modelOneOne.addColumn("1-1"); 
+		modelOneOne.addColumn("Fastball");
+		modelOneOne.addColumn("Curveball");
+		modelOneOne.addColumn("Slider");
+		modelOneOne.addColumn("ChangeUp");
 		
-		table_8 = new JTable();
+		DefaultTableModel modelTwoTwo = new DefaultTableModel();
+		table_8 = new JTable(modelTwoTwo);
+		JScrollPane js8 = new JScrollPane(table_8);
 		table_8.setBounds(620, 282, 211, 52);
 		frmGame.getContentPane().add(table_8);
+		modelTwoTwo.addColumn("2-2");
+		modelTwoTwo.addColumn("Fastball");
+		modelTwoTwo.addColumn("Curveball");
+		modelTwoTwo.addColumn("Slider");
+		modelTwoTwo.addColumn("ChangeUp");
 		
-		table_9 = new JTable();
+		DefaultTableModel modelThreeOne = new DefaultTableModel();
+		table_9 = new JTable(modelThreeOne);
+		JScrollPane js9 = new JScrollPane(table_9);
 		table_9.setBounds(620, 364, 211, 52);
 		frmGame.getContentPane().add(table_9);
+		modelThreeOne.addColumn("3-1");
+		modelThreeOne.addColumn("Fastball");
+		modelThreeOne.addColumn("Curveball");
+		modelThreeOne.addColumn("Slider");
+		modelThreeOne.addColumn("ChangeUp");
 		
-		table_10 = new JTable();
+		DefaultTableModel modelTwoOh = new DefaultTableModel();
+		table_10 = new JTable(modelTwoOh);
+		JScrollPane js10 = new JScrollPane(table_10);
 		table_10.setBounds(620, 440, 211, 52);
 		frmGame.getContentPane().add(table_10);
+		modelTwoOh.addColumn("2-0");
+		modelTwoOh.addColumn("Fastball");
+		modelTwoOh.addColumn("Curveball");
+		modelTwoOh.addColumn("Slider");
+		modelTwoOh.addColumn("ChangeUp");
 		
-		table_11 = new JTable();
+		DefaultTableModel modelFull = new DefaultTableModel();
+		table_11 = new JTable(modelFull);
+		JScrollPane js11 = new JScrollPane(table_11);
 		table_11.setBounds(620, 521, 211, 52);
 		frmGame.getContentPane().add(table_11);
+		modelFull.addColumn("Fastball");
+		modelFull.addColumn("Curveball");
+		modelFull.addColumn("Slider");
+		modelFull.addColumn("ChangeUp");
 		
 		JLabel label_6 = new JLabel("1-0");
 		label_6.setBounds(620, 120, 61, 16);
@@ -632,18 +711,42 @@ public class GameGUI {
 		frmGame.getContentPane().add(btnCalculateTendency);
 		btnCalculateTendency.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dbm.getPitchTendency(reportID,0.0);
-				dbm.getPitchTendency(reportID,0.1);
-				dbm.getPitchTendency(reportID, 0.2);
-				dbm.getPitchTendency(reportID,1.0);
-				dbm.getPitchTendency(reportID,1.1);
-				dbm.getPitchTendency(reportID,2.0);
-				dbm.getPitchTendency(reportID,3.0);
-				dbm.getPitchTendency(reportID,2.1);
-				dbm.getPitchTendency(reportID,2.2);
-				dbm.getPitchTendency(reportID,1.2);
-				dbm.getPitchTendency(reportID,3.2);
-				dbm.getPitchTendency(reportID,3.1);
+				ArrayList<Double> ohoh = dbm.getPitchTendency(reportID,0.0);
+				Double[] objs1 = {ohoh.get(0), ohoh.get(1), ohoh.get(2), ohoh.get(3)};
+				modelOhOh.addRow(objs1);
+				ArrayList<Double> ohOne = dbm.getPitchTendency(reportID,0.1);
+				Double[] objs2 = {ohOne.get(0), ohOne.get(1), ohOne.get(2), ohOne.get(3)};
+				modelOhOne.addRow(objs2);
+				ArrayList<Double> ohTwo = dbm.getPitchTendency(reportID, 0.2);
+				Double[] objs3 = {ohTwo.get(0), ohTwo.get(1), ohTwo.get(2), ohTwo.get(3)};
+				modelOhTwo.addRow(objs3);
+				ArrayList<Double> oneOh = dbm.getPitchTendency(reportID,1.0);
+				Double[] objs4 = {oneOh.get(0), oneOh.get(1), oneOh.get(2), oneOh.get(3)};
+				modelOneOh.addRow(objs4);
+				ArrayList<Double> oneOne = dbm.getPitchTendency(reportID,1.1);
+				Double[] objs5 = {oneOne.get(0), oneOne.get(1), oneOne.get(2), oneOne.get(3)};
+				modelOneOne.addRow(objs5);
+				ArrayList<Double> twoOh = dbm.getPitchTendency(reportID,2.0);
+				Double[] objs6 = {twoOh.get(0), twoOh.get(1), twoOh.get(2), twoOh.get(3)};
+				modelTwoOh.addRow(objs6);
+				ArrayList<Double> threeOh = dbm.getPitchTendency(reportID,3.0);
+				Double[] objs7 = {threeOh.get(0), threeOh.get(1), threeOh.get(2), threeOh.get(3)};
+				modelThreeOh.addRow(objs7);
+				ArrayList<Double> twoOne = dbm.getPitchTendency(reportID,2.1);
+				Double[] objs8 = {twoOne.get(0), twoOne.get(1), twoOne.get(2), twoOne.get(3)};
+				modelTwoOne.addRow(objs8);
+				ArrayList<Double> twoTwo = dbm.getPitchTendency(reportID,2.2);
+				Double[] objs9 = {twoTwo.get(0), twoTwo.get(1), twoTwo.get(2), twoTwo.get(3)};
+				modelTwoTwo.addRow(objs9);
+				ArrayList<Double> oneTwo = dbm.getPitchTendency(reportID,1.2);
+				Double[] objs10 = {oneTwo.get(0), oneTwo.get(1), oneTwo.get(2), oneTwo.get(3)};
+				modelOneTwo.addRow(objs10);
+				ArrayList<Double> threeTwo = dbm.getPitchTendency(reportID,3.2);
+				Double[] objs = {threeTwo.get(0), threeTwo.get(1), threeTwo.get(2), threeTwo.get(3)};
+				modelFull.addRow(objs);
+				ArrayList<Double> threeOne = dbm.getPitchTendency(reportID,3.1);
+				Double[] objs11 = {threeOne.get(0), threeOne.get(1), threeOne.get(2), threeOne.get(3)};
+				modelThreeOne.addRow(objs11);
 			}
 		});
 		

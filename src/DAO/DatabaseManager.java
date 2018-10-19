@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Properties;
 
@@ -152,7 +153,7 @@ public class DatabaseManager {
 		return playerDAO.getPlayerByName(name);
 	}
 	
-	public Collection<Float> getPitchTendency(int reportID, double countID){
+	public ArrayList<Double> getPitchTendency(int reportID, double countID){
 		return pitchDAO.getPitchTendency(reportID, countID);
 	}
 	//--------------------------------------------------
