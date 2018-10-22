@@ -33,7 +33,7 @@ public class DatabaseManager {
 	private PitchDAO pitchDAO;
 	
 	
-	private final String url = "jdbc:derby:HittersAdvantageDB";
+	private final String url = "jdbc:derby:HittersAdvantageDB3";
 	
 	
 	public DatabaseManager(){
@@ -123,7 +123,7 @@ public class DatabaseManager {
 	public Opponents insertOpponent(int teamID, String teamName){
 		return opponentDAO.insert(teamID,teamName);
 	}
-	public Pitch insertPitch(int pitchID, int reportID, double d, String type, String ballOrstrike){
+	public Pitch insertPitch(int pitchID, int reportID, String d, String type, String ballOrstrike){
 		return pitchDAO.insert(pitchID,reportID,d,type,ballOrstrike);
 	}
 	public Pitchers insertPitchers(int pitcherID, String pitcherName, int teamID, String throw1, String pitch1, String pitch2, String pitch3, String pitch4){
@@ -153,7 +153,7 @@ public class DatabaseManager {
 		return playerDAO.getPlayerByName(name);
 	}
 	
-	public ArrayList<Double> getPitchTendency(int reportID, double countID){
+	public ArrayList<Double> getPitchTendency(int reportID, String countID){
 		return pitchDAO.getPitchTendency(reportID, countID);
 	}
 	//--------------------------------------------------

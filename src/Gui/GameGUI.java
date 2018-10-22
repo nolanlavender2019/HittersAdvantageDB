@@ -328,7 +328,7 @@ public class GameGUI {
 		frmGame.getContentPane().add(btnPitch);
 		btnPitch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double count = 1.1010;
+				String count = null;
 				String ballStrike = null;
 				String pitch = null;
 				int pitchTypeCount = 0;
@@ -336,51 +336,51 @@ public class GameGUI {
 				int countsClicked = 0;
 				int pitchesID = -1;
 				if(radioButton.isSelected()){
-					count = 0.0;
+					count = "0.0";
 					countsClicked++;
 				}
 				if(radioButton_1.isSelected()){
-					count = 0.1;
+					count = "0.1";
 					countsClicked++;
 				}
 				if(radioButton_2.isSelected()){
-					count = 0.2;
+					count = "0.2";
 					countsClicked++;
 				}
 				if(radioButton_3.isSelected()){
-					count = 1.0;
+					count = "1.0";
 					countsClicked++;
 				}
 				if(radioButton_4.isSelected()){
-					count = 2.0;
+					count = "2.0";
 					countsClicked++;
 				}
 				if(rdbtnNewRadioButton.isSelected()){
-					count = 3.0;
+					count = "3.0";
 					countsClicked++;
 				}
 				if(radioButton_5.isSelected()){
-					count = 1.1;
+					count = "1.1";
 					countsClicked++;
 				}
 				if(radioButton_6.isSelected()){
-					count = 2.2;
+					count = "2.2";
 					countsClicked++;
 				}
 				if(rdbtnNewRadioButton_1.isSelected()){
-					count = 2.1;
+					count = "2.1";
 					countsClicked++;
 				}
 				if(radioButton_7.isSelected()){
-					count = 3.1;
+					count = "3.1";
 					countsClicked++;
 				}
 				if(radioButton_8.isSelected()){
-					count = 1.2;
+					count = "1.2";
 					countsClicked++;
 				}
 				if(radioButton_9.isSelected()){
-					count = 3.2;
+					count = "3.2";
 					countsClicked++;
 				}
 				if(rdbtnBall.isSelected()){
@@ -711,40 +711,41 @@ public class GameGUI {
 		frmGame.getContentPane().add(btnCalculateTendency);
 		btnCalculateTendency.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Double> ohoh = dbm.getPitchTendency(reportID,0.0);
+		
+				ArrayList<Double> ohoh = dbm.getPitchTendency(reportID,"0.0");
 				Double[] objs1 = {ohoh.get(0), ohoh.get(1), ohoh.get(2), ohoh.get(3)};
 				modelOhOh.addRow(objs1);
-				ArrayList<Double> ohOne = dbm.getPitchTendency(reportID,0.1);
+				ArrayList<Double> ohOne = dbm.getPitchTendency(reportID,"0.1");
 				Double[] objs2 = {ohOne.get(0), ohOne.get(1), ohOne.get(2), ohOne.get(3)};
 				modelOhOne.addRow(objs2);
-				ArrayList<Double> ohTwo = dbm.getPitchTendency(reportID, 0.2);
+				ArrayList<Double> ohTwo = dbm.getPitchTendency(reportID, "0.2");
 				Double[] objs3 = {ohTwo.get(0), ohTwo.get(1), ohTwo.get(2), ohTwo.get(3)};
 				modelOhTwo.addRow(objs3);
-				ArrayList<Double> oneOh = dbm.getPitchTendency(reportID,1.0);
+				ArrayList<Double> oneOh = dbm.getPitchTendency(reportID,"1.0");
 				Double[] objs4 = {oneOh.get(0), oneOh.get(1), oneOh.get(2), oneOh.get(3)};
 				modelOneOh.addRow(objs4);
-				ArrayList<Double> oneOne = dbm.getPitchTendency(reportID,1.1);
+				ArrayList<Double> oneOne = dbm.getPitchTendency(reportID,"1.1");
 				Double[] objs5 = {oneOne.get(0), oneOne.get(1), oneOne.get(2), oneOne.get(3)};
 				modelOneOne.addRow(objs5);
-				ArrayList<Double> twoOh = dbm.getPitchTendency(reportID,2.0);
+				ArrayList<Double> twoOh = dbm.getPitchTendency(reportID,"2.0");
 				Double[] objs6 = {twoOh.get(0), twoOh.get(1), twoOh.get(2), twoOh.get(3)};
 				modelTwoOh.addRow(objs6);
-				ArrayList<Double> threeOh = dbm.getPitchTendency(reportID,3.0);
+				ArrayList<Double> threeOh = dbm.getPitchTendency(reportID,"3.0");
 				Double[] objs7 = {threeOh.get(0), threeOh.get(1), threeOh.get(2), threeOh.get(3)};
 				modelThreeOh.addRow(objs7);
-				ArrayList<Double> twoOne = dbm.getPitchTendency(reportID,2.1);
+				ArrayList<Double> twoOne = dbm.getPitchTendency(reportID,"2.1");
 				Double[] objs8 = {twoOne.get(0), twoOne.get(1), twoOne.get(2), twoOne.get(3)};
 				modelTwoOne.addRow(objs8);
-				ArrayList<Double> twoTwo = dbm.getPitchTendency(reportID,2.2);
+				ArrayList<Double> twoTwo = dbm.getPitchTendency(reportID,"2.2");
 				Double[] objs9 = {twoTwo.get(0), twoTwo.get(1), twoTwo.get(2), twoTwo.get(3)};
 				modelTwoTwo.addRow(objs9);
-				ArrayList<Double> oneTwo = dbm.getPitchTendency(reportID,1.2);
+				ArrayList<Double> oneTwo = dbm.getPitchTendency(reportID,"1.2");
 				Double[] objs10 = {oneTwo.get(0), oneTwo.get(1), oneTwo.get(2), oneTwo.get(3)};
 				modelOneTwo.addRow(objs10);
-				ArrayList<Double> threeTwo = dbm.getPitchTendency(reportID,3.2);
+				ArrayList<Double> threeTwo = dbm.getPitchTendency(reportID,"3.2");
 				Double[] objs = {threeTwo.get(0), threeTwo.get(1), threeTwo.get(2), threeTwo.get(3)};
 				modelFull.addRow(objs);
-				ArrayList<Double> threeOne = dbm.getPitchTendency(reportID,3.1);
+				ArrayList<Double> threeOne = dbm.getPitchTendency(reportID,"3.1");
 				Double[] objs11 = {threeOne.get(0), threeOne.get(1), threeOne.get(2), threeOne.get(3)};
 				modelThreeOne.addRow(objs11);
 			}

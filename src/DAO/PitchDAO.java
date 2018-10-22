@@ -25,7 +25,7 @@ public class PitchDAO {
 		String s = "create table PITCH(" 
 	+ "PitchID integer not null,"
 	+ "ReportID integer not null,"
-	+ "Count Double not null,"
+	+ "Count varchar(40) not null,"
 	+"Type varchar(100) not null,"
 	+"BallStrike varchar(100) not null,"
 	+ "primary key (PitchID))";
@@ -44,7 +44,7 @@ public class PitchDAO {
 		
 		int pitchID = rs.getInt("pitchID");
 		int reportID = rs.getInt("reportID");
-		Double countID = rs.getDouble("count");
+		String countID = rs.getString("count");
 		String type = rs.getString("type");
 		String ballStrike = rs.getString("ballStrike");
 		
@@ -61,7 +61,7 @@ public class PitchDAO {
 	}
 }
 	
-	public Pitch insert(int pitchID, int reportID, double d, String type, String ballOrstrike){
+	public Pitch insert(int pitchID, int reportID, String d, String type, String ballOrstrike){
 		try{
 			if(find(pitchID) != null)
 				return null;
@@ -70,7 +70,7 @@ public class PitchDAO {
 			PreparedStatement pstmt = conn.prepareStatement(cmd);
 			pstmt.setInt(1, pitchID);
 			pstmt.setInt(2, reportID);
-			pstmt.setDouble(3, d);
+			pstmt.setString(3, d);
 			pstmt.setString(4,  type);
 			pstmt.setString(5,ballOrstrike);
 			
@@ -86,7 +86,7 @@ public class PitchDAO {
 		}
 	}
 	
-	public ArrayList<Double> getPitchTendency(int reportID, double countID){
+	public ArrayList<Double> getPitchTendency(int reportID, String countID){
 		ArrayList<Double> tendencies = new ArrayList<Double>();
 			try{
 					int fastballCount = 0;
@@ -103,13 +103,14 @@ public class PitchDAO {
 					String qry = "select s.* from Pitch s where reportID = ? and count = ?";
 					PreparedStatement pstmt = conn.prepareStatement(qry);
 					pstmt.setInt(1, reportID);
-					pstmt.setDouble(2,countID);
+					pstmt.setString(2,countID);
 					System.out.println(countID);
 					ResultSet rs = pstmt.executeQuery();
 					while (rs.next()){
 						length++;
 						String type = rs.getString("Type");
 						System.out.println(type);
+						System.out.println("This is the count " + rs.getString("Count"));
 						if(type.equals("Fastball")){
 							fastballCount++;
 						}
