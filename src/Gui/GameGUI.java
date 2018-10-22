@@ -411,6 +411,7 @@ public class GameGUI {
 					for(int i = 0; i<100000; i++){
 						if(dbm.findPitch(i)== null){
 							pitchesID = i;
+							break;
 						}
 					}
 			
@@ -500,9 +501,12 @@ public class GameGUI {
 					for(int i = 0; i<100000; i++){
 						if(dbm.findAtBat(i) == null){
 							ab = i;
+							break;
 						}
-					}
+					}System.out.println(ab);
+					
 					int playerIdent = lineUP.get(spotInTheLineUP).getPlayerID();
+					System.out.println(playerIdent);
 					if(spotInTheLineUP == 8){
 						spotInTheLineUP = 0;
 					}
@@ -517,8 +521,9 @@ public class GameGUI {
 					//get gameID
 					
 					
-					
+					System.out.println(pitcherID + gameID + result2);
 					dbm.insertAtBat(ab, playerIdent, pitcherID, gameID, result2);
+					dbm.commit();
 				}
 			}
 		});

@@ -33,7 +33,7 @@ public class DatabaseManager {
 	private PitchDAO pitchDAO;
 	
 	
-	private final String url = "jdbc:derby:HittersAdvantageDB3";
+	private final String url = "jdbc:derby:HittersAdvantageDB";
 	
 	
 	public DatabaseManager(){
@@ -72,7 +72,7 @@ public class DatabaseManager {
 		
 	}
 	
-	private void create(Connection conn) throws SQLException { 
+	public void create(Connection conn) throws SQLException { 
 			TeamDAO.create(conn);
 			PlayersDAO.create(conn);
 			AtBatDAO.create(conn);

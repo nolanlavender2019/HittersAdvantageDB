@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.awt.event.ActionEvent;
 
+import java.lang.Math;
+
 public class StatsGUI {
 
 	private JFrame frame;
@@ -103,12 +105,14 @@ public class StatsGUI {
 						int totalBases = 0;
 						int hits = 0;
 						int onB = 0;
-					String query = "Select result from AtBat where playerID = ?";
+					String query = "Select a.* from AtBat a where playerID = ?";
 					PreparedStatement pst = conn.prepareStatement(query);
 					pst.setInt(1,i);
 					ResultSet rs = pst.executeQuery();
+					System.out.println(i);
 					while(rs.next()){
 						String result = rs.getString("result");
+						System.out.println(result);
 						if(result.equals("Single")){
 							atBats++;
 							plateApperances++;
@@ -154,15 +158,19 @@ public class StatsGUI {
 							plateApperances++;
 							
 						}
-						float bA = (float)hits/atBats;
-						float onBasePercentage = (float)onB/plateApperances;
-						float sluggingPercentage = (float)totalBases/atBats;
-						dbm.updateStats(i,bA,onBasePercentage,sluggingPercentage);
+						
+
 					}
+					float bA = Math.round((float)hits/atBats*1000);
+					float onBasePercentage = Math.round((float)onB/plateApperances*1000);
+					float sluggingPercentage = Math.round((float)totalBases/atBats*1000);
+					dbm.updateStats(i,bA,onBasePercentage,sluggingPercentage);
+					System.out.println("This is the id" + i + "BA = " + bA + "obp = " + onBasePercentage + "Slug = " + sluggingPercentage);
+					dbm.commit();
 				}
 				}
 				catch (Exception e1){
-					System.out.println(e1);
+					System.out.println("This error" + e1);
 				}
 			}
 		});

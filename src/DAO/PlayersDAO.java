@@ -143,17 +143,18 @@ public class PlayersDAO {
 	public void updateStats(int id, float ba, float slugging, float obp){
 		
 		try{	
-			String qry = "update Players set battingAverage = ?, OnBasePercentage = ?, sluggingPercentage = ? s where playerID = ?";
+			String qry = "Update Players set battingAverage = ?, OnBasePercentage = ?, sluggingPercentage = ? where playerID = ?";
 			PreparedStatement pstmt = conn.prepareStatement(qry);
 			pstmt.setFloat(1, ba);
 			pstmt.setFloat(2,slugging);
 			pstmt.setFloat(3,obp);
 			pstmt.setInt(4, id);
+			ResultSet rs = pstmt.executeQuery();
 			dbm.commit();
 			//ResultSet rs = pstmt.executeQuery();
 		}
 		catch(SQLException e){
-			System.out.println(e);
+			System.out.println("This is the error" + e);
 			}
 		}
 		

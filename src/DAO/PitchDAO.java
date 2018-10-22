@@ -22,7 +22,7 @@ public class PitchDAO {
 	
 	static void create(Connection conn) throws SQLException{
 		Statement stmt = conn.createStatement();
-		String s = "create table PITCH(" 
+		String s = "create table PITCHS(" 
 	+ "PitchID integer not null,"
 	+ "ReportID integer not null,"
 	+ "Count varchar(40) not null,"
@@ -34,7 +34,7 @@ public class PitchDAO {
 	
 	public Pitch find(int id){
 		try{ 
-		String qry = "select t.* from PITCH t where pitchID = ?";
+		String qry = "select t.* from PITCHS t where pitchID = ?";
 		PreparedStatement pstmt = conn.prepareStatement(qry);
 		pstmt.setInt(1, id);
 		ResultSet rs = pstmt.executeQuery();
@@ -66,7 +66,7 @@ public class PitchDAO {
 			if(find(pitchID) != null)
 				return null;
 			
-			String cmd = "insert into PITCH(pitchID, reportID, count, type, ballstrike)" + "values(?,?,?,?,?)";
+			String cmd = "insert into PITCHS(pitchID, reportID, count, type, ballstrike)" + "values(?,?,?,?,?)";
 			PreparedStatement pstmt = conn.prepareStatement(cmd);
 			pstmt.setInt(1, pitchID);
 			pstmt.setInt(2, reportID);
@@ -100,7 +100,7 @@ public class PitchDAO {
 					double sliderTendency = 0.0;
 
 					//get specific pitch and count
-					String qry = "select s.* from Pitch s where reportID = ? and count = ?";
+					String qry = "select s.* from Pitchs s where reportID = ? and count = ?";
 					PreparedStatement pstmt = conn.prepareStatement(qry);
 					pstmt.setInt(1, reportID);
 					pstmt.setString(2,countID);
@@ -151,7 +151,7 @@ public class PitchDAO {
 		}
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
-		String s = "delete from PITCH";
+		String s = "delete from PITCHS";
 		stmt.executeUpdate(s);
 		}
 }
