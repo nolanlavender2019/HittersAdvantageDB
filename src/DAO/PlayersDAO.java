@@ -140,6 +140,24 @@ public class PlayersDAO {
 		
 	}
 	
+	public void updateStats(int id, float ba, float slugging, float obp){
+		
+		try{	
+			String qry = "update Players set battingAverage = ?, OnBasePercentage = ?, sluggingPercentage = ? s where playerID = ?";
+			PreparedStatement pstmt = conn.prepareStatement(qry);
+			pstmt.setFloat(1, ba);
+			pstmt.setFloat(2,slugging);
+			pstmt.setFloat(3,obp);
+			pstmt.setInt(4, id);
+			dbm.commit();
+			//ResultSet rs = pstmt.executeQuery();
+		}
+		catch(SQLException e){
+			System.out.println(e);
+			}
+		}
+		
+	
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from PLAYERS";

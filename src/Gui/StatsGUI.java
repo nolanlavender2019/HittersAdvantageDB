@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import DAO.DatabaseManager;
 import net.proteanit.sql.DbUtils;
 
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ public class StatsGUI {
 	static DbConnection connDB;
 	private JTable table;
 	AddPlayerGUI addPlayer;
+	public static DatabaseManager dbm;
 
 	/**
 	 * Launch the application.
@@ -33,6 +35,7 @@ public class StatsGUI {
 					window.frame.setVisible(true);
 					connDB = new DbConnection();
 					conn = connDB.dbConnector();
+					dbm = new DatabaseManager();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -99,6 +102,7 @@ public class StatsGUI {
 						int plateApperances = 0;
 						int totalBases = 0;
 						int hits = 0;
+						int onB = 0;
 					String query = "Select result from AtBat where playerID = ?";
 					PreparedStatement pst = conn.prepareStatement(query);
 					pst.setInt(1,i);
@@ -110,46 +114,50 @@ public class StatsGUI {
 							plateApperances++;
 							totalBases++;
 							hits++;
+							onB++;
 						}
 						if(result.equals("Double")){
 							atBats++;
 							plateApperances++;
 							totalBases= totalBases + 2;
 							hits++;
+							onB++;
 						}
 						if(result.equals("Triple")){
 							atBats++;
 							plateApperances++;
 							totalBases= totalBases+3;
 							hits++;
+							onB++;
 						}if(result.equals("HomeRun")){
 							atBats++;
 							plateApperances++;
 							totalBases= totalBases + 4;
 							hits++;
+							onB++;
 						}
 						if(result.equals("Out")){
 							atBats++;
 							plateApperances++;
+							
 						}
 						if(result.equals("Walk")){
 							plateApperances++;
+							onB++;
 						}
 						if(result.equals("HBP")){
 							plateApperances++;
+							onB++;
 						}
 						if(result.equals("Error")){
 							atBats++;
 							plateApperances++;
+							
 						}
-						
-
-
-
-
-
-
-
+						float bA = (float)hits/atBats;
+						float onBasePercentage = (float)onB/plateApperances;
+						float sluggingPercentage = (float)totalBases/atBats;
+						dbm.updateStats(i,bA,onBasePercentage,sluggingPercentage);
 					}
 				}
 				}

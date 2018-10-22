@@ -156,6 +156,10 @@ public class DatabaseManager {
 	public ArrayList<Double> getPitchTendency(int reportID, String countID){
 		return pitchDAO.getPitchTendency(reportID, countID);
 	}
+	
+	public void updateStats(int id, float ba, float slugging, float obp){
+		playerDAO.updateStats(id,ba,slugging,obp);
+	}
 	//--------------------------------------------------
 	// Utility Functions
 	
@@ -194,6 +198,7 @@ public class DatabaseManager {
 			System.out.println("Derby has shut down successfully");
 		}
 	}
+	
 	public void clearTables() {
 		try {
 			teamDAO.clear();
