@@ -761,9 +761,7 @@ public class GameGUI {
 				modelThreeOne.addRow(objs11);
 			}
 		});
-		JLabel lblFastballCurvball = new JLabel("Fastball % Curvball % Slider % Changup %");
-		lblFastballCurvball.setBounds(474, 47, 272, 16);
-		frmGame.getContentPane().add(lblFastballCurvball);
+		
 		JButton btnNewPitcher = new JButton("New Pitcher");
 		btnNewPitcher.setBounds(6, 34, 117, 29);
 		frmGame.getContentPane().add(btnNewPitcher);
