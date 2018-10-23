@@ -125,9 +125,9 @@ public class PitchDAO {
 						}
 					}
 					if( length != 0 ){
-					fTendency = (double)fastballCount/length;
-					cbTendency = (double)curveBallCount/length;
-					sliderTendency = (double)sliderCount/length;
+					fTendency = Math.round((double)fastballCount/length*100);
+					cbTendency = Math.round((double)curveBallCount/length*100);
+					sliderTendency = Math.round((double)sliderCount/length*100);
 					changeUpTendency = (double)changeUpCount/length;
 					}
 					else{

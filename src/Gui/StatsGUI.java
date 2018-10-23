@@ -112,7 +112,6 @@ public class StatsGUI {
 					System.out.println(i);
 					while(rs.next()){
 						String result = rs.getString("result");
-						System.out.println(result);
 						if(result.equals("Single")){
 							atBats++;
 							plateApperances++;
@@ -165,7 +164,6 @@ public class StatsGUI {
 					float onBasePercentage = Math.round((float)onB/plateApperances*1000);
 					float sluggingPercentage = Math.round((float)totalBases/atBats*1000);
 					dbm.updateStats(i,bA,onBasePercentage,sluggingPercentage);
-					System.out.println("This is the id" + i + "BA = " + bA + "obp = " + onBasePercentage + "Slug = " + sluggingPercentage);
 					dbm.commit();
 				}
 				}
