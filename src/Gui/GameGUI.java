@@ -539,9 +539,9 @@ public class GameGUI {
 		DefaultTableModel modelOhOh = new DefaultTableModel();
 		table = new JTable(modelOhOh);
 		JScrollPane js = new JScrollPane(table);
-		table.setBounds(387, 136, 211, 52);
-		frmGame.getContentPane().add(table);
-		modelOhOh.addColumn("0-0");
+		js.setBounds(387, 136, 211, 52);
+		frmGame.getContentPane().add(js);
+		//modelOhOh.addColumn("0-0");
 		modelOhOh.addColumn("Fastball");
 		modelOhOh.addColumn("Curveball");
 		modelOhOh.addColumn("Slider");
@@ -554,9 +554,9 @@ public class GameGUI {
 		DefaultTableModel modelOhOne = new DefaultTableModel();
 		table_1 = new JTable(modelOhOne);
 		JScrollPane js1 = new JScrollPane(table_1);
-		table_1.setBounds(387, 212, 211, 52);
-		frmGame.getContentPane().add(table_1);
-		modelOhOne.addColumn("0-1");
+		js1.setBounds(387, 212, 211, 52);
+		frmGame.getContentPane().add(js1);
+		//modelOhOne.addColumn("0-1");
 		modelOhOne.addColumn("Fastball");
 		modelOhOne.addColumn("Curveball");
 		modelOhOne.addColumn("Slider");
@@ -569,9 +569,9 @@ public class GameGUI {
 		DefaultTableModel modelOneTwo = new DefaultTableModel();
 		table_2 = new JTable(modelOneTwo);
 		JScrollPane js2 = new JScrollPane(table_2);
-		table_2.setBounds(387, 283, 211, 52);
-		frmGame.getContentPane().add(table_2);
-		modelOneTwo.addColumn("1-2");
+		js2.setBounds(387, 283, 211, 52);
+		frmGame.getContentPane().add(js2);
+		//modelOneTwo.addColumn("1-2");
 		modelOneTwo.addColumn("Fastball");
 		modelOneTwo.addColumn("Curveball");
 		modelOneTwo.addColumn("Slider");
@@ -580,9 +580,9 @@ public class GameGUI {
 		DefaultTableModel modelTwoOne = new DefaultTableModel();
 		table_3 = new JTable(modelTwoOne);
 		JScrollPane js3 = new JScrollPane(table_3);
-		table_3.setBounds(387, 364, 211, 52);
-		frmGame.getContentPane().add(table_3);
-		modelTwoOne.addColumn("2-1");
+		js3.setBounds(387, 364, 211, 52);
+		frmGame.getContentPane().add(js3);
+		//modelTwoOne.addColumn("2-1");
 		modelTwoOne.addColumn("Fastball");
 		modelTwoOne.addColumn("Curveball");
 		modelTwoOne.addColumn("Slider");
@@ -599,9 +599,9 @@ public class GameGUI {
 		DefaultTableModel modelThreeOh = new DefaultTableModel();
 		table_4 = new JTable(modelThreeOh);
 		JScrollPane js4 = new JScrollPane(table_4);
-		table_4.setBounds(387, 440, 211, 52);
-		frmGame.getContentPane().add(table_4);
-		modelThreeOh.addColumn("3-0");
+		js4.setBounds(387, 440, 211, 52);
+		frmGame.getContentPane().add(js4);
+		//modelThreeOh.addColumn("3-0");
 		modelThreeOh.addColumn("Fastball");
 		modelThreeOh.addColumn("Curveball");
 		modelThreeOh.addColumn("Slider");
@@ -614,9 +614,9 @@ public class GameGUI {
 		DefaultTableModel modelOhTwo = new DefaultTableModel();
 		table_5 = new JTable(modelOhTwo);
 		JScrollPane js5 = new JScrollPane(table_5);
-		table_5.setBounds(387, 521, 211, 52);
-		frmGame.getContentPane().add(table_5);
-		modelOhTwo.addColumn("0-2");
+		js5.setBounds(387, 521, 211, 52);
+		frmGame.getContentPane().add(js5);
+		//modelOhTwo.addColumn("0-2");
 		modelOhTwo.addColumn("Fastball");
 		modelOhTwo.addColumn("Curveball");
 		modelOhTwo.addColumn("Slider");
@@ -625,9 +625,9 @@ public class GameGUI {
 		DefaultTableModel modelOneOh = new DefaultTableModel();
 		table_6 = new JTable(modelOneOh);
 		JScrollPane js6 = new JScrollPane(table_6);
-		table_6.setBounds(620, 136, 211, 52);
-		frmGame.getContentPane().add(table_6);
-		modelOneOh.addColumn("1-0");
+		js6.setBounds(620, 136, 211, 52);
+		frmGame.getContentPane().add(js6);
+		//modelOneOh.addColumn("1-0");
 		modelOneOh.addColumn("Fastball");
 		modelOneOh.addColumn("Curveball");
 		modelOneOh.addColumn("Slider");
@@ -636,9 +636,9 @@ public class GameGUI {
 		DefaultTableModel modelOneOne = new DefaultTableModel();
 		table_7 = new JTable(modelOneOne);
 		JScrollPane js7 = new JScrollPane(table_7);
-		table_7.setBounds(620, 212, 211, 52);
-		frmGame.getContentPane().add(table_7);
-		modelOneOne.addColumn("1-1"); 
+		js7.setBounds(620, 212, 211, 52);
+		frmGame.getContentPane().add(js7);
+		//modelOneOne.addColumn("1-1"); 
 		modelOneOne.addColumn("Fastball");
 		modelOneOne.addColumn("Curveball");
 		modelOneOne.addColumn("Slider");
@@ -647,9 +647,9 @@ public class GameGUI {
 		DefaultTableModel modelTwoTwo = new DefaultTableModel();
 		table_8 = new JTable(modelTwoTwo);
 		JScrollPane js8 = new JScrollPane(table_8);
-		table_8.setBounds(620, 282, 211, 52);
-		frmGame.getContentPane().add(table_8);
-		modelTwoTwo.addColumn("2-2");
+		js8.setBounds(620, 282, 211, 52);
+		frmGame.getContentPane().add(js8);
+		//modelTwoTwo.addColumn("2-2");
 		modelTwoTwo.addColumn("Fastball");
 		modelTwoTwo.addColumn("Curveball");
 		modelTwoTwo.addColumn("Slider");
@@ -658,9 +658,9 @@ public class GameGUI {
 		DefaultTableModel modelThreeOne = new DefaultTableModel();
 		table_9 = new JTable(modelThreeOne);
 		JScrollPane js9 = new JScrollPane(table_9);
-		table_9.setBounds(620, 364, 211, 52);
-		frmGame.getContentPane().add(table_9);
-		modelThreeOne.addColumn("3-1");
+		js9.setBounds(620, 364, 211, 52);
+		frmGame.getContentPane().add(js9);
+		//modelThreeOne.addColumn("3-1");
 		modelThreeOne.addColumn("Fastball");
 		modelThreeOne.addColumn("Curveball");
 		modelThreeOne.addColumn("Slider");
@@ -669,23 +669,29 @@ public class GameGUI {
 		DefaultTableModel modelTwoOh = new DefaultTableModel();
 		table_10 = new JTable(modelTwoOh);
 		JScrollPane js10 = new JScrollPane(table_10);
-		table_10.setBounds(620, 440, 211, 52);
-		frmGame.getContentPane().add(table_10);
-		modelTwoOh.addColumn("2-0");
+		//table_10.setBounds(620, 440, 211, 52);
+		js10.setBounds(620,440,211,52);
+		//modelTwoOh.addColumn("2-0");
 		modelTwoOh.addColumn("Fastball");
 		modelTwoOh.addColumn("Curveball");
 		modelTwoOh.addColumn("Slider");
 		modelTwoOh.addColumn("ChangeUp");
+		//frmGame.getContentPane().add(table_10);
+		table_10.setFillsViewportHeight(true);
+		frmGame.getContentPane().add(js10);
+		
+
 		
 		DefaultTableModel modelFull = new DefaultTableModel();
 		table_11 = new JTable(modelFull);
 		JScrollPane js11 = new JScrollPane(table_11);
-		table_11.setBounds(620, 521, 211, 52);
-		frmGame.getContentPane().add(table_11);
+		js11.setBounds(620, 521, 211, 52);
+		frmGame.getContentPane().add(js11);
 		modelFull.addColumn("Fastball");
 		modelFull.addColumn("Curveball");
 		modelFull.addColumn("Slider");
 		modelFull.addColumn("ChangeUp");
+		
 		
 		JLabel label_6 = new JLabel("1-0");
 		label_6.setBounds(620, 120, 61, 16);
