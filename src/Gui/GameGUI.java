@@ -514,13 +514,6 @@ public class GameGUI {
 						spotInTheLineUP++;
 					}
 					
-					//get PitcherID 
-					
-					
-					
-					//get gameID
-					
-					
 					System.out.println(pitcherID + gameID + result2);
 					dbm.insertAtBat(ab, playerIdent, pitcherID, gameID, result2);
 					dbm.commit();
