@@ -156,6 +156,9 @@ public class DatabaseManager {
 	public ArrayList<Double> getPitchTendency(int reportID, String countID){
 		return pitchDAO.getPitchTendency(reportID, countID);
 	}
+	public ArrayList<Double> getPitcherReport(int pitcherID, String countID){
+		return pitchDAO.getPitchTendency(pitcherID, countID);
+	}
 	
 	public void updateStats(int id, float ba, float slugging, float obp){
 		playerDAO.updateStats(id,ba,slugging,obp);

@@ -149,6 +149,70 @@ public class PitchDAO {
 				throw new RuntimeException("error getting Pitches", e);
 			}
 		}
+	
+	public ArrayList<Double> getPitchReport(int reportID, String countID){
+		ArrayList<Double> tendencies = new ArrayList<Double>();
+			try{
+					int fastballCount = 0;
+					int curveBallCount = 0;
+					int sliderCount = 0;
+					int changeUpCount = 0 ;
+					int length = 0;
+					double fTendency = 0.0;
+					double cbTendency = 0.0;
+					double changeUpTendency = 0.0;
+					double sliderTendency = 0.0;
+
+					//get specific pitch and count
+					String qry = "select s.* from Pitchs s where reportID = ? and count = ?";
+					PreparedStatement pstmt = conn.prepareStatement(qry);
+					pstmt.setInt(1, reportID);
+					pstmt.setString(2,countID);
+
+					ResultSet rs = pstmt.executeQuery();
+					while (rs.next()){
+						length++;
+						String type = rs.getString("Type");
+						System.out.println(type);
+						System.out.println("This is the count " + rs.getString("Count"));
+						if(type.equals("Fastball")){
+							fastballCount++;
+						}
+						if(type.equals("Curveball")){
+							curveBallCount++;
+						}
+						if(type.equals("Slider")){
+							sliderCount++;
+						}
+						if(type.equals("Changeup")){
+							changeUpCount++;
+						}
+					}
+					if( length != 0 ){
+					fTendency = Math.round((double)fastballCount/length*100);
+					cbTendency = Math.round((double)curveBallCount/length*100);
+					sliderTendency = Math.round((double)sliderCount/length*100);
+					changeUpTendency = (double)changeUpCount/length;
+					}
+					else{
+						fTendency = 0;
+						cbTendency = 0;
+						sliderTendency = 0;
+						changeUpTendency = 0;
+					}
+					tendencies.add(fTendency);
+					tendencies.add(cbTendency);
+					tendencies.add(sliderTendency);
+					tendencies.add(changeUpTendency);
+					rs.close();
+					return tendencies;
+					
+			} catch(SQLException e){
+				dbm.cleanup();
+				System.out.println(e);
+				throw new RuntimeException("error getting Pitches", e);
+			}
+		}
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from PITCHS";
