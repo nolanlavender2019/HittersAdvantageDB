@@ -417,6 +417,7 @@ public class GameGUI {
 			
 					
 					dbm.insertPitch(pitchesID, reportID, count, pitch, ballStrike);
+					dbm.commit();
 				}
 			}
 		});

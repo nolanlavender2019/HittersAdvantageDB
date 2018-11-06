@@ -104,6 +104,26 @@ public class ReportDAO {
 		}
 	}
 	
+	public ArrayList<Integer> getReports(int pitcherID){
+		ArrayList<Integer> reps = new ArrayList<Integer>();
+		try{
+			String qry = "select s.* from Report s where pitcherID = ?";
+			PreparedStatement pstmt = conn.prepareStatement(qry);
+			pstmt.setInt(1, pitcherID);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()){
+				int teamID1 = rs.getInt("reportID");
+				reps.add(teamID1);
+	
+			}
+			rs.close();
+			return reps;
+	} catch(SQLException e){
+		dbm.cleanup();
+		throw new RuntimeException("error getting Reports", e);
+	}
+}
+	
 	void clear() throws SQLException{
 		Statement stmt = conn.createStatement();
 		String s = "delete from REPORT";

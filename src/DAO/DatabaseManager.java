@@ -163,6 +163,10 @@ public class DatabaseManager {
 	public void updateStats(int id, float ba, float slugging, float obp){
 		playerDAO.updateStats(id,ba,slugging,obp);
 	}
+	
+	public ArrayList<Integer> getReports(int pitcherID){
+		return reportDAO.getReports(pitcherID);
+	}
 	//--------------------------------------------------
 	// Utility Functions
 	
