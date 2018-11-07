@@ -97,7 +97,6 @@ public class StatsGUI {
 		JButton btnUpdateStats = new JButton("Update Stats");
 		btnUpdateStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				try{
 					for(int i = 0; i < 100; i++){
 						int atBats = 0;
