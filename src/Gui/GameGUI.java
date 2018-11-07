@@ -60,6 +60,7 @@ public class GameGUI {
 	static int pitcherID;
 	static int reportID;
 	static Pitchers pitcher2;
+	NewGame newGame;
 	/**
 	 * Launch the application.
 	 */
@@ -761,7 +762,9 @@ public class GameGUI {
 		frmGame.getContentPane().add(btnNewPitcher);
 		btnNewPitcher.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			pitcher.newScreen2(opponentID,gameID);
+			//pitcher.newScreen2(opponentID,gameID);
+			newGame.newScreen();
+			frmGame.setVisible(false);
 		}
 
 	});

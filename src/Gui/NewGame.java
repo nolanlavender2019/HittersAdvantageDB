@@ -273,7 +273,7 @@ public class NewGame {
 							}
 						}
 					dbm.insertGame(gameID,1,teamID);
-					for(int i =0; i<10000;i++){
+					for(int i =0; i<10000000;i++){
 						if(dbm.findReport(i) == null)
 							{
 								reportID = i;

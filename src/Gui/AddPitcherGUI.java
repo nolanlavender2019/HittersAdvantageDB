@@ -11,7 +11,11 @@ import javax.swing.JTextField;
 import DAO.DatabaseManager;
 
 import java.awt.Insets;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -116,7 +120,7 @@ public class AddPitcherGUI {
 		gbc_textField_1.gridx = 6;
 		gbc_textField_1.gridy = 2;
 		frame.getContentPane().add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		//textField_1.setColumns(10);
 		
 		JLabel lblPosition = new JLabel("Pitch 1");
 		GridBagConstraints gbc_lblPosition = new GridBagConstraints();
@@ -125,14 +129,16 @@ public class AddPitcherGUI {
 		gbc_lblPosition.gridy = 3;
 		frame.getContentPane().add(lblPosition, gbc_lblPosition);
 		
-		textField_2 = new JTextField();
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Fastball", "Curveball", "Slider", "Changeup"}));
+		//textField_2 = new JTextField();
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_2.gridx = 6;
 		gbc_textField_2.gridy = 3;
-		frame.getContentPane().add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+		frame.getContentPane().add(comboBox, gbc_textField_2);
+		//textField_1.setColumns(10);
 		
 		JLabel lblHit = new JLabel("Pitch 2");
 		GridBagConstraints gbc_lblHit = new GridBagConstraints();
@@ -141,14 +147,16 @@ public class AddPitcherGUI {
 		gbc_lblHit.gridy = 4;
 		frame.getContentPane().add(lblHit, gbc_lblHit);
 		
-		textField_3 = new JTextField();
+		JComboBox comboBox2 = new JComboBox();
+		comboBox2.setModel(new DefaultComboBoxModel(new String[] {"Fastball", "Curveball", "Slider", "Changeup"}));
+		//textField_3 = new JTextField();
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_3.gridx = 6;
 		gbc_textField_3.gridy = 4;
-		frame.getContentPane().add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
+		frame.getContentPane().add(comboBox2, gbc_textField_3);
+		//textField_3.setColumns(10);
 		
 		JLabel lblBattingAverage = new JLabel("Pitch 3");
 		GridBagConstraints gbc_lblBattingAverage = new GridBagConstraints();
@@ -157,15 +165,19 @@ public class AddPitcherGUI {
 		gbc_lblBattingAverage.gridy = 5;
 		frame.getContentPane().add(lblBattingAverage, gbc_lblBattingAverage);
 		
-		textField_4 = new JTextField();
+		JComboBox comboBox3 = new JComboBox();
+		comboBox3.setModel(new DefaultComboBoxModel(new String[] {"Fastball", "Curveball", "Slider", "Changeup"}));
+		//textField_4 = new JTextField();
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 6;
 		gbc_textField_4.gridy = 5;
-		frame.getContentPane().add(textField_4, gbc_textField_4);
-		textField_4.setColumns(10);
+		frame.getContentPane().add(comboBox3, gbc_textField_4);
+		//textField_4.setColumns(10);
 		
+		JComboBox comboBox4 = new JComboBox();
+		comboBox4.setModel(new DefaultComboBoxModel(new String[] {"Fastball", "Curveball", "Slider", "Changeup"}));
 		JLabel lblSlugging = new JLabel("Pitch 4");
 		GridBagConstraints gbc_lblSlugging = new GridBagConstraints();
 		gbc_lblSlugging.insets = new Insets(0, 0, 5, 5);
@@ -173,14 +185,14 @@ public class AddPitcherGUI {
 		gbc_lblSlugging.gridy = 6;
 		frame.getContentPane().add(lblSlugging, gbc_lblSlugging);
 		
-		textField_5 = new JTextField();
+		//textField_5 = new JTextField();
 		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
 		gbc_textField_5.insets = new Insets(0, 0, 5, 0);
 		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_5.gridx = 6;
 		gbc_textField_5.gridy = 6;
-		frame.getContentPane().add(textField_5, gbc_textField_5);
-		textField_5.setColumns(10);
+		frame.getContentPane().add(comboBox4, gbc_textField_5);
+		//textField_5.setColumns(10);
 
 		
 		JButton btnSubmit = new JButton("Submit");
@@ -188,10 +200,10 @@ public class AddPitcherGUI {
 			public void actionPerformed(ActionEvent e) {
 				String name = textField.getText();
 				String number =textField_1.getText();
-				String position = textField_2.getText();
-				String hit = textField_3.getText();
-				String battingAverage = textField_4.getText();
-				String slugging = textField_5.getText();
+				String position = comboBox.getSelectedItem().toString();
+				String hit = comboBox2.getSelectedItem().toString();
+				String battingAverage = comboBox3.getSelectedItem().toString();
+				String slugging = comboBox4.getSelectedItem().toString();
 				
 				//int playerID = -1;
 				//int gameID = 0;
