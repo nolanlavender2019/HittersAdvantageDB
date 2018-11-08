@@ -84,6 +84,79 @@ public class StatsGUI {
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
+					for(int i = 0; i < 100; i++){
+						int atBats = 0;
+						int plateApperances = 0;
+						int totalBases = 0;
+						int hits = 0;
+						int onB = 0;
+					String query = "Select a.* from AtBat a where playerID = ?";
+					PreparedStatement pst = conn.prepareStatement(query);
+					pst.setInt(1,i);
+					ResultSet rs = pst.executeQuery();
+					System.out.println(i);
+					while(rs.next()){
+						String result = rs.getString("result");
+						if(result.equals("Single")){
+							atBats++;
+							plateApperances++;
+							totalBases++;
+							hits++;
+							onB++;
+						}
+						if(result.equals("Double")){
+							atBats++;
+							plateApperances++;
+							totalBases= totalBases + 2;
+							hits++;
+							onB++;
+						}
+						if(result.equals("Triple")){
+							atBats++;
+							plateApperances++;
+							totalBases= totalBases+3;
+							hits++;
+							onB++;
+						}if(result.equals("HomeRun")){
+							atBats++;
+							plateApperances++;
+							totalBases= totalBases + 4;
+							hits++;
+							onB++;
+						}
+						if(result.equals("Out")){
+							atBats++;
+							plateApperances++;
+							
+						}
+						if(result.equals("Walk")){
+							plateApperances++;
+							onB++;
+						}
+						if(result.equals("HBP")){
+							plateApperances++;
+							onB++;
+						}
+						if(result.equals("Error")){
+							atBats++;
+							plateApperances++;
+							
+						}
+						
+
+					}
+					float bA = Math.round((float)hits/atBats*1000);
+					float onBasePercentage = Math.round((float)onB/plateApperances*1000);
+					float sluggingPercentage = Math.round((float)totalBases/atBats*1000);
+					dbm.updateStats(i,bA,onBasePercentage,sluggingPercentage);
+					dbm.commit();
+				}
+				}
+				catch (Exception e1){
+					System.out.println("This error" + e1);
+				}
+			
+				try{
 					String query = "Select playerName, BattingAverage, OnBasePercentage, SluggingPercentage from Players";
 					PreparedStatement pst = conn.prepareStatement(query);
 					ResultSet rs = pst.executeQuery();
@@ -94,7 +167,9 @@ public class StatsGUI {
 				}
 			}
 		});
-		JButton btnUpdateStats = new JButton("Update Stats");
+		
+		//Load Button now updates the stats as well
+		/*JButton btnUpdateStats = new JButton("Update Stats");
 		btnUpdateStats.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -172,7 +247,7 @@ public class StatsGUI {
 			}
 		});
 		btnUpdateStats.setBounds(151, 6, 117, 29);
-		frame.getContentPane().add(btnUpdateStats);
+		frame.getContentPane().add(btnUpdateStats);*/
 		frame.getContentPane().add(btnLoadData);
 		
 	}
