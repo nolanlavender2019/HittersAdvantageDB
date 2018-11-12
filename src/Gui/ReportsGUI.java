@@ -166,6 +166,33 @@ public class ReportsGUI {
 		modelOhTwo.addColumn("Curveball");
 		modelOhTwo.addColumn("Slider");
 		modelOhTwo.addColumn("ChangeUp");
+		JLabel label_6 = new JLabel("1-0");
+		label_6.setBounds(310, 120, 61, 16);
+		frmGame.getContentPane().add(label_6);
+		
+		JLabel label_7 = new JLabel("1-1");
+		label_7.setBounds(310, 193, 61, 16);
+		frmGame.getContentPane().add(label_7);
+		
+		JLabel label_8 = new JLabel("2-2");
+		label_8.setBounds(310, 266, 61, 16);
+		frmGame.getContentPane().add(label_8);
+		
+		JLabel label_9 = new JLabel("3-1");
+		label_9.setBounds(310, 348, 61, 16);
+		frmGame.getContentPane().add(label_9);
+		
+		JLabel label_10 = new JLabel("2-0");
+		label_10.setBounds(310, 422, 61, 16);
+		frmGame.getContentPane().add(label_10);
+		
+		JLabel label_11 = new JLabel("3-2");
+		label_11.setBounds(310, 501, 61, 16);
+		frmGame.getContentPane().add(label_11, BorderLayout.WEST);
+		/*JLabel label_6 = new JLabel("1-0");
+		label_2.setBounds(310, 121, 61, 16);
+		frmGame.getContentPane().add(label_6);*/
+		
 		
 		DefaultTableModel modelOneOh = new DefaultTableModel();
 		table_6 = new JTable(modelOneOh);
@@ -178,6 +205,11 @@ public class ReportsGUI {
 		modelOneOh.addColumn("Slider");
 		modelOneOh.addColumn("ChangeUp");
 		
+		/*JLabel label_7 = new JLabel("1-1");
+		label_2.setBounds(310, 212-15, 61, 16);
+		frmGame.getContentPane().add(label_7);*/
+		
+		
 		DefaultTableModel modelOneOne = new DefaultTableModel();
 		table_7 = new JTable(modelOneOne);
 		JScrollPane js7 = new JScrollPane(table_7);
@@ -188,6 +220,11 @@ public class ReportsGUI {
 		modelOneOne.addColumn("Curveball");
 		modelOneOne.addColumn("Slider");
 		modelOneOne.addColumn("ChangeUp");
+		
+		/*JLabel label_8 = new JLabel("2-2");
+		label_2.setBounds(310, 282-15, 61, 16);
+		frmGame.getContentPane().add(label_8);*/ 
+		
 		
 		DefaultTableModel modelTwoTwo = new DefaultTableModel();
 		table_8 = new JTable(modelTwoTwo);
@@ -200,6 +237,12 @@ public class ReportsGUI {
 		modelTwoTwo.addColumn("Slider");
 		modelTwoTwo.addColumn("ChangeUp");
 		
+		
+		/*JLabel label_9 = new JLabel("3-1");
+		label_2.setBounds(310, 349, 61, 16);
+		frmGame.getContentPane().add(label_9);*/
+		
+		
 		DefaultTableModel modelThreeOne = new DefaultTableModel();
 		table_9 = new JTable(modelThreeOne);
 		JScrollPane js9 = new JScrollPane(table_9);
@@ -210,6 +253,11 @@ public class ReportsGUI {
 		modelThreeOne.addColumn("Curveball");
 		modelThreeOne.addColumn("Slider");
 		modelThreeOne.addColumn("ChangeUp");
+		
+		/*JLabel label_10 = new JLabel("2-0");
+		label_2.setBounds(310, 425, 61, 16);
+		frmGame.getContentPane().add(label_10);*/
+		
 		
 		DefaultTableModel modelTwoOh = new DefaultTableModel();
 		table_10 = new JTable(modelTwoOh);
@@ -226,6 +274,10 @@ public class ReportsGUI {
 		frmGame.getContentPane().add(js10);
 		
 
+		/*JLabel label_11 = new JLabel("3-2");
+		label_2.setBounds(310, 506, 61, 16);
+		frmGame.getContentPane().add(label_11);*/
+		
 		
 		DefaultTableModel modelFull = new DefaultTableModel();
 		table_11 = new JTable(modelFull);
